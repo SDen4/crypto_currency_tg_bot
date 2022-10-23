@@ -15,8 +15,6 @@ bot.setMyCommands([
 ]);
 
 bot.on('message', async (msg) => {
-  console.log(msg);
-
   const firstName = msg?.from?.first_name;
   const lastName = msg?.from?.last_name;
 
@@ -51,8 +49,6 @@ bot.on('message', async (msg) => {
 
     let promise = axios.get(`${baseUrl}/${pathParams}/${queryParams}`).then(
       (response) => {
-        console.log('response.data: ', response.data);
-
         const data = response.data;
         const isBuy = Number(data?.[1]) < Number(data?.[3]);
         const isBuyText = isBuy ? 'Buy' : 'Sell';
