@@ -1,18 +1,37 @@
 const TgBotApi = require('node-telegram-bot-api');
-const axios = require('axios');
 
 const token = require('./token');
-const formatNumber = require('./formatNumber');
+const httpRequest = require('./httpRequest');
 
 const bot = new TgBotApi(token, { polling: true });
 
 bot.setMyCommands([
   { command: '/info', description: 'Information about currencies' },
-  { command: '/btcusd', description: 'Currency BTC-USD' },
-  { command: '/btceur', description: 'Currency BTC-EUR' },
-  { command: '/ethusd', description: 'Currency ETH-USD' },
-  { command: '/etheur', description: 'Currency ETH-EUR' },
+  { command: '/btcusd', description: 'Currency BTC/USD' },
+  { command: '/btceur', description: 'Currency BTC/EUR' },
+  { command: '/ethusd', description: 'Currency ETH/USD' },
+  { command: '/etheur', description: 'Currency ETH/EUR' },
 ]);
+
+bot.on('callback_query', (msg) => {
+  const data = msg.data;
+  const chatId = msg.message.chat.id;
+
+  httpRequest(bot, chatId, data);
+});
+
+const buttons = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: 'BTC/USD', callback_data: '/btcusd' },
+        { text: 'BTC/EUR', callback_data: '/btceur' },
+        { text: 'ETH/USD', callback_data: '/ethusd' },
+        { text: 'ETH/EUR', callback_data: '/etheur' },
+      ],
+    ],
+  },
+};
 
 bot.on('message', async (msg) => {
   const firstName = msg?.from?.first_name;
@@ -24,13 +43,13 @@ bot.on('message', async (msg) => {
   if (text === '/start') {
     await bot.sendMessage(
       chatId,
-      `Hello, ${firstName} ${lastName}! Welcome to Crypto Currency Light Bot!`,
+      `Hello, ${firstName}! Welcome to Crypto Currency Light Bot!`,
     );
   } else if (text === '/info') {
     await bot.sendMessage(
       chatId,
-      `Commands to get the crypto currencies:
-        "/btcusd", "/btceur", "/ethusd", "/etheur"`,
+      'Commands to get the crypto currencies:',
+      buttons,
     );
   } else if (text === '/secret') {
     await bot.sendSticker(
@@ -43,44 +62,7 @@ bot.on('message', async (msg) => {
     text === '/ethusd' ||
     text === '/etheur'
   ) {
-    const baseUrl = 'https://api-pub.bitfinex.com/v2';
-    const pathParams = 'ticker';
-    const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
-
-    let promise = axios.get(`${baseUrl}/${pathParams}/${queryParams}`).then(
-      (response) => {
-        const data = response.data;
-        const isBuy = Number(data?.[1]) < Number(data?.[3]);
-        const isBuyText = isBuy ? 'Buy' : 'Sell';
-        const answer = `${text.toLocaleUpperCase().slice(1, 4)}/${text
-          .toLocaleUpperCase()
-          .slice(4)}: ${formatNumber(data[0])}
-          -------------------------------------------------------
-          24h: ${formatNumber(data[5] * 100, 2, '%')}
-          Price of the last trade: ${formatNumber(data[6])}
-          Price of the last lowest ask: ${formatNumber(data[2])}
-          Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
-          Sum of the 25 lowest ask sizes: ${formatNumber(data[3], 2)}
-          Daily volume: ${formatNumber(data[7], 2)}
-          Daily high: ${formatNumber(data[8])}
-          Daily low: ${formatNumber(data[9])}
-          Amount that the last price has changed since yesterday: ${formatNumber(
-            data[4],
-          )}
-          -------------------------------------------------------
-          ${isBuyText}
-          `;
-
-        bot.sendMessage(chatId, answer);
-      },
-      (error) => {
-        bot.sendMessage(
-          chatId,
-          `No data... 
-        Error: ${error}`,
-        );
-      },
-    );
+    httpRequest(bot, chatId, text);
   } else {
     await bot.sendMessage(
       chatId,
