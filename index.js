@@ -6,11 +6,12 @@ const httpRequest = require('./httpRequest');
 const bot = new TgBotApi(token, { polling: true });
 
 bot.setMyCommands([
-  { command: '/info', description: 'Information about currencies' },
+  { command: '/info', description: 'Currencies' },
   { command: '/btcusd', description: 'Currency BTC/USD' },
   { command: '/btceur', description: 'Currency BTC/EUR' },
   { command: '/ethusd', description: 'Currency ETH/USD' },
   { command: '/etheur', description: 'Currency ETH/EUR' },
+  { command: '/settimer', description: 'Set timer for BTC/USD' },
 ]);
 
 bot.on('callback_query', (msg) => {
@@ -63,6 +64,20 @@ bot.on('message', async (msg) => {
     text === '/etheur'
   ) {
     httpRequest(bot, chatId, text);
+  } else if (text === '/settimer') {
+    await bot.sendMessage(
+      chatId,
+      "You can set a timer in the format '/timer5', where '5' is the number of minutes after which the message will arrive.",
+    );
+  } else if (text.includes('/timer')) {
+    const timeInMinutes = Number(text.slice(6));
+    if (timeInMinutes) {
+      setTimeout(() => {
+        httpRequest(bot, chatId, '/btcusd');
+      }, timeInMinutes * 60000);
+    } else {
+      await bot.sendMessage(chatId, 'Invalid parameter');
+    }
   } else {
     await bot.sendMessage(
       chatId,
