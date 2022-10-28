@@ -11,15 +11,7 @@ bot.setMyCommands([
   { command: '/btceur', description: 'Currency BTC/EUR' },
   { command: '/ethusd', description: 'Currency ETH/USD' },
   { command: '/etheur', description: 'Currency ETH/EUR' },
-  { command: '/settimer', description: 'Set timer for BTC/USD' },
 ]);
-
-bot.on('callback_query', (msg) => {
-  const data = msg.data;
-  const chatId = msg.message.chat.id;
-
-  httpRequest(bot, chatId, data);
-});
 
 const buttons = {
   reply_markup: {
@@ -30,11 +22,12 @@ const buttons = {
         { text: 'ETH/USD', callback_data: '/ethusd' },
         { text: 'ETH/EUR', callback_data: '/etheur' },
       ],
+      [{ text: 'Set timer for BTC/USD', callback_data: '/settimer' }],
     ],
   },
 };
 
-bot.on('message', async (msg) => {
+const messageFunc = async (msg) => {
   const firstName = msg?.from?.first_name;
   const lastName = msg?.from?.last_name;
 
@@ -49,25 +42,13 @@ bot.on('message', async (msg) => {
   } else if (text === '/info') {
     await bot.sendMessage(
       chatId,
-      'Commands to get the crypto currencies:',
+      'Push the button to get the currency, or set a timer',
       buttons,
     );
   } else if (text === '/secret') {
     await bot.sendSticker(
       chatId,
       'https://tlgrm.eu/_/stickers/4e0/60a/4e060a5e-5bbe-3863-a9c7-62a5483692d4/2.webp',
-    );
-  } else if (
-    text === '/btcusd' ||
-    text === '/btceur' ||
-    text === '/ethusd' ||
-    text === '/etheur'
-  ) {
-    httpRequest(bot, chatId, text);
-  } else if (text === '/settimer') {
-    await bot.sendMessage(
-      chatId,
-      "You can set a timer in the format '/timer5', where '5' is the number of minutes after which the message will arrive.",
     );
   } else if (text.includes('/timer')) {
     const timeInMinutes = Number(text.slice(6));
@@ -84,4 +65,21 @@ bot.on('message', async (msg) => {
       "Sorry, I don't understand you, please try again.",
     );
   }
-});
+};
+
+const buttonsFunc = async (msg) => {
+  const chatId = msg.message.chat.id;
+  const text = msg?.data;
+
+  if (text === '/settimer') {
+    await bot.sendMessage(
+      chatId,
+      "You can set a timer in the format '/timerX', where 'X' is the number of minutes after which the message will arrive.",
+    );
+  } else {
+    httpRequest(bot, chatId, text);
+  }
+};
+
+bot.on('message', messageFunc);
+bot.on('callback_query', buttonsFunc);
