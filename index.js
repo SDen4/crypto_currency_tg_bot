@@ -27,12 +27,28 @@ const buttons = {
   },
 };
 
+const buttonsTimer = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: '5 min', callback_data: '/timer5' },
+        { text: '15 min', callback_data: '/timer15' },
+        { text: '30 min', callback_data: '/timer30' },
+        { text: '60 min', callback_data: '/timer60' },
+        { text: '90 min', callback_data: '/timer90' },
+      ],
+    ],
+  },
+};
+
 const messageFunc = async (msg) => {
   const firstName = msg?.from?.first_name;
   const lastName = msg?.from?.last_name;
 
   const text = msg?.text;
   const chatId = msg?.chat?.id;
+
+  console.log(msg);
 
   if (text === '/start') {
     await bot.sendMessage(
@@ -45,6 +61,13 @@ const messageFunc = async (msg) => {
       'Push the button to get the currency, or set a timer',
       buttons,
     );
+  } else if (
+    text === '/btcusd' ||
+    text === '/btceur' ||
+    text === '/ethusd' ||
+    text === '/etheur'
+  ) {
+    httpRequest(bot, chatId, text);
   } else if (text === '/secret') {
     await bot.sendSticker(
       chatId,
@@ -74,8 +97,18 @@ const buttonsFunc = async (msg) => {
   if (text === '/settimer') {
     await bot.sendMessage(
       chatId,
-      "You can set a timer in the format '/timerX', where 'X' is the number of minutes after which the message will arrive.",
+      "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive.",
+      buttonsTimer,
     );
+  } else if (text.includes('/timer')) {
+    const timeInMinutes = Number(text.slice(6));
+    if (timeInMinutes) {
+      setTimeout(() => {
+        httpRequest(bot, chatId, '/btcusd');
+      }, timeInMinutes * 60000);
+    } else {
+      await bot.sendMessage(chatId, 'Invalid parameter');
+    }
   } else {
     httpRequest(bot, chatId, text);
   }
