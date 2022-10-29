@@ -15,7 +15,7 @@ const httpRequest = (bot, chatId, text) => {
       const answer = `${text.toLocaleUpperCase().slice(1, 4)}/${text
         .toLocaleUpperCase()
         .slice(4)}: ${formatNumber(data[0])}
-          -------------------------------------------------------
+          -----------------------------------
           24h: ${formatNumber(data[5] * 100, 2, '%')}
           Price of the last trade: ${formatNumber(data[6])}
           Price of the last lowest ask: ${formatNumber(data[2])}
@@ -27,7 +27,7 @@ const httpRequest = (bot, chatId, text) => {
           Amount that the last price has changed since yesterday: ${formatNumber(
             data[4],
           )}
-          -------------------------------------------------------
+          -----------------------------------
           ${isBuyText}
           `;
 
