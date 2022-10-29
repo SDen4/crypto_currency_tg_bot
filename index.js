@@ -70,7 +70,7 @@ const buttonsFunc = async (msg) => {
   if (text === '/settimer') {
     await bot.sendMessage(
       chatId,
-      "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive.",
+      "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
       buttonsTimer,
     );
   } else if (text.includes('/timer')) {
