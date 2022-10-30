@@ -1,4 +1,4 @@
-const mpHttpRequest = require('../api/mpHttpRequest');
+const { mpHttpRequest } = require('../api/mpHttpRequest');
 
 const btcCurBlockFees = async (bot, chatId) => {
   const allData = await mpHttpRequest();
