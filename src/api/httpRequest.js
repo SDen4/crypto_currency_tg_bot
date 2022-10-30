@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const formatNumber = require('./formatNumber');
+const formatNumber = require('../utils/formatNumber');
 
 const httpRequest = (bot, chatId, text) => {
   const baseUrl = 'https://api-pub.bitfinex.com/v2';
@@ -15,21 +15,18 @@ const httpRequest = (bot, chatId, text) => {
       const answer = `${text.toLocaleUpperCase().slice(1, 4)}/${text
         .toLocaleUpperCase()
         .slice(4)}: ${formatNumber(data[0])}
-          -----------------------------------
-          24h: ${formatNumber(data[5] * 100, 2, '%')}
-          Price of the last trade: ${formatNumber(data[6])}
-          Price of the last lowest ask: ${formatNumber(data[2])}
-          Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
-          Sum of the 25 lowest ask sizes: ${formatNumber(data[3], 2)}
-          Daily volume: ${formatNumber(data[7], 2)}
-          Daily high: ${formatNumber(data[8])}
-          Daily low: ${formatNumber(data[9])}
-          Amount that the last price has changed since yesterday: ${formatNumber(
-            data[4],
-          )}
-          -----------------------------------
-          ${isBuyText}
-          `;
+-----------------------------------
+24h: ${formatNumber(data[5] * 100, 2, '%')}
+Price of the last trade: ${formatNumber(data[6])}
+Price of the last lowest ask: ${formatNumber(data[2])}
+Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
+Sum of the 25 lowest ask sizes: ${formatNumber(data[3], 2)}
+Daily volume: ${formatNumber(data[7], 2)}
+Daily high: ${formatNumber(data[8])}
+Daily low: ${formatNumber(data[9])}
+Amount that the last price has changed since yesterday: ${formatNumber(data[4])}
+-----------------------------------
+${isBuyText}`;
 
       bot.sendMessage(chatId, answer);
     },

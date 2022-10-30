@@ -1,4 +1,4 @@
-const httpRequest = require('./httpRequest');
+const httpRequest = require('../api/httpRequest');
 
 const timer = async (bot, chatId, text) => {
   const timeInMinutes = Number(text.slice(6));

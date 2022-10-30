@@ -9,7 +9,7 @@ const buttons = {
       ],
       [
         { text: 'Set timer for BTC/USD', callback_data: '/settimer' },
-        { text: 'BTC block fees', callback_data: '/btcFees' },
+        { text: 'BTC current block fees', callback_data: '/btcCurBlockFees' },
       ],
     ],
   },
