@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const mpHttpRequest = async () => {
+const mpCurBlockRequest = async () => {
   const data = axios
     .get('https://mempool.space/api/v1/fees/mempool-blocks')
     .then((res) => res.data);
@@ -8,7 +8,7 @@ const mpHttpRequest = async () => {
   return data;
 };
 
-const mpIdHttpRequest = async () => {
+const mpIdRequest = async () => {
   const data = axios
     .get('https://mempool.space/api/blocks/tip/height')
     .then((res) => res.data);
@@ -16,4 +16,4 @@ const mpIdHttpRequest = async () => {
   return data;
 };
 
-module.exports = { mpHttpRequest, mpIdHttpRequest };
+module.exports = { mpCurBlockRequest, mpIdRequest };

@@ -3,7 +3,7 @@ const TgBotApi = require('node-telegram-bot-api');
 const token = require('./token');
 
 const bfHttpRequest = require('./src/api/bfHttpRequest');
-const { mpIdHttpRequest } = require('./src/api/mpHttpRequest');
+const { mpIdRequest } = require('./src/api/mpHttpRequest');
 
 const { buttons, buttonsTimer } = require('./src/modules/buttons');
 const btcCurBlockFees = require('./src/modules/btcCurBlockFees');
@@ -73,7 +73,7 @@ const buttonsFunc = async (msg) => {
   } else if (text === '/btcCurBlockFees') {
     btcCurBlockFees(bot, chatId);
   } else if (text === '/lastBlockId') {
-    const id = await mpIdHttpRequest();
+    const id = await mpIdRequest();
     await bot.sendMessage(chatId, `Last block Id: ${id}`);
   } else {
     bfHttpRequest(bot, chatId, text);

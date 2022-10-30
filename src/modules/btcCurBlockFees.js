@@ -1,7 +1,7 @@
-const { mpHttpRequest } = require('../api/mpHttpRequest');
+const { mpCurBlockRequest } = require('../api/mpHttpRequest');
 
 const btcCurBlockFees = async (bot, chatId) => {
-  const allData = await mpHttpRequest();
+  const allData = await mpCurBlockRequest();
 
   if (allData?.length) {
     await bot.sendMessage(
