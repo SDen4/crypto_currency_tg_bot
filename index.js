@@ -2,6 +2,7 @@ const TgBotApi = require('node-telegram-bot-api');
 
 const token = require('./token');
 const httpRequest = require('./httpRequest');
+const mpHttpRequest = require('./mpHttpRequest');
 const { buttons, buttonsTimer } = require('./buttons');
 
 const bot = new TgBotApi(token, { polling: true });
@@ -20,8 +21,6 @@ const messageFunc = async (msg) => {
 
   const text = msg?.text;
   const chatId = msg?.chat?.id;
-
-  console.log(msg);
 
   if (text === '/start') {
     await bot.sendMessage(
@@ -81,6 +80,21 @@ const buttonsFunc = async (msg) => {
       }, timeInMinutes * 60000);
     } else {
       await bot.sendMessage(chatId, 'Invalid parameter');
+    }
+  } else if (text === '/btcFees') {
+    const allData = await mpHttpRequest();
+
+    if (allData?.length) {
+      await bot.sendMessage(
+        chatId,
+        `Median fee: ${Math.ceil(
+          allData[0].medianFee,
+        ).toFixed()} sat/vB\nTotal fees: ${(
+          Math.ceil(allData[0].totalFees) / 100000000
+        ).toFixed(3)} BTC`,
+      );
+    } else {
+      await bot.sendMessage(chatId, 'No data');
     }
   } else {
     httpRequest(bot, chatId, text);
