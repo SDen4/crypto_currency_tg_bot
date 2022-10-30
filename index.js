@@ -3,6 +3,8 @@ const TgBotApi = require('node-telegram-bot-api');
 const token = require('./token');
 const httpRequest = require('./httpRequest');
 const mpHttpRequest = require('./mpHttpRequest');
+const timer = require('./timer');
+
 const { buttons, buttonsTimer } = require('./buttons');
 
 const bot = new TgBotApi(token, { polling: true });
@@ -46,14 +48,7 @@ const messageFunc = async (msg) => {
       'https://tlgrm.eu/_/stickers/4e0/60a/4e060a5e-5bbe-3863-a9c7-62a5483692d4/2.webp',
     );
   } else if (text.includes('/timer')) {
-    const timeInMinutes = Number(text.slice(6));
-    if (timeInMinutes) {
-      setTimeout(() => {
-        httpRequest(bot, chatId, '/btcusd');
-      }, timeInMinutes * 60000);
-    } else {
-      await bot.sendMessage(chatId, 'Invalid parameter');
-    }
+    timer(bot, chatId, text);
   } else {
     await bot.sendMessage(
       chatId,
@@ -73,14 +68,7 @@ const buttonsFunc = async (msg) => {
       buttonsTimer,
     );
   } else if (text.includes('/timer')) {
-    const timeInMinutes = Number(text.slice(6));
-    if (timeInMinutes) {
-      setTimeout(() => {
-        httpRequest(bot, chatId, '/btcusd');
-      }, timeInMinutes * 60000);
-    } else {
-      await bot.sendMessage(chatId, 'Invalid parameter');
-    }
+    timer(bot, chatId, text);
   } else if (text === '/btcFees') {
     const allData = await mpHttpRequest();
 
