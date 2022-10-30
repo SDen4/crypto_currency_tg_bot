@@ -1,4 +1,4 @@
-const httpRequest = require('../api/httpRequest');
+const bfHttpRequest = require('../api/bfHttpRequest');
 
 const timer = async (bot, chatId, text) => {
   const timeInMinutes = Number(text.slice(6));
@@ -9,7 +9,7 @@ const timer = async (bot, chatId, text) => {
       `You've set the timer to ${timeInMinutes} minutes`,
     );
     setTimeout(() => {
-      httpRequest(bot, chatId, '/btcusd');
+      bfHttpRequest(bot, chatId, '/btcusd');
     }, timeInMinutes * 60000);
   } else {
     await bot.sendMessage(chatId, 'Invalid parameter');

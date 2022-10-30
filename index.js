@@ -2,7 +2,7 @@ const TgBotApi = require('node-telegram-bot-api');
 
 const token = require('./token');
 
-const httpRequest = require('./src/api/httpRequest');
+const bfHttpRequest = require('./src/api/bfHttpRequest');
 
 const { buttons, buttonsTimer } = require('./src/modules/buttons');
 const btcCurBlockFees = require('./src/modules/btcCurBlockFees');
@@ -41,7 +41,7 @@ const messageFunc = async (msg) => {
     text === '/ethusd' ||
     text === '/etheur'
   ) {
-    httpRequest(bot, chatId, text);
+    bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
     await bot.sendSticker(
       chatId,
@@ -72,7 +72,7 @@ const buttonsFunc = async (msg) => {
   } else if (text === '/btcCurBlockFees') {
     btcCurBlockFees(bot, chatId);
   } else {
-    httpRequest(bot, chatId, text);
+    bfHttpRequest(bot, chatId, text);
   }
 };
 

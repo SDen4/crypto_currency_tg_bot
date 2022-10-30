@@ -2,7 +2,7 @@ const axios = require('axios');
 
 const formatNumber = require('../utils/formatNumber');
 
-const httpRequest = (bot, chatId, text) => {
+const bfHttpRequest = (bot, chatId, text) => {
   const baseUrl = 'https://api-pub.bitfinex.com/v2';
   const pathParams = 'ticker';
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
@@ -31,13 +31,9 @@ ${isBuyText}`;
       bot.sendMessage(chatId, answer);
     },
     (error) => {
-      bot.sendMessage(
-        chatId,
-        `No data... 
-        Error: ${error}`,
-      );
+      bot.sendMessage(chatId, `No data... Error: ${error}`);
     },
   ));
 };
 
-module.exports = httpRequest;
+module.exports = bfHttpRequest;
