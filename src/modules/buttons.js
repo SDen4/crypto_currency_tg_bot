@@ -7,10 +7,9 @@ const buttons = {
         { text: 'ETH/USD', callback_data: '/ethusd' },
         { text: 'ETH/EUR', callback_data: '/etheur' },
       ],
-      [{ text: 'Set timer for BTC/USD', callback_data: '/settimer' }],
       [
-        { text: 'BTC current block fees', callback_data: '/btcCurBlockFees' },
-        { text: 'BTC last block id', callback_data: '/lastBlockId' },
+        { text: 'Set timer for BTC/USD', callback_data: '/settimer' },
+        { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
       ],
     ],
   },

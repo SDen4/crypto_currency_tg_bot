@@ -1,14 +1,16 @@
 const { mpCurBlockRequest } = require('../api/mpHttpRequest');
+const { mpIdRequest } = require('../api/mpHttpRequest');
 
-const btcCurBlockFees = async (bot, chatId) => {
+const btcBlockInfo = async (bot, chatId) => {
   const allData = await mpCurBlockRequest();
+  const id = await mpIdRequest();
 
   if (allData?.length) {
     await bot.sendMessage(
       chatId,
-      `Median fee: ${Math.ceil(
+      `Last block Id: ${id}\nCurrent block median fee: ${Math.ceil(
         allData[0].medianFee,
-      ).toFixed()} sat/vB\nTotal fees: ${(
+      ).toFixed()} sat/vB\nCurrnet block total fees: ${(
         Math.ceil(allData[0].totalFees) / 100000000
       ).toFixed(3)} BTC`,
     );
@@ -17,4 +19,4 @@ const btcCurBlockFees = async (bot, chatId) => {
   }
 };
 
-module.exports = btcCurBlockFees;
+module.exports = btcBlockInfo;

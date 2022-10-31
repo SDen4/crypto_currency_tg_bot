@@ -3,10 +3,9 @@ const TgBotApi = require('node-telegram-bot-api');
 const token = require('./token');
 
 const bfHttpRequest = require('./src/api/bfHttpRequest');
-const { mpIdRequest } = require('./src/api/mpHttpRequest');
 
 const { buttons, buttonsTimer } = require('./src/modules/buttons');
-const btcCurBlockFees = require('./src/modules/btcCurBlockFees');
+const btcBlockInfo = require('./src/modules/btcBlockInfo');
 const timer = require('./src/modules/timer');
 
 const bot = new TgBotApi(token, { polling: true });
@@ -70,11 +69,8 @@ const buttonsFunc = async (msg) => {
     );
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text);
-  } else if (text === '/btcCurBlockFees') {
-    btcCurBlockFees(bot, chatId);
-  } else if (text === '/lastBlockId') {
-    const id = await mpIdRequest();
-    await bot.sendMessage(chatId, `Last block Id: ${id}`);
+  } else if (text === '/btcBlockInfo') {
+    btcBlockInfo(bot, chatId);
   } else {
     bfHttpRequest(bot, chatId, text);
   }
