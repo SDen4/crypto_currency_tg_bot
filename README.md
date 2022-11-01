@@ -1,3 +1,3 @@
 # Crypto Currencies Telegram Bot
 
-## Try right now - [BOT](https://t.me/CryptoCurrencyLightBot)
+## Try [bot](https://t.me/CryptoCurrencyLightBot) right now! ;-)
