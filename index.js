@@ -1,10 +1,11 @@
 const TgBotApi = require('node-telegram-bot-api');
 
-const token = require('./token');
+const { token } = require('./token');
 
 const bfHttpRequest = require('./src/api/bfHttpRequest');
 
 const { buttons, buttonsTimer } = require('./src/modules/buttons');
+const { stat } = require('./src/modules/statistic');
 const btcBlockInfo = require('./src/modules/btcBlockInfo');
 const timer = require('./src/modules/timer');
 
@@ -55,6 +56,7 @@ const messageFunc = async (msg) => {
       "Sorry, I don't understand you, please try again.",
     );
   }
+  stat(bot, msg);
 };
 
 const buttonsFunc = async (msg) => {
@@ -74,6 +76,8 @@ const buttonsFunc = async (msg) => {
   } else {
     bfHttpRequest(bot, chatId, text);
   }
+  console.log(msg);
+  stat(bot, msg);
 };
 
 bot.on('message', messageFunc);
