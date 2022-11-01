@@ -1,4 +1,4 @@
-const bfHttpRequest = require('../api/bfHttpRequest');
+const { bfHttpRequest } = require('../api/bfHttpRequest');
 
 const timer = async (bot, chatId, text) => {
   const timeInMinutes = Number(text.slice(6));
@@ -16,4 +16,4 @@ const timer = async (bot, chatId, text) => {
   }
 };
 
-module.exports = timer;
+module.exports = { timer };

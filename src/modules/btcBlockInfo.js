@@ -19,4 +19,4 @@ const btcBlockInfo = async (bot, chatId) => {
   }
 };
 
-module.exports = btcBlockInfo;
+module.exports = { btcBlockInfo };

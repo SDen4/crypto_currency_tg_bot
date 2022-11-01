@@ -1,15 +1,19 @@
 const TgBotApi = require('node-telegram-bot-api');
 
 const { token } = require('./token');
-
-const bfHttpRequest = require('./src/api/bfHttpRequest');
-
-const { buttons, buttonsTimer } = require('./src/modules/buttons');
-const { stat } = require('./src/modules/statistic');
-const btcBlockInfo = require('./src/modules/btcBlockInfo');
-const timer = require('./src/modules/timer');
-
 const bot = new TgBotApi(token, { polling: true });
+
+const { bfHttpRequest } = require('./src/api/bfHttpRequest');
+const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
+const { stat } = require('./src/modules/statistic');
+const { timer } = require('./src/modules/timer');
+const {
+  unkCmd,
+  start,
+  info,
+  secret,
+  tmrMsg,
+} = require('./src/modules/messages');
 
 bot.setMyCommands([
   { command: '/info', description: 'Currencies' },
@@ -20,22 +24,13 @@ bot.setMyCommands([
 ]);
 
 const messageFunc = async (msg) => {
-  const firstName = msg?.from?.first_name;
-
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
   if (text === '/start') {
-    await bot.sendMessage(
-      chatId,
-      `Hello, ${firstName}! Welcome to Crypto Currency Light Bot!`,
-    );
+    start(bot, chatId, msg);
   } else if (text === '/info') {
-    await bot.sendMessage(
-      chatId,
-      'Push the button to get the currency, or set a timer',
-      buttons,
-    );
+    info(bot, chatId);
   } else if (
     text === '/btcusd' ||
     text === '/btceur' ||
@@ -44,31 +39,21 @@ const messageFunc = async (msg) => {
   ) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
-    await bot.sendSticker(
-      chatId,
-      'https://tlgrm.eu/_/stickers/4e0/60a/4e060a5e-5bbe-3863-a9c7-62a5483692d4/2.webp',
-    );
+    secret(bot, chatId);
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text);
   } else {
-    await bot.sendMessage(
-      chatId,
-      "Sorry, I don't understand you, please try again.",
-    );
+    unkCmd(bot, chatId);
   }
   stat(bot, msg);
 };
 
 const buttonsFunc = async (msg) => {
-  const chatId = msg.message.chat.id;
+  const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
   if (text === '/settimer') {
-    await bot.sendMessage(
-      chatId,
-      "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
-      buttonsTimer,
-    );
+    tmrMsg(bot, chatId);
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text);
   } else if (text === '/btcBlockInfo') {
@@ -76,7 +61,6 @@ const buttonsFunc = async (msg) => {
   } else {
     bfHttpRequest(bot, chatId, text);
   }
-  console.log(msg);
   stat(bot, msg);
 };
 

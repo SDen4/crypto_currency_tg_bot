@@ -11,4 +11,4 @@ const formatNumber = (number, max, symbol) => {
   return `${formattedNumber}${symbol || ''}`;
 };
 
-module.exports = formatNumber;
+module.exports = { formatNumber };

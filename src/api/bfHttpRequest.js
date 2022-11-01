@@ -1,6 +1,6 @@
 const axios = require('axios');
 
-const formatNumber = require('../utils/formatNumber');
+const { formatNumber } = require('../utils/formatNumber');
 
 const bfHttpRequest = (bot, chatId, text) => {
   const baseUrl = 'https://api-pub.bitfinex.com/v2';
@@ -36,4 +36,4 @@ ${isBuyText}`;
   ));
 };
 
-module.exports = bfHttpRequest;
+module.exports = { bfHttpRequest };
