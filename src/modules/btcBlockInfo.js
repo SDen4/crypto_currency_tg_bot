@@ -14,7 +14,7 @@ const btcBlockInfo = async (bot, chatId) => {
         Math.ceil(allData[0].totalFees) / 100000000
       ).toFixed(3)} BTC\nCurrent block size: ${(
         allData[0].blockSize / 1000000
-      ).toFixed(2)} MB`,
+      ).toFixed(2)} MB\nCurrent block transactions: ${allData[0].nTx}`,
     );
   } else {
     await bot.sendMessage(chatId, 'No data');
