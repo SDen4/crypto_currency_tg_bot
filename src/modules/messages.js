@@ -8,10 +8,8 @@ const unkCmd = async (bot, chatId) => {
 };
 
 const start = async (bot, chatId, msg) => {
-  await bot.sendMessage(
-    chatId,
-    `Hello, ${msg?.from?.first_name}! Welcome to Crypto Currency Light Bot!`,
-  );
+  const text = `Hello, ${msg?.from?.first_name}! Welcome to Crypto Currency Light Bot!`;
+  await bot.sendMessage(chatId, text);
 };
 
 const info = async (bot, chatId) => {

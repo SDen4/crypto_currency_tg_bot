@@ -33,4 +33,12 @@ const buttonsTimer = {
   },
 };
 
-module.exports = { buttons, buttonsTimer };
+const commands = [
+  { command: '/info', description: 'Currencies' },
+  { command: '/btcusd', description: 'Currency BTC/USD' },
+  { command: '/btceur', description: 'Currency BTC/EUR' },
+  { command: '/ethusd', description: 'Currency ETH/USD' },
+  { command: '/etheur', description: 'Currency ETH/EUR' },
+];
+
+module.exports = { buttons, buttonsTimer, commands };

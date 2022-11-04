@@ -3,10 +3,12 @@ const TgBotApi = require('node-telegram-bot-api');
 const { token } = require('./token');
 const bot = new TgBotApi(token, { polling: true });
 
+const { ban } = require('./src/utils/ban');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/statistic');
 const { timer } = require('./src/modules/timer');
+const { commands } = require('./src/modules/buttons');
 const {
   unkCmd,
   start,
@@ -15,17 +17,13 @@ const {
   tmrMsg,
 } = require('./src/modules/messages');
 
-bot.setMyCommands([
-  { command: '/info', description: 'Currencies' },
-  { command: '/btcusd', description: 'Currency BTC/USD' },
-  { command: '/btceur', description: 'Currency BTC/EUR' },
-  { command: '/ethusd', description: 'Currency ETH/USD' },
-  { command: '/etheur', description: 'Currency ETH/EUR' },
-]);
+bot.setMyCommands(commands);
 
 const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
+
+  if (ban(bot, chatId, msg)) return null;
 
   if (text === '/start') {
     start(bot, chatId, msg);
@@ -51,6 +49,8 @@ const messageFunc = async (msg) => {
 const buttonsFunc = async (msg) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
+
+  if (ban(bot, chatId, msg)) return null;
 
   if (text === '/settimer') {
     tmrMsg(bot, chatId);
