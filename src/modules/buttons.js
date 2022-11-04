@@ -8,7 +8,11 @@ const buttons = {
         { text: 'ETH/EUR', callback_data: '/etheur' },
       ],
       [
-        { text: 'Set timer for BTC/USD', callback_data: '/settimer' },
+        { text: 'Timer BTC/USD', callback_data: '/settimer' },
+        {
+          text: 'App',
+          web_app: { url: 'https://sden4.github.io/crypto_currency/' },
+        },
         { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
       ],
     ],
