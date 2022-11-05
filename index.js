@@ -34,7 +34,7 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  console.log('headers: ', req?.headers?.host || 'no data in host');
+  console.log('headers: ', req?.headers?.[`${x - real - ip}`]);
 
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'Success!' });
