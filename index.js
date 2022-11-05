@@ -49,8 +49,6 @@ app.get('/', (req, res) => {
 });
 // WEB STAT
 
-statWeb(bot);
-
 const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
