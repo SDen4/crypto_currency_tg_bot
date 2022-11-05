@@ -6,7 +6,8 @@ const bot = new TgBotApi(token, { polling: true });
 const { ban } = require('./src/utils/ban');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
-const { stat } = require('./src/modules/statistic');
+const { stat } = require('./src/modules/stat');
+const { statWeb } = require('./src/modules/statWeb');
 const { timer } = require('./src/modules/timer');
 const { commands } = require('./src/modules/buttons');
 const {
@@ -19,31 +20,7 @@ const {
 
 bot.setMyCommands(commands);
 
-// !!!
-// TEST OF REQUEST
-const server = require('express');
-const cors = require('cors');
-const app = server();
-const PORT = 80;
-
-app.use(server.json());
-app.use(cors());
-app.use(server.urlencoded({ extended: true }));
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
-});
-
-app.get('/', (req, res) => {
-  console.log('i am in!');
-  console.log(req);
-  if (req.query.test === 'test') {
-    res.status(200).send({ test: 'success!!!' });
-  } else {
-    res.status(204).send({ code: '204', message: 'no data' });
-  }
-});
-// TEST OF REQUEST
-// !!!
+statWeb(bot);
 
 const messageFunc = async (msg) => {
   const text = msg?.text;
