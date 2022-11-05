@@ -33,7 +33,7 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-app.get('ovz1.j34847422.m61kn.vps.myjino.ru', (req, res) => {
+app.get('/', (req, res) => {
   console.log('i am in!');
   console.log(req);
   if (req.query.test === 'test') {
