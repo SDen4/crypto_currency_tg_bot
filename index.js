@@ -40,16 +40,16 @@ app.get('/', (req, res) => {
     res.status(200).send({ test: 'Success!' });
     bot.sendMessage(
       statChatId,
-      `Web version visitor \nstatus: ${200} \n${
-        req?.headers?.host || 'no data in host'
+      `Web version visitor \nstatus: ${200} \nx-real-ip: ${
+        req?.headers?.[`${x - real - ip}`] || 'no data in host'
       }`,
     );
   } else {
     res.status(204).send({ code: '204', message: 'no data' });
     bot.sendMessage(
       statChatId,
-      `Web version visitor \nstatus: ${204} \n${
-        req?.headers?.host || 'no data in host'
+      `Web version visitor \nstatus: ${204} \nx-real-ip:${
+        req?.headers?.[`${x - real - ip}`] || 'no data in host'
       }`,
     );
   }
