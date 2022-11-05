@@ -34,6 +34,8 @@ app.listen(PORT, () => {
 });
 
 app.get('ovz1.j34847422.m61kn.vps.myjino.ru', (req, res) => {
+  console.log('i am in!');
+  console.log(req);
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'success!!!' });
   } else {
