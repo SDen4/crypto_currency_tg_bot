@@ -11,7 +11,7 @@ const statWeb = async (bot) => {
   app.use(cors());
   app.use(server.urlencoded({ extended: true }));
 
-  let result;
+  let result = '';
 
   app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
