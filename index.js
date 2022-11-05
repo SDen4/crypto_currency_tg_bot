@@ -34,19 +34,23 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  console.log('headers: ', req.headers);
+  console.log('headers: ', req?.headers?.host || 'no data in host');
 
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'Success!' });
     bot.sendMessage(
       statChatId,
-      `Web version visitor \nstatus: ${200} \n${req.headers}`,
+      `Web version visitor \nstatus: ${200} \n${
+        req?.headers?.host || 'no data in host'
+      }`,
     );
   } else {
     res.status(204).send({ code: '204', message: 'no data' });
     bot.sendMessage(
       statChatId,
-      `Web version visitor \nstatus: ${204} \n${req.headers}`,
+      `Web version visitor \nstatus: ${204} \n${
+        req?.headers?.host || 'no data in host'
+      }`,
     );
   }
 });
