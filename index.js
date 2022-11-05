@@ -19,6 +19,30 @@ const {
 
 bot.setMyCommands(commands);
 
+// !!!
+// TEST OF REQUEST
+const server = require('express');
+const cors = require('cors');
+const app = server();
+const PORT = 80;
+
+app.use(server.json());
+app.use(cors());
+app.use(server.urlencoded({ extended: true }));
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
+
+app.get('/api/test', (req, res) => {
+  if (req.query.test === 'test') {
+    res.status(200).send({ test: 'success!!!' });
+  } else {
+    res.status(204).send({ code: '204', message: 'no data' });
+  }
+});
+// TEST OF REQUEST
+// !!!
+
 const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
