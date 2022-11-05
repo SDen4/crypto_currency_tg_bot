@@ -36,15 +36,14 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  console.log('query: ', req.query);
-  result = req.query;
+  console.log('headers: ', req.headers);
 
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'Success!' });
-    bot.sendMessage(statChatId, `status: ${200}, \n${result}`);
+    bot.sendMessage(statChatId, `status: ${200}, \n${req.headers}`);
   } else {
     res.status(204).send({ code: '204', message: 'no data' });
-    bot.sendMessage(statChatId, `status: ${204}, \n${result}`);
+    bot.sendMessage(statChatId, `status: ${204}, \n${req.headers}`);
   }
 });
 // WEB STAT
