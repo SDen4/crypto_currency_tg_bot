@@ -34,14 +34,14 @@ app.listen(PORT, () => {
 });
 
 app.get('/', (req, res) => {
-  console.log('headers: ', req?.headers?.xRealIp);
+  console.log('headers: ', JSON.stringify(req?.headers));
 
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'Success!' });
     bot.sendMessage(
       statChatId,
       `Web version visitor \nstatus: ${200} \nx-real-ip: ${
-        req?.headers?.xRealIp || 'no data in host'
+        JSON.stringify(req?.headers) || 'no data in host'
       }`,
     );
   } else {
@@ -49,7 +49,7 @@ app.get('/', (req, res) => {
     bot.sendMessage(
       statChatId,
       `Web version visitor \nstatus: ${204} \nx-real-ip:${
-        req?.headers?.xRealIp || 'no data in host'
+        JSON.stringify(req?.headers) || 'no data in host'
       }`,
     );
   }
