@@ -1,12 +1,12 @@
 const TgBotApi = require('node-telegram-bot-api');
 
-const { token } = require('./token');
+const { token, statChatId } = require('./token');
 const bot = new TgBotApi(token, { polling: true });
 
 const { ban } = require('./src/utils/ban');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
-const { stat } = require('./src/modules/statistic');
+const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
 const { commands } = require('./src/modules/buttons');
 const {
@@ -18,6 +18,43 @@ const {
 } = require('./src/modules/messages');
 
 bot.setMyCommands(commands);
+
+// WEB STAT
+const server = require('express');
+const cors = require('cors');
+const app = server();
+const PORT = 80;
+
+app.use(server.json());
+app.use(cors());
+app.use(server.urlencoded({ extended: true }));
+
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
+});
+
+app.get('/', (req, res) => {
+  console.log(JSON.stringify(req?.headers).replace(/",/g, '",\n'));
+
+  if (req.query.test === 'test') {
+    res.status(200).send({ test: 'Success!' });
+    bot.sendMessage(
+      statChatId,
+      `Web version visitor \nstatus: ${200} \nx-real-ip: ${
+        JSON.stringify(req?.headers).replace(/",/g, '",\n') || 'no data in host'
+      }`,
+    );
+  } else {
+    res.status(204).send({ code: '204', message: 'no data' });
+    bot.sendMessage(
+      statChatId,
+      `Web version visitor \nstatus: ${204} \nx-real-ip:${
+        JSON.stringify(req?.headers).replace(/",/g, '",\n') || 'no data in host'
+      }`,
+    );
+  }
+});
+// WEB STAT
 
 const messageFunc = async (msg) => {
   const text = msg?.text;
