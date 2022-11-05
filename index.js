@@ -29,8 +29,6 @@ app.use(server.json());
 app.use(cors());
 app.use(server.urlencoded({ extended: true }));
 
-let result = '';
-
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
@@ -40,10 +38,16 @@ app.get('/', (req, res) => {
 
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'Success!' });
-    bot.sendMessage(statChatId, `status: ${200}, \n${req.headers}`);
+    bot.sendMessage(
+      statChatId,
+      `Web version visitor \nstatus: ${200} \n${req.headers}`,
+    );
   } else {
     res.status(204).send({ code: '204', message: 'no data' });
-    bot.sendMessage(statChatId, `status: ${204}, \n${req.headers}`);
+    bot.sendMessage(
+      statChatId,
+      `Web version visitor \nstatus: ${204} \n${req.headers}`,
+    );
   }
 });
 // WEB STAT
