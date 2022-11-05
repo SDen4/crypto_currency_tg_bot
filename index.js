@@ -33,7 +33,7 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
 
-app.get('/api/test', (req, res) => {
+app.get('ovz1.j34847422.m61kn.vps.myjino.ru', (req, res) => {
   if (req.query.test === 'test') {
     res.status(200).send({ test: 'success!!!' });
   } else {
