@@ -27,11 +27,16 @@ const PORT = 80;
 
 app.use(server.json());
 app.use(server.urlencoded({ extended: true }));
-app.use(cors());
+// app.use(cors());
+
+const corsOptions = {
+  origin: 'https://sden4.github.io/crypto_currency/',
+  optionsSuccessStatus: 200,
+};
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
 
-app.get('/', (req, res) => {
+app.get('/', cors(corsOptions), (req, res) => {
   console.log(JSON.stringify(req?.headers).replace(/",/g, '",\n'));
 
   if (req.query.test === 'test') {
