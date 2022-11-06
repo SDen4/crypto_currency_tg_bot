@@ -8,6 +8,18 @@ const buttons = {
         { text: 'ETH/EUR', callback_data: '/etheur' },
       ],
       [
+        { text: 'LTC/USD', callback_data: '/ltcusd' },
+        { text: 'SOL/USD', callback_data: '/solusd' },
+        { text: 'XRP/USD', callback_data: '/xrpusd' },
+        { text: 'ADA/USD', callback_data: '/adausd' },
+      ],
+      [
+        { text: 'APT/USD', callback_data: '/aptusd' },
+        { text: 'EOS/USD', callback_data: '/eosusd' },
+        { text: 'ETC/USD', callback_data: '/etcusd' },
+        { text: 'FIL/USD', callback_data: '/filusd' },
+      ],
+      [
         { text: 'Timer BTC/USD', callback_data: '/settimer' },
         {
           text: 'App',

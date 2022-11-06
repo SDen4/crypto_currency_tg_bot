@@ -38,7 +38,15 @@ const messageFunc = async (msg) => {
     String(text).toLocaleLowerCase() === '/btcusd' ||
     String(text).toLocaleLowerCase() === '/btceur' ||
     String(text).toLocaleLowerCase() === '/ethusd' ||
-    String(text).toLocaleLowerCase() === '/etheur'
+    String(text).toLocaleLowerCase() === '/etheur' ||
+    String(text).toLocaleLowerCase() === '/ltcusd' ||
+    String(text).toLocaleLowerCase() === '/ltceur' ||
+    String(text).toLocaleLowerCase() === '/solusd' ||
+    String(text).toLocaleLowerCase() === '/xrpusd' ||
+    String(text).toLocaleLowerCase() === '/adausd' ||
+    String(text).toLocaleLowerCase() === '/eosusd' ||
+    String(text).toLocaleLowerCase() === '/aptusd' ||
+    String(text).toLocaleLowerCase() === '/filusd'
   ) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
