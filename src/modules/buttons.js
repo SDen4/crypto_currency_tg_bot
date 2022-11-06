@@ -34,7 +34,7 @@ const buttonsTimer = {
 };
 
 const commands = [
-  { command: '/info', description: 'Currencies' },
+  { command: '/info', description: 'Information' },
   { command: '/btcusd', description: 'Currency BTC/USD' },
   { command: '/btceur', description: 'Currency BTC/EUR' },
   { command: '/ethusd', description: 'Currency ETH/USD' },

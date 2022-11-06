@@ -67,18 +67,23 @@ const messageFunc = async (msg) => {
 
   if (text === '/start') {
     start(bot, chatId, msg);
-  } else if (text === '/info') {
+  } else if (
+    String(text).toLocaleLowerCase() === '/info' ||
+    String(text).toLocaleLowerCase() === 'info' ||
+    String(text).toLocaleLowerCase() === '/help' ||
+    String(text).toLocaleLowerCase() === 'help'
+  ) {
     info(bot, chatId);
   } else if (
-    text === '/btcusd' ||
-    text === '/btceur' ||
-    text === '/ethusd' ||
-    text === '/etheur'
+    String(text).toLocaleLowerCase() === '/btcusd' ||
+    String(text).toLocaleLowerCase() === '/btceur' ||
+    String(text).toLocaleLowerCase() === '/ethusd' ||
+    String(text).toLocaleLowerCase() === '/etheur'
   ) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
     secret(bot, chatId);
-  } else if (text.includes('/timer')) {
+  } else if (String(text).toLocaleLowerCase().includes('/timer')) {
     timer(bot, chatId, text);
   } else {
     unkCmd(bot, chatId);
