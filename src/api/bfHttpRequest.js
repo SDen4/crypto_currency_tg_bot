@@ -26,7 +26,7 @@ Daily high: ${formatNumber(data[8])}
 Daily low: ${formatNumber(data[9])}
 Amount that the last price has changed since yesterday: ${formatNumber(data[4])}
 -----------------------------------
-${isBuyText}`;
+Recommendation: ${isBuyText}`;
 
       bot.sendMessage(chatId, answer);
     },
