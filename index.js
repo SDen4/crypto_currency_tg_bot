@@ -23,7 +23,7 @@ bot.setMyCommands(commands);
 const server = require('express');
 const cors = require('cors');
 const app = server();
-const PORT = 80;
+const PORT = 443;
 
 app.use(server.json());
 app.use(server.urlencoded({ extended: true }));
