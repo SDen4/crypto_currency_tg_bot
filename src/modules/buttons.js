@@ -20,6 +20,12 @@ const buttons = {
         { text: 'FIL/USD', callback_data: '/filusd' },
       ],
       [
+        { text: 'USDt/USD', callback_data: '/ustusd' },
+        { text: 'DOGE/USD', callback_data: '/doge:usd' },
+        { text: 'MATIC/USD', callback_data: '/matic:usd' },
+        { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
+      ],
+      [
         { text: 'Timer BTC/USD', callback_data: '/settimer' },
         {
           text: 'App',

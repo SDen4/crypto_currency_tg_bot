@@ -12,9 +12,16 @@ const bfHttpRequest = (bot, chatId, text) => {
       const data = response.data;
       const isBuy = Number(data?.[1]) < Number(data?.[3]);
       const isBuyText = isBuy ? 'Buy' : 'Sell';
-      const answer = `${text.toLocaleUpperCase().slice(1, 4)}/${text
-        .toLocaleUpperCase()
-        .slice(4)}: ${formatNumber(data[0])}
+
+      let title =
+        String(text).length === 7
+          ? `${text.toLocaleUpperCase().slice(1, 4)}/${text
+              .toLocaleUpperCase()
+              .slice(4)}`
+          : `${String(text).slice(1).toLocaleUpperCase().replace(':', '/')}`;
+      if (text === '/ustusd') title = 'USDt/USD';
+
+      const answer = `${title}: ${formatNumber(data[0])}
 -----------------------------------
 24h: ${formatNumber(data[5] * 100, 2, '%')}
 Price of the last trade: ${formatNumber(data[6])}
