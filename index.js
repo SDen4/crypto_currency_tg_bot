@@ -4,6 +4,7 @@ const { token } = require('./token');
 const bot = new TgBotApi(token, { polling: true });
 
 const { ban } = require('./src/utils/ban');
+const { condition } = require('./src/utils/condition');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
@@ -28,30 +29,30 @@ const messageFunc = async (msg) => {
   if (text === '/start') {
     start(bot, chatId, msg);
   } else if (
-    String(text).toLocaleLowerCase() === '/info' ||
-    String(text).toLocaleLowerCase() === 'info' ||
-    String(text).toLocaleLowerCase() === '/help' ||
-    String(text).toLocaleLowerCase() === 'help'
+    condition(text) === '/info' ||
+    condition(text) === 'info' ||
+    condition(text) === '/help' ||
+    condition(text) === 'help'
   ) {
     info(bot, chatId);
   } else if (
-    String(text).toLocaleLowerCase() === '/btcusd' ||
-    String(text).toLocaleLowerCase() === '/btceur' ||
-    String(text).toLocaleLowerCase() === '/ethusd' ||
-    String(text).toLocaleLowerCase() === '/etheur' ||
-    String(text).toLocaleLowerCase() === '/ltcusd' ||
-    String(text).toLocaleLowerCase() === '/ltceur' ||
-    String(text).toLocaleLowerCase() === '/solusd' ||
-    String(text).toLocaleLowerCase() === '/xrpusd' ||
-    String(text).toLocaleLowerCase() === '/adausd' ||
-    String(text).toLocaleLowerCase() === '/eosusd' ||
-    String(text).toLocaleLowerCase() === '/aptusd' ||
-    String(text).toLocaleLowerCase() === '/filusd'
+    condition(text) === '/btcusd' ||
+    condition(text) === '/btceur' ||
+    condition(text) === '/ethusd' ||
+    condition(text) === '/etheur' ||
+    condition(text) === '/ltcusd' ||
+    condition(text) === '/ltceur' ||
+    condition(text) === '/solusd' ||
+    condition(text) === '/xrpusd' ||
+    condition(text) === '/adausd' ||
+    condition(text) === '/eosusd' ||
+    condition(text) === '/aptusd' ||
+    condition(text) === '/filusd'
   ) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
     secret(bot, chatId);
-  } else if (String(text).toLocaleLowerCase().includes('/timer')) {
+  } else if (condition(text).includes('/timer')) {
     timer(bot, chatId, text);
   } else {
     unkCmd(bot, chatId);
