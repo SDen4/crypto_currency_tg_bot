@@ -6,7 +6,9 @@ const timer = async (bot, chatId, text) => {
   if (timeInMinutes) {
     await bot.sendMessage(
       chatId,
-      `You've set the timer to ${timeInMinutes} minutes`,
+      `You've set the timer for ${
+        timeInMinutes === 1 ? '1 minute' : `${timeInMinutes} minutes`
+      }`,
     );
     setTimeout(() => {
       bfHttpRequest(bot, chatId, '/btcusd');
