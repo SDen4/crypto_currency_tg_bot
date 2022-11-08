@@ -11,7 +11,7 @@ const bfHttpRequest = (bot, chatId, text) => {
     (response) => {
       const data = response.data;
       const isBuy = Number(data?.[1]) < Number(data?.[3]);
-      const isBuyText = isBuy ? 'Buy' : 'Sell';
+      const isBuyText = isBuy ? 'Buy 🟢' : 'Sell 🔴';
 
       let title =
         String(text).length === 7
@@ -23,7 +23,7 @@ const bfHttpRequest = (bot, chatId, text) => {
 
       const answer = `${title}: ${formatNumber(data[0])}
 -----------------------------------
-24h: ${formatNumber(data[5] * 100, 2, '%')}
+24h: ${formatNumber(data[5] * 100, 2, '%')} ${data[5] * 100 < 0 ? '⬇️' : '⬆️'}
 Price of the last trade: ${formatNumber(data[6])}
 Price of the last lowest ask: ${formatNumber(data[2])}
 Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
