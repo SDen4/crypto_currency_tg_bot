@@ -1,4 +1,4 @@
-const { buttons, buttonsTimer } = require('./buttons');
+const { btnsCurrencies, btnsStart, bnsTimer } = require('./buttons');
 
 const unkCmd = async (bot, chatId) => {
   const text = "Sorry, I don't understand you, please try again.";
@@ -16,8 +16,12 @@ const info = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     'Use buttons to get the currency, get BTC blocks info, set a timer or go to the application',
-    buttons,
+    btnsStart,
   );
+};
+
+const allCurrencies = async (bot, chatId) => {
+  await bot.sendMessage(chatId, 'All currencies', btnsCurrencies);
 };
 
 const secret = async (bot, chatId) => {
@@ -30,8 +34,8 @@ const tmrMsg = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
-    buttonsTimer,
+    bnsTimer,
   );
 };
 
-module.exports = { unkCmd, start, info, secret, tmrMsg };
+module.exports = { unkCmd, start, info, secret, tmrMsg, allCurrencies };

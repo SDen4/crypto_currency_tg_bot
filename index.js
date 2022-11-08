@@ -16,6 +16,7 @@ const {
   info,
   secret,
   tmrMsg,
+  allCurrencies,
 } = require('./src/modules/messages');
 
 bot.setMyCommands(commands);
@@ -35,6 +36,8 @@ const messageFunc = async (msg) => {
     condition(text) === 'help'
   ) {
     info(bot, chatId);
+  } else if (text === '/currencies') {
+    allCurrencies(bot, chatId);
   } else if (
     condition(text) === '/btcusd' ||
     condition(text) === '/btceur' ||
@@ -72,6 +75,8 @@ const buttonsFunc = async (msg) => {
 
   if (text === '/settimer') {
     tmrMsg(bot, chatId);
+  } else if (text === '/currencies') {
+    allCurrencies(bot, chatId);
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text);
   } else if (text === '/btcBlockInfo') {

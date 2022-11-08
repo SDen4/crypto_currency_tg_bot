@@ -1,4 +1,4 @@
-const buttons = {
+const btnsCurrencies = {
   reply_markup: {
     inline_keyboard: [
       [
@@ -25,6 +25,15 @@ const buttons = {
         { text: 'MATIC/USD', callback_data: '/matic:usd' },
         { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
       ],
+    ],
+  },
+};
+
+const btnsStart = {
+  reply_markup: {
+    inline_keyboard: [
+      [{ text: 'All currencies', callback_data: '/currencies' }],
+
       [
         { text: 'Timer BTC/USD', callback_data: '/settimer' },
         {
@@ -37,7 +46,7 @@ const buttons = {
   },
 };
 
-const buttonsTimer = {
+const bnsTimer = {
   reply_markup: {
     inline_keyboard: [
       [
@@ -53,10 +62,7 @@ const buttonsTimer = {
 
 const commands = [
   { command: '/info', description: 'Information' },
-  { command: '/btcusd', description: 'Currency BTC/USD' },
-  { command: '/btceur', description: 'Currency BTC/EUR' },
-  { command: '/ethusd', description: 'Currency ETH/USD' },
-  { command: '/etheur', description: 'Currency ETH/EUR' },
+  { command: '/currencies', description: 'All currencies' },
 ];
 
-module.exports = { buttons, buttonsTimer, commands };
+module.exports = { btnsCurrencies, btnsStart, bnsTimer, commands };
