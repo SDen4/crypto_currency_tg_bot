@@ -8,10 +8,10 @@ const btnsCurrencies = {
         { text: 'ETH/EUR', callback_data: '/etheur' },
       ],
       [
+        { text: 'USDt/USD', callback_data: '/ustusd' },
         { text: 'LTC/USD', callback_data: '/ltcusd' },
         { text: 'SOL/USD', callback_data: '/solusd' },
         { text: 'XRP/USD', callback_data: '/xrpusd' },
-        { text: 'ADA/USD', callback_data: '/adausd' },
       ],
       [
         { text: 'APT/USD', callback_data: '/aptusd' },
@@ -20,10 +20,16 @@ const btnsCurrencies = {
         { text: 'FIL/USD', callback_data: '/filusd' },
       ],
       [
-        { text: 'USDt/USD', callback_data: '/ustusd' },
         { text: 'DOGE/USD', callback_data: '/doge:usd' },
         { text: 'MATIC/USD', callback_data: '/matic:usd' },
         { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
+        { text: 'AVAX/USD', callback_data: '/avax:usd' },
+      ],
+      [
+        { text: 'LINK/USD', callback_data: '/link:usd' },
+        { text: 'ADA/USD', callback_data: '/adausd' },
+        { text: 'XMR/USD', callback_data: '/xmrusd' },
+        { text: 'DOT/USD', callback_data: '/dotusd' },
       ],
     ],
   },
