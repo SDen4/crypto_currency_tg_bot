@@ -31,6 +31,12 @@ const btnsCurrencies = {
         { text: 'XMR/USD', callback_data: '/xmrusd' },
         { text: 'DOT/USD', callback_data: '/dotusd' },
       ],
+      [
+        { text: 'BCHN/USD', callback_data: '/bchn:usd' },
+        { text: 'USDC/USD', callback_data: '/udcusd' },
+        { text: 'IOTA/USD', callback_data: '/iotusd' },
+        { text: 'TRX/USD', callback_data: '/trxusd' },
+      ],
     ],
   },
 };

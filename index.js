@@ -58,7 +58,11 @@ const messageFunc = async (msg) => {
     condition(text) === '/link:usd' ||
     condition(text) === '/avax:usd' ||
     condition(text) === '/xmrusd' ||
-    condition(text) === '/dotusd'
+    condition(text) === '/dotusd' ||
+    condition(text) === '/bchn:usd' ||
+    condition(text) === '/udcusd' ||
+    condition(text) === '/iotusd' ||
+    condition(text) === '/trxusd'
   ) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
