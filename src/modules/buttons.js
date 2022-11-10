@@ -62,11 +62,18 @@ const bnsTimer = {
   reply_markup: {
     inline_keyboard: [
       [
+        { text: '1 min', callback_data: '/timer1' },
         { text: '5 min', callback_data: '/timer5' },
         { text: '15 min', callback_data: '/timer15' },
         { text: '30 min', callback_data: '/timer30' },
-        { text: '60 min', callback_data: '/timer60' },
-        { text: '90 min', callback_data: '/timer90' },
+        { text: '1 hour', callback_data: '/timer60' },
+      ],
+      [
+        { text: '2 hours', callback_data: '/timer120' },
+        { text: '3 hours', callback_data: '/timer180' },
+        { text: '6 hours', callback_data: '/timer360' },
+        { text: '12 hours', callback_data: '/timer720' },
+        { text: '24 hours', callback_data: '/timer1440' },
       ],
     ],
   },
