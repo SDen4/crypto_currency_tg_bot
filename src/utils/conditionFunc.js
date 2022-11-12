@@ -4,8 +4,8 @@
  * @param {*} text: any
  * @return {*} string in lower case
  */
-const condition = (text) => {
+const conditionFunc = (text) => {
   return String(text).toLocaleLowerCase();
 };
 
-module.exports = { condition };
+module.exports = { conditionFunc };

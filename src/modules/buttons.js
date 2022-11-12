@@ -37,6 +37,12 @@ const btnsCurrencies = {
         { text: 'IOTA/USD', callback_data: '/iotusd' },
         { text: 'TRX/USD', callback_data: '/trxusd' },
       ],
+      [
+        { text: 'XCN/USD', callback_data: '/xcnusd' },
+        { text: 'UNI/USD', callback_data: '/uniusd' },
+        { text: 'GALA/USD', callback_data: '/gala:usd' },
+        { text: 'LEO/USD', callback_data: '/leousd' },
+      ],
     ],
   },
 };

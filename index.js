@@ -4,12 +4,13 @@ const { token } = require('./token');
 const bot = new TgBotApi(token, { polling: true });
 
 const { ban } = require('./src/utils/ban');
-const { condition } = require('./src/utils/condition');
+const { conditionFunc } = require('./src/utils/conditionFunc');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
 const { commands } = require('./src/modules/buttons');
+const { conditionCurrencirs } = require('./src/modules/conditions');
 const {
   unkCmd,
   start,
@@ -30,44 +31,19 @@ const messageFunc = async (msg) => {
   if (text === '/start') {
     start(bot, chatId, msg);
   } else if (
-    condition(text) === '/info' ||
-    condition(text) === 'info' ||
-    condition(text) === '/help' ||
-    condition(text) === 'help'
+    conditionFunc(text) === '/info' ||
+    conditionFunc(text) === 'info' ||
+    conditionFunc(text) === '/help' ||
+    conditionFunc(text) === 'help'
   ) {
     info(bot, chatId);
   } else if (text === '/currencies') {
     allCurrencies(bot, chatId);
-  } else if (
-    condition(text) === '/btcusd' ||
-    condition(text) === '/btceur' ||
-    condition(text) === '/ethusd' ||
-    condition(text) === '/etheur' ||
-    condition(text) === '/ltcusd' ||
-    condition(text) === '/ltceur' ||
-    condition(text) === '/solusd' ||
-    condition(text) === '/xrpusd' ||
-    condition(text) === '/adausd' ||
-    condition(text) === '/eosusd' ||
-    condition(text) === '/aptusd' ||
-    condition(text) === '/filusd' ||
-    condition(text) === '/ustusd' ||
-    condition(text) === '/doge:usd' ||
-    condition(text) === '/matic:usd' ||
-    condition(text) === '/sushi:usd' ||
-    condition(text) === '/link:usd' ||
-    condition(text) === '/avax:usd' ||
-    condition(text) === '/xmrusd' ||
-    condition(text) === '/dotusd' ||
-    condition(text) === '/bchn:usd' ||
-    condition(text) === '/udcusd' ||
-    condition(text) === '/iotusd' ||
-    condition(text) === '/trxusd'
-  ) {
+  } else if (conditionCurrencirs(text)) {
     bfHttpRequest(bot, chatId, text);
   } else if (text === '/secret') {
     secret(bot, chatId);
-  } else if (condition(text).includes('/timer')) {
+  } else if (conditionFunc(text).includes('/timer')) {
     timer(bot, chatId, text);
   } else if (text === '/btcBlockInfo') {
     btcBlockInfo(bot, chatId);
