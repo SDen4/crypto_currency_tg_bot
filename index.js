@@ -69,6 +69,8 @@ const messageFunc = async (msg) => {
     secret(bot, chatId);
   } else if (condition(text).includes('/timer')) {
     timer(bot, chatId, text);
+  } else if (text === '/btcBlockInfo') {
+    btcBlockInfo(bot, chatId);
   } else {
     unkCmd(bot, chatId);
   }
