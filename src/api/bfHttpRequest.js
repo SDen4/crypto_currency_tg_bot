@@ -2,9 +2,10 @@ const axios = require('axios');
 
 const { formatNumber } = require('../utils/formatNumber');
 
-const bfHttpRequest = (bot, chatId, text) => {
+const bfHttpRequest = (bot, chatId, textInner) => {
   const baseUrl = 'https://api-pub.bitfinex.com/v2';
   const pathParams = 'ticker';
+  const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
 
   return (promise = axios.get(`${baseUrl}/${pathParams}/${queryParams}`).then(

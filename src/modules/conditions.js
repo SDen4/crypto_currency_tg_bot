@@ -1,33 +1,67 @@
 const { conditionFunc } = require('../utils/conditionFunc');
 
-const conditionCurrencirs = (text) =>
-  conditionFunc(text) === '/btcusd' ||
-  conditionFunc(text) === '/btceur' ||
-  conditionFunc(text) === '/ethusd' ||
-  conditionFunc(text) === '/etheur' ||
-  conditionFunc(text) === '/ltcusd' ||
-  conditionFunc(text) === '/ltceur' ||
-  conditionFunc(text) === '/solusd' ||
-  conditionFunc(text) === '/xrpusd' ||
-  conditionFunc(text) === '/adausd' ||
-  conditionFunc(text) === '/eosusd' ||
-  conditionFunc(text) === '/aptusd' ||
-  conditionFunc(text) === '/filusd' ||
-  conditionFunc(text) === '/ustusd' ||
-  conditionFunc(text) === '/doge:usd' ||
-  conditionFunc(text) === '/matic:usd' ||
-  conditionFunc(text) === '/sushi:usd' ||
-  conditionFunc(text) === '/link:usd' ||
-  conditionFunc(text) === '/avax:usd' ||
-  conditionFunc(text) === '/xmrusd' ||
-  conditionFunc(text) === '/dotusd' ||
-  conditionFunc(text) === '/bchn:usd' ||
-  conditionFunc(text) === '/udcusd' ||
-  conditionFunc(text) === '/iotusd' ||
-  conditionFunc(text) === '/trxusd' ||
-  conditionFunc(text) === '/xcnusd' ||
-  conditionFunc(text) === '/uniusd' ||
-  conditionFunc(text) === '/gala:usd' ||
-  conditionFunc(text) === '/leousd';
+const cndtnCurrencies = (text) =>
+  [
+    'btcusd',
+    'btceur',
+    'ethusd',
+    'etheur',
+    'ltcusd',
+    'ltceur',
+    'solusd',
+    'xrpusd',
+    'adausd',
+    'eosusd',
+    'aptusd',
+    'filusd',
+    'ustusd',
+    'doge:usd',
+    'matic:usd',
+    'sushi:usd',
+    'link:usd',
+    'avax:usd',
+    'xmrusd',
+    'dotusd',
+    'bchn:usd',
+    'udcusd',
+    'iotusd',
+    'trxusd',
+    'xcnusd',
+    'uniusd',
+    'gala:usd',
+    'leousd',
+  ].includes(conditionFunc(String(text).replace('/', '')));
 
-module.exports = { conditionCurrencirs };
+const cndtnInfo = (text) =>
+  ['info', 'штащ', 'help', 'рудз', 'инфо'].includes(
+    conditionFunc(String(text).replace('/', '')),
+  );
+
+const cndtnCurrenciesBtns = (text) =>
+  ['currencies', 'сгккутсшуы', 'curr', 'сгкк', 'cur', 'сгк'].includes(
+    conditionFunc(String(text).replace('/', '')),
+  );
+
+const cndtnSecret = (text) =>
+  ['secret', 'ыускуе', 'secr', 'ыуск'].includes(
+    conditionFunc(String(text).replace('/', '')),
+  );
+
+const cndtnStart = (text) =>
+  ['start', 'ыефке', 'старт', 'begin'].includes(
+    conditionFunc(String(text).replace('/', '')),
+  );
+
+const cndtnBtcBlockInfo = (text) =>
+  ['btcblockinfo', 'btcblocksinfo', 'btcblock', 'blockinfo', 'block'].includes(
+    conditionFunc(String(text).replace('/', '')),
+  );
+
+module.exports = {
+  cndtnCurrencies,
+  cndtnInfo,
+  cndtnCurrenciesBtns,
+  cndtnSecret,
+  cndtnStart,
+  cndtnBtcBlockInfo,
+};

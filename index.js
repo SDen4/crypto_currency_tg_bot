@@ -10,7 +10,14 @@ const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
 const { commands } = require('./src/modules/buttons');
-const { conditionCurrencirs } = require('./src/modules/conditions');
+const {
+  cndtnCurrencies,
+  cndtnInfo,
+  cndtnCurrenciesBtns,
+  cndtnSecret,
+  cndtnStart,
+  cndtnBtcBlockInfo,
+} = require('./src/modules/conditions');
 const {
   unkCmd,
   start,
@@ -28,25 +35,20 @@ const messageFunc = async (msg) => {
 
   if (ban(bot, chatId, msg)) return null;
 
-  if (text === '/start') {
+  if (cndtnStart(text)) {
     start(bot, chatId, msg);
-  } else if (
-    conditionFunc(text) === '/info' ||
-    conditionFunc(text) === 'info' ||
-    conditionFunc(text) === '/help' ||
-    conditionFunc(text) === 'help'
-  ) {
+  } else if (cndtnInfo(text)) {
     info(bot, chatId);
-  } else if (text === '/currencies') {
-    allCurrencies(bot, chatId);
-  } else if (conditionCurrencirs(text)) {
+  } else if (cndtnCurrencies(text)) {
     bfHttpRequest(bot, chatId, text);
-  } else if (text === '/secret') {
+  } else if (cndtnSecret(text)) {
     secret(bot, chatId);
   } else if (conditionFunc(text).includes('/timer')) {
     timer(bot, chatId, text);
-  } else if (text === '/btcBlockInfo') {
+  } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
+  } else if (cndtnCurrenciesBtns(text)) {
+    allCurrencies(bot, chatId);
   } else {
     unkCmd(bot, chatId);
   }
@@ -61,11 +63,11 @@ const buttonsFunc = async (msg) => {
 
   if (text === '/settimer') {
     tmrMsg(bot, chatId);
-  } else if (text === '/currencies') {
+  } else if (cndtnCurrenciesBtns(text)) {
     allCurrencies(bot, chatId);
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text);
-  } else if (text === '/btcBlockInfo') {
+  } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
   } else {
     bfHttpRequest(bot, chatId, text);
