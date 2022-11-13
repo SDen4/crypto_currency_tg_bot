@@ -23,6 +23,7 @@ const bfHttpRequest = (bot, chatId, textInner) => {
       if (text === '/ustusd') title = 'USDt/USD';
       if (text === '/udcusd') title = 'USDC/USD';
       if (text === '/iotusd') title = 'IOTA/USD';
+      if (text === '/euteur') title = 'EURt/EUR';
 
       const answer = `${title}: ${formatNumber(data[0])}
 -----------------------------------

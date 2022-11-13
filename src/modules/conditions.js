@@ -6,6 +6,7 @@ const cndtnCurrencies = (text) =>
     'btceur',
     'ethusd',
     'etheur',
+    'euteur',
     'ltcusd',
     'ltceur',
     'solusd',
@@ -20,6 +21,7 @@ const cndtnCurrencies = (text) =>
     'sushi:usd',
     'link:usd',
     'avax:usd',
+    'axsusd',
     'xmrusd',
     'dotusd',
     'bchn:usd',
@@ -30,6 +32,8 @@ const cndtnCurrencies = (text) =>
     'uniusd',
     'gala:usd',
     'leousd',
+    'paxusd',
+    'xtzusd',
   ].includes(conditionFunc(String(text).replace('/', '')));
 
 const cndtnInfo = (text) =>
