@@ -1,3 +1,16 @@
+const btnsCurrenciesTimer = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: 'BTC/USD', callback_data: '/btcusd_set_timer' },
+        { text: 'BTC/EUR', callback_data: '/btceur_set_timer' },
+        { text: 'ETH/USD', callback_data: '/ethusd_set_timer' },
+        { text: 'ETH/EUR', callback_data: '/etheur_set_timer' },
+      ],
+    ],
+  },
+};
+
 const btnsCurrencies = {
   reply_markup: {
     inline_keyboard: [
@@ -56,15 +69,16 @@ const btnsCurrencies = {
 const btnsStart = {
   reply_markup: {
     inline_keyboard: [
-      [{ text: 'All currencies', callback_data: '/currencies' }],
-
       [
-        { text: 'Timer BTC/USD', callback_data: '/settimer' },
+        { text: 'All currencies', callback_data: '/currencies' },
+        { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
+      ],
+      [
+        { text: 'Timer', callback_data: '/settimer' },
         {
           text: 'App',
           web_app: { url: 'https://sden4.github.io/crypto_currency/' },
         },
-        { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
       ],
     ],
   },
@@ -96,4 +110,10 @@ const commands = [
   { command: '/currencies', description: 'All currencies' },
 ];
 
-module.exports = { btnsCurrencies, btnsStart, bnsTimer, commands };
+module.exports = {
+  btnsCurrenciesTimer,
+  btnsCurrencies,
+  btnsStart,
+  bnsTimer,
+  commands,
+};

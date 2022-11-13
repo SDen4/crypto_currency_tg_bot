@@ -1,4 +1,9 @@
-const { btnsCurrencies, btnsStart, bnsTimer } = require('./buttons');
+const {
+  btnsCurrencies,
+  btnsStart,
+  bnsTimer,
+  btnsCurrenciesTimer,
+} = require('./buttons');
 
 const unkCmd = async (bot, chatId) => {
   const text = "Sorry, I don't understand you, please try again.";
@@ -30,12 +35,28 @@ const secret = async (bot, chatId) => {
   await bot.sendSticker(chatId, url);
 };
 
-const tmrMsg = async (bot, chatId) => {
+const setTmrMsgCur = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    "You can set a timer for BTC/USD in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
+    'Select the currency for timer:',
+    btnsCurrenciesTimer,
+  );
+};
+
+const setTmrMsgTime = async (bot, chatId) => {
+  await bot.sendMessage(
+    chatId,
+    "You can set the timer manually in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
     bnsTimer,
   );
 };
 
-module.exports = { unkCmd, start, info, secret, tmrMsg, allCurrencies };
+module.exports = {
+  unkCmd,
+  start,
+  info,
+  secret,
+  setTmrMsgCur,
+  setTmrMsgTime,
+  allCurrencies,
+};

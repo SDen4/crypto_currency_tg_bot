@@ -9,7 +9,7 @@ const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
-const { commands } = require('./src/modules/buttons');
+const { commands, bnsTimer } = require('./src/modules/buttons');
 const {
   cndtnCurrencies,
   cndtnInfo,
@@ -23,9 +23,12 @@ const {
   start,
   info,
   secret,
-  tmrMsg,
+  setTmrMsgCur,
+  setTmrMsgTime,
   allCurrencies,
 } = require('./src/modules/messages');
+
+let selectedCurrency = '';
 
 bot.setMyCommands(commands);
 
@@ -44,7 +47,8 @@ const messageFunc = async (msg) => {
   } else if (cndtnSecret(text)) {
     secret(bot, chatId);
   } else if (conditionFunc(text).includes('/timer')) {
-    timer(bot, chatId, text);
+    timer(bot, chatId, text, selectedCurrency);
+    selectedCurrency = '';
   } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
   } else if (cndtnCurrenciesBtns(text)) {
@@ -62,11 +66,15 @@ const buttonsFunc = async (msg) => {
   if (ban(bot, chatId, msg)) return null;
 
   if (text === '/settimer') {
-    tmrMsg(bot, chatId);
+    setTmrMsgCur(bot, chatId);
+  } else if (text.includes('_set_timer')) {
+    selectedCurrency = String(text).slice(0, 7);
+    setTmrMsgTime(bot, chatId);
   } else if (cndtnCurrenciesBtns(text)) {
     allCurrencies(bot, chatId);
   } else if (text.includes('/timer')) {
-    timer(bot, chatId, text);
+    timer(bot, chatId, text, selectedCurrency);
+    selectedCurrency = '';
   } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
   } else {
