@@ -15,7 +15,7 @@ const start = async (bot, chatId, msg) => {
 const info = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Use buttons to get the currency, get BTC blocks info, set a timer or go to the application',
+    'Use buttons to get the currencies, BTC blocks info, to set a timer or to go to the application',
     btnsStart,
   );
 };
