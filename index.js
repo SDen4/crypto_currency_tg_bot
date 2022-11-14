@@ -9,6 +9,7 @@ const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
+const { convertShortCommands } = require('./src/modules/convertShortCommands');
 const { commands, bnsTimer } = require('./src/modules/buttons');
 const {
   cndtnCurrencies,
@@ -43,7 +44,8 @@ const messageFunc = async (msg) => {
   } else if (cndtnInfo(text)) {
     info(bot, chatId);
   } else if (cndtnCurrencies(text)) {
-    bfHttpRequest(bot, chatId, text);
+    const formatText = convertShortCommands(text);
+    bfHttpRequest(bot, chatId, formatText);
   } else if (cndtnSecret(text)) {
     secret(bot, chatId);
   } else if (cndtnFunc(text).includes('/timer')) {
