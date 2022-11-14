@@ -4,7 +4,7 @@ const { token } = require('./token');
 const bot = new TgBotApi(token, { polling: true });
 
 const { ban } = require('./src/utils/ban');
-const { conditionFunc } = require('./src/utils/conditionFunc');
+const { cndtnFunc } = require('./src/utils/cndtnFunc');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
@@ -46,7 +46,7 @@ const messageFunc = async (msg) => {
     bfHttpRequest(bot, chatId, text);
   } else if (cndtnSecret(text)) {
     secret(bot, chatId);
-  } else if (conditionFunc(text).includes('/timer')) {
+  } else if (cndtnFunc(text).includes('/timer')) {
     timer(bot, chatId, text, selectedCurrency);
     selectedCurrency = '';
   } else if (cndtnBtcBlockInfo(text)) {

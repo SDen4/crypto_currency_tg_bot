@@ -1,4 +1,4 @@
-const { conditionFunc } = require('../utils/conditionFunc');
+const { cndtnFunc } = require('../utils/cndtnFunc');
 
 const cndtnCurrencies = (text) =>
   [
@@ -34,31 +34,31 @@ const cndtnCurrencies = (text) =>
     'leousd',
     'paxusd',
     'xtzusd',
-  ].includes(conditionFunc(String(text).replace('/', '')));
+  ].includes(cndtnFunc(String(text).replace('/', '')));
 
 const cndtnInfo = (text) =>
   ['info', 'штащ', 'help', 'рудз', 'инфо'].includes(
-    conditionFunc(String(text).replace('/', '')),
+    cndtnFunc(String(text).replace('/', '')),
   );
 
 const cndtnCurrenciesBtns = (text) =>
   ['currencies', 'сгккутсшуы', 'curr', 'сгкк', 'cur', 'сгк'].includes(
-    conditionFunc(String(text).replace('/', '')),
+    cndtnFunc(String(text).replace('/', '')),
   );
 
 const cndtnSecret = (text) =>
   ['secret', 'ыускуе', 'secr', 'ыуск'].includes(
-    conditionFunc(String(text).replace('/', '')),
+    cndtnFunc(String(text).replace('/', '')),
   );
 
 const cndtnStart = (text) =>
   ['start', 'ыефке', 'старт', 'begin'].includes(
-    conditionFunc(String(text).replace('/', '')),
+    cndtnFunc(String(text).replace('/', '')),
   );
 
 const cndtnBtcBlockInfo = (text) =>
   ['btcblockinfo', 'btcblocksinfo', 'btcblock', 'blockinfo', 'block'].includes(
-    conditionFunc(String(text).replace('/', '')),
+    cndtnFunc(String(text).replace('/', '')),
   );
 
 module.exports = {
