@@ -2,8 +2,15 @@ const { cndtnFunc } = require('../utils/cndtnFunc');
 
 const cndtnCurrencies = (text) =>
   [
-    'btcusd',
     'btc',
+    'eth',
+    'usd',
+    'eur',
+    'eurt',
+    'usdt',
+    'usdc',
+    'doge',
+    'btcusd',
     'btceur',
     'ethusd',
     'etheur',
