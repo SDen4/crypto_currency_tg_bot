@@ -9,6 +9,7 @@ const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { stat } = require('./src/modules/stat');
 const { timer } = require('./src/modules/timer');
+const { pool } = require('./src/modules/pool');
 const { convertShortCommands } = require('./src/modules/convertShortCommands');
 const { commands, bnsTimer } = require('./src/modules/buttons');
 const {
@@ -18,6 +19,7 @@ const {
   cndtnSecret,
   cndtnStart,
   cndtnBtcBlockInfo,
+  cndtnPool,
 } = require('./src/modules/conditions');
 const {
   unkCmd,
@@ -27,6 +29,7 @@ const {
   setTmrMsgCur,
   setTmrMsgTime,
   allCurrencies,
+  poolMsg,
 } = require('./src/modules/messages');
 
 let selectedCurrency = '';
@@ -55,6 +58,10 @@ const messageFunc = async (msg) => {
     btcBlockInfo(bot, chatId);
   } else if (cndtnCurrenciesBtns(text)) {
     allCurrencies(bot, chatId);
+  } else if (cndtnPool(text)) {
+    pool(bot, chatId, text);
+  } else if (text === '/pool') {
+    poolMsg(bot, chatId);
   } else {
     unkCmd(bot, chatId);
   }
@@ -79,6 +86,8 @@ const buttonsFunc = async (msg) => {
     selectedCurrency = '';
   } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
+  } else if (text === '/pool') {
+    poolMsg(bot, chatId);
   } else {
     bfHttpRequest(bot, chatId, text);
   }

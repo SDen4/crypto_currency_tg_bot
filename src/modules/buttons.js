@@ -79,6 +79,7 @@ const btnsStart = {
           text: 'App',
           web_app: { url: 'https://sden4.github.io/crypto_currency/' },
         },
+        { text: 'Calculate pool', callback_data: '/pool' },
       ],
     ],
   },

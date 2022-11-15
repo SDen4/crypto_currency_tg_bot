@@ -51,6 +51,13 @@ const setTmrMsgTime = async (bot, chatId) => {
   );
 };
 
+const poolMsg = async (bot, chatId) => {
+  await bot.sendMessage(
+    chatId,
+    'Type your pool to convert it to USD (format: 3 btc 1 eth ...etc)',
+  );
+};
+
 module.exports = {
   unkCmd,
   start,
@@ -59,4 +66,5 @@ module.exports = {
   setTmrMsgCur,
   setTmrMsgTime,
   allCurrencies,
+  poolMsg,
 };
