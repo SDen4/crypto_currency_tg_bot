@@ -69,7 +69,10 @@ const cndtnBtcBlockInfo = (text) =>
     cndtnFunc(String(text).replace('/', '')),
   );
 
-const cndtnPool = (text) => typeof (String(text).trim()[0] / 2) === 'number';
+const cndtnPool = (text) => {
+  const formatText = String(text).trim()[0] / 2;
+  return typeof formatText === 'number' && !isNaN(formatText);
+};
 
 module.exports = {
   cndtnCurrencies,

@@ -18,6 +18,9 @@ const pool = async (bot, chatId, msg) => {
         value: 0,
       });
       i++;
+    } else {
+      await bot.sendMessage(chatId, 'Invalid format');
+      return;
     }
   }
 
@@ -43,10 +46,15 @@ const pool = async (bot, chatId, msg) => {
 
     const pr = await axios
       .get(`${baseUrl}/${pathParams}/${queryParams}`)
-      .then((response) => {
-        const data = response.data[0];
+      .then((response, reject) => {
+        const data = response?.data[0];
         return data;
+      })
+      .catch((err) => {
+        bot.sendMessage(chatId, `Can not find currency. Error: ${err}`);
       });
+
+    if (!pr) return;
 
     resultArr[i].value = pr;
   }
