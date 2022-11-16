@@ -1,68 +1,69 @@
-const btnsCurrenciesTimer = {
-  reply_markup: {
-    inline_keyboard: [
-      [
-        { text: 'BTC/USD', callback_data: '/btcusd_set_timer' },
-        { text: 'BTC/EUR', callback_data: '/btceur_set_timer' },
-        { text: 'ETH/USD', callback_data: '/ethusd_set_timer' },
-        { text: 'ETH/EUR', callback_data: '/etheur_set_timer' },
-      ],
-    ],
-  },
-};
+const btnsCurrenciesArr = [
+  [
+    { text: 'BTC/USD', callback_data: '/btcusd' },
+    { text: 'BTC/EUR', callback_data: '/btceur' },
+    { text: 'ETH/USD', callback_data: '/ethusd' },
+    { text: 'ETH/EUR', callback_data: '/etheur' },
+  ],
+  [
+    { text: 'EURt/EUR', callback_data: '/euteur' },
+    { text: 'USDt/USD', callback_data: '/ustusd' },
+    { text: 'USDC/USD', callback_data: '/udcusd' },
+    { text: 'DOGE/USD', callback_data: '/doge:usd' },
+  ],
+  [
+    { text: 'ADA/USD', callback_data: '/adausd' },
+    { text: 'APT/USD', callback_data: '/aptusd' },
+    { text: 'AVAX/USD', callback_data: '/avax:usd' },
+    { text: 'AXS/USD', callback_data: '/axsusd' },
+  ],
+  [
+    { text: 'BCHN/USD', callback_data: '/bchn:usd' },
+    { text: 'DOT/USD', callback_data: '/dotusd' },
+    { text: 'EOS/USD', callback_data: '/eosusd' },
+    { text: 'ETC/USD', callback_data: '/etcusd' },
+  ],
+  [
+    { text: 'FIL/USD', callback_data: '/filusd' },
+    { text: 'GALA/USD', callback_data: '/gala:usd' },
+    { text: 'IOTA/USD', callback_data: '/iotusd' },
+    { text: 'LEO/USD', callback_data: '/leousd' },
+  ],
+  [
+    { text: 'LINK/USD', callback_data: '/link:usd' },
+    { text: 'LTC/USD', callback_data: '/ltcusd' },
+    { text: 'MATIC/USD', callback_data: '/matic:usd' },
+    { text: 'PAX/USD', callback_data: '/paxusd' },
+  ],
+  [
+    { text: 'SOL/USD', callback_data: '/solusd' },
+    { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
+    { text: 'TRX/USD', callback_data: '/trxusd' },
+    { text: 'UNI/USD', callback_data: '/uniusd' },
+  ],
+  [
+    { text: 'XCN/USD', callback_data: '/xcnusd' },
+    { text: 'XMR/USD', callback_data: '/xmrusd' },
+    { text: 'XTZ/USD', callback_data: '/xtzusd' },
+    { text: 'XRP/USD', callback_data: '/xrpusd' },
+  ],
+];
+
+const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
+  return el.map((i) => {
+    return { ...i, callback_data: `${i.callback_data}_set_timer` };
+  });
+});
 
 const btnsCurrencies = {
   reply_markup: {
-    inline_keyboard: [
-      [
-        { text: 'BTC/USD', callback_data: '/btcusd' },
-        { text: 'BTC/EUR', callback_data: '/btceur' },
-        { text: 'ETH/USD', callback_data: '/ethusd' },
-        { text: 'ETH/EUR', callback_data: '/etheur' },
-      ],
-      [
-        { text: 'EURt/EUR', callback_data: '/euteur' },
-        { text: 'USDt/USD', callback_data: '/ustusd' },
-        { text: 'USDC/USD', callback_data: '/udcusd' },
-        { text: 'DOGE/USD', callback_data: '/doge:usd' },
-      ],
-      [
-        { text: 'ADA/USD', callback_data: '/adausd' },
-        { text: 'APT/USD', callback_data: '/aptusd' },
-        { text: 'AVAX/USD', callback_data: '/avax:usd' },
-        { text: 'AXS/USD', callback_data: '/axsusd' },
-      ],
-      [
-        { text: 'BCHN/USD', callback_data: '/bchn:usd' },
-        { text: 'DOT/USD', callback_data: '/dotusd' },
-        { text: 'EOS/USD', callback_data: '/eosusd' },
-        { text: 'ETC/USD', callback_data: '/etcusd' },
-      ],
-      [
-        { text: 'FIL/USD', callback_data: '/filusd' },
-        { text: 'GALA/USD', callback_data: '/gala:usd' },
-        { text: 'IOTA/USD', callback_data: '/iotusd' },
-        { text: 'LEO/USD', callback_data: '/leousd' },
-      ],
-      [
-        { text: 'LINK/USD', callback_data: '/link:usd' },
-        { text: 'LTC/USD', callback_data: '/ltcusd' },
-        { text: 'MATIC/USD', callback_data: '/matic:usd' },
-        { text: 'PAX/USD', callback_data: '/paxusd' },
-      ],
-      [
-        { text: 'SOL/USD', callback_data: '/solusd' },
-        { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
-        { text: 'TRX/USD', callback_data: '/trxusd' },
-        { text: 'UNI/USD', callback_data: '/uniusd' },
-      ],
-      [
-        { text: 'XCN/USD', callback_data: '/xcnusd' },
-        { text: 'XMR/USD', callback_data: '/xmrusd' },
-        { text: 'XTZ/USD', callback_data: '/xtzusd' },
-        { text: 'XRP/USD', callback_data: '/xrpusd' },
-      ],
-    ],
+    inline_keyboard: btnsCurrenciesArr,
+  },
+};
+
+const btnsCurrenciesTimer = {
+  reply_markup: {
+    inline_keyboard: btnsCurrenciesTimerArr,
   },
 };
 
