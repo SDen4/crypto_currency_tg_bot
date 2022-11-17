@@ -7,9 +7,10 @@ const { ban } = require('./src/utils/ban');
 const { cndtnFunc } = require('./src/utils/cndtnFunc');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
-const { stat } = require('./src/modules/stat');
+const { visitors } = require('./src/modules/visitors');
 const { timer } = require('./src/modules/timer');
 const { pool } = require('./src/modules/pool');
+const { statistic } = require('./src/modules/statistic');
 const { convertShortCommands } = require('./src/modules/convertShortCommands');
 const { commands, bnsTimer } = require('./src/modules/buttons');
 const {
@@ -40,6 +41,8 @@ const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
+  statistic(msg);
+
   if (ban(bot, chatId, msg)) return null;
 
   if (cndtnStart(text)) {
@@ -65,12 +68,14 @@ const messageFunc = async (msg) => {
   } else {
     unkCmd(bot, chatId);
   }
-  stat(bot, msg);
+  visitors(bot, msg);
 };
 
 const buttonsFunc = async (msg) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
+
+  statistic(msg);
 
   if (ban(bot, chatId, msg)) return null;
 
@@ -91,7 +96,7 @@ const buttonsFunc = async (msg) => {
   } else {
     bfHttpRequest(bot, chatId, text);
   }
-  stat(bot, msg);
+  visitors(bot, msg);
 };
 
 bot.on('message', messageFunc);

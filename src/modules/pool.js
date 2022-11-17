@@ -46,7 +46,7 @@ const pool = async (bot, chatId, msg) => {
 
     const pr = await axios
       .get(`${baseUrl}/${pathParams}/${queryParams}`)
-      .then((response, reject) => {
+      .then((response) => {
         const data = response?.data[0];
         return data;
       })
