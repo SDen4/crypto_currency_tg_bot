@@ -7,12 +7,12 @@ const { ban } = require('./src/utils/ban');
 const { cndtnFunc } = require('./src/utils/cndtnFunc');
 const { bfHttpRequest } = require('./src/api/bfHttpRequest');
 const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
-const { visitors } = require('./src/modules/visitors');
 const { timer } = require('./src/modules/timer');
 const { pool } = require('./src/modules/pool');
-const { statistic } = require('./src/modules/statistic');
+const { visitors } = require('./src/statistic/visitors');
+const { statistic } = require('./src/statistic/statistic');
 const { convertShortCommands } = require('./src/modules/convertShortCommands');
-const { commands, bnsTimer } = require('./src/modules/buttons');
+const { commands } = require('./src/modules/buttons');
 const {
   cndtnCurrencies,
   cndtnInfo,
