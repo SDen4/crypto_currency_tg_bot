@@ -5,7 +5,10 @@
  * @return {*} string 'dd.mm.yyyy hh.mm'
  */
 const timestamp = (timestamp) => {
-  const date = new Date(timestamp);
+  const rightTimeStamp =
+    String(timestamp).length <= 10 ? timestamp * 1000 : timestamp;
+
+  const date = new Date(rightTimeStamp);
   const month = date.getMonth() + 1;
   const correctMonth = String(month).length === 1 ? `0${month}` : month;
   const hour = date.getHours();

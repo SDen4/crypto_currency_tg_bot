@@ -4,7 +4,7 @@ const { statUrl, statChatId } = require('../../token');
 
 const saveStat = async (visit) => {
   const id = visit?.from?.id || visit?.chat?.id;
-  // if (id === statChatId) return;
+  if (id === statChatId) return;
 
   await axios.post(statUrl, visit).then((response) => {
     return response;
