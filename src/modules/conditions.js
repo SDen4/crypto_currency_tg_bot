@@ -1,4 +1,5 @@
 const { cndtnFunc } = require('../utils/cndtnFunc');
+const { statChatId } = require('../../token');
 
 const cndtnCurrencies = (text) =>
   [
@@ -74,6 +75,12 @@ const cndtnPool = (text) => {
   return typeof formatText === 'number' && !isNaN(formatText);
 };
 
+const cndtnStatistic = (text, msg) => {
+  const reader = msg.from.id === statChatId;
+  if ((text === 'stat' || text === '/stat') && reader) return true;
+  return false;
+};
+
 module.exports = {
   cndtnCurrencies,
   cndtnInfo,
@@ -82,4 +89,5 @@ module.exports = {
   cndtnStart,
   cndtnBtcBlockInfo,
   cndtnPool,
+  cndtnStatistic,
 };

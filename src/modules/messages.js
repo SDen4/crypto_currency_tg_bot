@@ -5,6 +5,8 @@ const {
   btnsCurrenciesTimer,
 } = require('./buttons');
 
+const { timestamp } = require('../utils/timestamp');
+
 const unkCmd = async (bot, chatId) => {
   const text = "Sorry, I don't understand you, please try again.";
   await bot.sendMessage(chatId, text);
@@ -58,6 +60,24 @@ const poolMsg = async (bot, chatId) => {
   );
 };
 
+const statisticMsg = async (bot, chatId, stat) => {
+  const formatStat = Object.values(stat.data)
+    .map((el) => {
+      const date = el?.message?.date || el?.date;
+      const firstName = el?.chat?.first_name || el?.from?.first_name;
+      const id = el?.chat?.id || el?.from?.id;
+      const username = el?.chat?.username || el?.from?.username;
+      const text = el?.text || el?.data;
+
+      return `${timestamp(
+        date,
+      )} | ${firstName} (${id}/${username}) | text: ${text}\n`;
+    })
+    .join('');
+
+  await bot.sendMessage(chatId, `Statistic:\n-----------\n${formatStat}`);
+};
+
 module.exports = {
   unkCmd,
   start,
@@ -67,4 +87,5 @@ module.exports = {
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
+  statisticMsg,
 };

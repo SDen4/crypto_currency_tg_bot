@@ -10,7 +10,7 @@ const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
 const { timer } = require('./src/modules/timer');
 const { pool } = require('./src/modules/pool');
 const { visitors } = require('./src/statistic/visitors');
-const { statistic } = require('./src/statistic/statistic');
+const { saveStat, getStat } = require('./src/statistic/statistic');
 const { convertShortCommands } = require('./src/modules/convertShortCommands');
 const { commands } = require('./src/modules/buttons');
 const {
@@ -21,6 +21,7 @@ const {
   cndtnStart,
   cndtnBtcBlockInfo,
   cndtnPool,
+  cndtnStatistic,
 } = require('./src/modules/conditions');
 const {
   unkCmd,
@@ -31,6 +32,7 @@ const {
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
+  statisticMsg,
 } = require('./src/modules/messages');
 
 let selectedCurrency = '';
@@ -41,7 +43,7 @@ const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
-  statistic(msg);
+  saveStat(msg);
 
   if (ban(bot, chatId, msg)) return null;
 
@@ -65,6 +67,9 @@ const messageFunc = async (msg) => {
     pool(bot, chatId, text);
   } else if (text === '/pool') {
     poolMsg(bot, chatId);
+  } else if (cndtnStatistic(text, msg)) {
+    const stat = await getStat();
+    await statisticMsg(bot, chatId, stat);
   } else {
     unkCmd(bot, chatId);
   }
@@ -75,7 +80,7 @@ const buttonsFunc = async (msg) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
-  statistic(msg);
+  saveStat(msg);
 
   if (ban(bot, chatId, msg)) return null;
 
