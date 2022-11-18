@@ -75,9 +75,12 @@ const cndtnPool = (text) => {
   return typeof formatText === 'number' && !isNaN(formatText);
 };
 
-const cndtnStatistic = (text, msg) => {
+const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
-  if ((text === 'stat' || text === '/stat') && reader) return true;
+  const text = String(t).toLocaleLowerCase();
+
+  if ((text === 'stat' || text === '/stat' || text === 'стат') && reader)
+    return true;
   return false;
 };
 
