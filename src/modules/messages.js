@@ -66,16 +66,20 @@ const statisticMsg = async (bot, chatId, stat) => {
       const date = el?.message?.date || el?.date;
       const firstName = el?.chat?.first_name || el?.from?.first_name;
       const id = el?.chat?.id || el?.from?.id;
-      const username = el?.chat?.username || el?.from?.username;
+      const username = el?.chat?.username || el?.from?.username || '';
       const text = el?.text || el?.data;
+      const lang = el?.from?.language_code;
 
-      return `${timestamp(
-        date,
-      )} | ${firstName} (${id}/${username}) | text: ${text}\n`;
+      return `${timestamp(date)} | ${firstName} (${id}${
+        username && '/'
+      }${username}) | ${lang} | text: ${text}\n`;
     })
     .join('');
 
-  await bot.sendMessage(chatId, `Statistic:\n-----------\n${formatStat}`);
+  await bot.sendMessage(
+    chatId,
+    `Statistic:\n----------------------\n${formatStat}`,
+  );
 };
 
 module.exports = {
