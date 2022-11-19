@@ -13,19 +13,25 @@ const btnsCurrenciesArr = [
   ],
   [
     { text: 'ADA/USD', callback_data: '/adausd' },
+    { text: 'ALGO/USD', callback_data: '/algusd' },
     { text: 'APT/USD', callback_data: '/aptusd' },
     { text: 'AVAX/USD', callback_data: '/avax:usd' },
-    { text: 'AXS/USD', callback_data: '/axsusd' },
   ],
   [
+    { text: 'AXS/USD', callback_data: '/axsusd' },
     { text: 'BCHN/USD', callback_data: '/bchn:usd' },
+    { text: 'CLO/USD', callback_data: '/clousd' },
+    { text: 'DASH/USD', callback_data: '/dshusd' },
+  ],
+  [
     { text: 'DOT/USD', callback_data: '/dotusd' },
     { text: 'EOS/USD', callback_data: '/eosusd' },
     { text: 'ETC/USD', callback_data: '/etcusd' },
+    { text: 'FIL/USD', callback_data: '/filusd' },
   ],
   [
-    { text: 'FIL/USD', callback_data: '/filusd' },
     { text: 'GALA/USD', callback_data: '/gala:usd' },
+    { text: 'HI/USD', callback_data: '/hixusd' },
     { text: 'IOTA/USD', callback_data: '/iotusd' },
     { text: 'LEO/USD', callback_data: '/leousd' },
   ],

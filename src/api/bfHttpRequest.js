@@ -20,10 +20,14 @@ const bfHttpRequest = (bot, chatId, textInner) => {
               .toLocaleUpperCase()
               .slice(4)}`
           : `${String(text).slice(1).toLocaleUpperCase().replace(':', '/')}`;
+      // exceptions
       if (text === '/ustusd') title = 'USDt/USD';
       if (text === '/udcusd') title = 'USDC/USD';
       if (text === '/iotusd') title = 'IOTA/USD';
       if (text === '/euteur') title = 'EURt/EUR';
+      if (text === '/algusd') title = 'ALGO/USD';
+      if (text === '/hixusd') title = 'HI/USD';
+      if (text === '/dshusd') title = 'DASH/USD';
 
       const answer = `${title}: ${formatNumber(data[0])}
 -----------------------------------
