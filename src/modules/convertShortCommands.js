@@ -23,7 +23,34 @@ const convertShortCommands = (text) => {
 
     case 'doge':
       return '/doge:usd';
-      
+
+    case 'ada':
+      return '/adausd';
+
+    case 'algo':
+      return '/algusd';
+
+    case 'apt':
+      return '/aptusd';
+
+    case 'avax':
+      return '/avax:usd';
+
+    case 'axs':
+      return '/axsusd';
+
+    case 'bchn':
+      return '/bchn:usd';
+
+    case 'clo':
+      return '/clousd';
+
+    case 'dash':
+      return '/dshusd';
+
+    case 'dot':
+      return '/dotusd';
+
     default:
       return text;
   }
