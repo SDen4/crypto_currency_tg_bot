@@ -62,7 +62,7 @@ const poolMsg = async (bot, chatId) => {
 
 const statisticMsg = async (bot, chatId, stat) => {
   const formatStat = Object.values(stat.data)
-    .map((el) => {
+    .map((el, i) => {
       const date = el?.message?.date || el?.date;
       const firstName = el?.chat?.first_name || el?.from?.first_name;
       const id = el?.chat?.id || el?.from?.id;
@@ -70,7 +70,7 @@ const statisticMsg = async (bot, chatId, stat) => {
       const text = el?.text || el?.data;
       const lang = el?.from?.language_code;
 
-      return `${timestamp(date)} | ${firstName} (${id}${
+      return `${i + 1}. ${timestamp(date)} | ${firstName} (${id}${
         username && '/'
       }${username}) | ${lang} | text: ${text}\n`;
     })
