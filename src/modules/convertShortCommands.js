@@ -51,6 +51,15 @@ const convertShortCommands = (text) => {
     case 'dot':
       return '/dotusd';
 
+    case 'eos':
+      return '/eosusd';
+
+    case 'etc':
+      return '/etcusd';
+
+    case 'fil':
+      return '/filusd';
+
     default:
       return text;
   }
