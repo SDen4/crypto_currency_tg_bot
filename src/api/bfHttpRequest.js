@@ -1,9 +1,10 @@
 const axios = require('axios');
 
 const { formatNumber } = require('../utils/formatNumber');
+const { bfUrl } = require('../../token');
 
 const bfHttpRequest = (bot, chatId, textInner) => {
-  const baseUrl = 'https://api-pub.bitfinex.com/v2';
+  const baseUrl = bfUrl;
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
