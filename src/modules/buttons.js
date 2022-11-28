@@ -14,44 +14,50 @@ const btnsCurrenciesArr = [
   [
     { text: 'ADA/USD', callback_data: '/adausd' },
     { text: 'ALGO/USD', callback_data: '/algusd' },
+    { text: 'APE/USD', callback_data: '/apeusd' },
     { text: 'APT/USD', callback_data: '/aptusd' },
-    { text: 'AVAX/USD', callback_data: '/avax:usd' },
   ],
   [
+    { text: 'AVAX/USD', callback_data: '/avax:usd' },
     { text: 'AXS/USD', callback_data: '/axsusd' },
     { text: 'BCHN/USD', callback_data: '/bchn:usd' },
+    { text: 'BSV/USD', callback_data: '/bsvusd' },
+  ],
+  [
     { text: 'CLO/USD', callback_data: '/clousd' },
     { text: 'DASH/USD', callback_data: '/dshusd' },
-  ],
-  [
     { text: 'DOT/USD', callback_data: '/dotusd' },
     { text: 'EOS/USD', callback_data: '/eosusd' },
+  ],
+  [
     { text: 'ETC/USD', callback_data: '/etcusd' },
     { text: 'FIL/USD', callback_data: '/filusd' },
-  ],
-  [
     { text: 'GALA/USD', callback_data: '/gala:usd' },
     { text: 'HI/USD', callback_data: '/hixusd' },
+  ],
+  [
     { text: 'IOTA/USD', callback_data: '/iotusd' },
     { text: 'LEO/USD', callback_data: '/leousd' },
-  ],
-  [
     { text: 'LINK/USD', callback_data: '/link:usd' },
     { text: 'LTC/USD', callback_data: '/ltcusd' },
+  ],
+  [
     { text: 'MATIC/USD', callback_data: '/matic:usd' },
     { text: 'PAX/USD', callback_data: '/paxusd' },
-  ],
-  [
     { text: 'SOL/USD', callback_data: '/solusd' },
     { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
-    { text: 'TRX/USD', callback_data: '/trxusd' },
-    { text: 'UNI/USD', callback_data: '/uniusd' },
   ],
   [
+    { text: 'TRX/USD', callback_data: '/trxusd' },
+    { text: 'UNI/USD', callback_data: '/uniusd' },
     { text: 'XCN/USD', callback_data: '/xcnusd' },
+    { text: 'XLM/USD', callback_data: '/xlmusd' },
+  ],
+  [
     { text: 'XMR/USD', callback_data: '/xmrusd' },
     { text: 'XTZ/USD', callback_data: '/xtzusd' },
     { text: 'XRP/USD', callback_data: '/xrpusd' },
+    { text: 'YFI/USD', callback_data: '/yfiusd' },
   ],
 ];
 
