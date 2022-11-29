@@ -1,5 +1,5 @@
 const convertShortCommands = (text) => {
-  switch (String(text).toLocaleLowerCase()) {
+  switch (String(text).toLocaleLowerCase().trim()) {
     case 'btc':
       return '/btcusd';
 
@@ -59,6 +59,12 @@ const convertShortCommands = (text) => {
 
     case 'fil':
       return '/filusd';
+
+    case 'gala':
+      return '/gala:usd';
+
+    case 'hi':
+      return '/hixusd';
 
     default:
       return text;

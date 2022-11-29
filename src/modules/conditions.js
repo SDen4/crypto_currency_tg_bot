@@ -23,6 +23,8 @@ const cndtnCurrencies = (text) =>
     'eos',
     'etc',
     'fil',
+    'gala',
+    'hi',
     'btcusd',
     'btceur',
     'ethusd',
