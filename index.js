@@ -68,8 +68,9 @@ const messageFunc = async (msg) => {
   } else if (text === '/pool') {
     poolMsg(bot, chatId);
   } else if (cndtnStatistic(text, msg)) {
+    const quant = Number(String(text).match(/\d+/g)[0]);
     const stat = await getStat();
-    await statisticMsg(bot, chatId, stat);
+    await statisticMsg(bot, chatId, stat, quant);
   } else {
     unkCmd(bot, chatId);
   }

@@ -60,8 +60,9 @@ const poolMsg = async (bot, chatId) => {
   );
 };
 
-const statisticMsg = async (bot, chatId, stat) => {
+const statisticMsg = async (bot, chatId, stat, quant) => {
   const formatStat = Object.values(stat.data)
+    .slice(-quant)
     .map((el, i) => {
       const date = el?.message?.date || el?.date;
       const firstName = el?.chat?.first_name || el?.from?.first_name;

@@ -101,10 +101,9 @@ const cndtnPool = (text) => {
 
 const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
-  const text = String(t).toLocaleLowerCase();
+  const text = String(t).toLocaleLowerCase().match(/\D+/g)[0].trim();
 
-  if ((text === 'stat' || text === '/stat' || text === 'стат') && reader)
-    return true;
+  if (['stat', '/stat', 'стат'].includes(text) && reader) return true;
   return false;
 };
 
