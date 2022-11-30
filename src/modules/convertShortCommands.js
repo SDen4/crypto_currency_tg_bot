@@ -66,6 +66,12 @@ const convertShortCommands = (text) => {
     case 'hi':
       return '/hixusd';
 
+    case 'iota':
+      return '/iotusd';
+
+    case 'leo':
+      return '/leousd';
+
     default:
       return text;
   }

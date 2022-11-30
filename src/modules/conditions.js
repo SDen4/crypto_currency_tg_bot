@@ -25,6 +25,8 @@ const cndtnCurrencies = (text) =>
     'fil',
     'gala',
     'hi',
+    'iota',
+    'leo',
     'btcusd',
     'btceur',
     'ethusd',
