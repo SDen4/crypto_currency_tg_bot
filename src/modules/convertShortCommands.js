@@ -72,6 +72,15 @@ const convertShortCommands = (text) => {
     case 'leo':
       return '/leousd';
 
+    case 'link':
+      return '/link:usd';
+
+    case 'ltc':
+      return '/ltcusd';
+
+    case 'matic':
+      return '/matic:usd';
+
     default:
       return text;
   }
