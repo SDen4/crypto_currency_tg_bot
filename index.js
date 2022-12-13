@@ -22,6 +22,7 @@ const {
   cndtnBtcBlockInfo,
   cndtnPool,
   cndtnStatistic,
+  cndtnEugFunc,
 } = require('./src/modules/conditions');
 const {
   unkCmd,
@@ -71,6 +72,9 @@ const messageFunc = async (msg) => {
     const quant = Number(String(text).match(/\d+/g)[0]);
     const stat = await getStat();
     await statisticMsg(bot, chatId, stat, quant);
+  } else if (cndtnEugFunc(text, msg)) {
+    await bfHttpRequest(bot, chatId, '/btcusd');
+    await btcBlockInfo(bot, chatId);
   } else {
     unkCmd(bot, chatId);
   }

@@ -1,5 +1,5 @@
 const { cndtnFunc } = require('../utils/cndtnFunc');
-const { statChatId } = require('../../token');
+const { statChatId, shortSign, eugPartId } = require('../../token');
 
 const cndtnCurrencies = (text) =>
   [
@@ -110,6 +110,15 @@ const cndtnStatistic = (t, msg) => {
   return false;
 };
 
+const cndtnEugFunc = (text, msg) => {
+  const id = msg.from.id;
+
+  return (
+    text.toLocaleLowerCase() === shortSign &&
+    String(id).indexOf(eugPartId) !== -1
+  );
+};
+
 module.exports = {
   cndtnCurrencies,
   cndtnInfo,
@@ -119,4 +128,5 @@ module.exports = {
   cndtnBtcBlockInfo,
   cndtnPool,
   cndtnStatistic,
+  cndtnEugFunc,
 };
