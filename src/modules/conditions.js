@@ -83,9 +83,16 @@ const cndtnCurrenciesBtns = (text) =>
   );
 
 const cndtnSecret = (text) =>
-  ['secret', 'ыускуе', 'secr', 'ыуск'].includes(
-    cndtnFunc(String(text).replace('/', '')),
-  );
+  [
+    'secret',
+    'ыускуе',
+    'secr',
+    'ыуск',
+    'good boy',
+    'good bot',
+    'great',
+    'excelent',
+  ].includes(cndtnFunc(String(text).replace('/', '')));
 
 const cndtnStart = (text) =>
   ['start', 'ыефке', 'старт', 'begin'].includes(
