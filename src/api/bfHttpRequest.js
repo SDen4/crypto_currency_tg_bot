@@ -9,8 +9,6 @@ const bfHttpRequest = (bot, chatId, textInner) => {
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
 
-  console.log(queryParams);
-
   return (promise = axios.get(`${baseUrl}/${pathParams}/${queryParams}`).then(
     (response) => {
       const data = response.data;
