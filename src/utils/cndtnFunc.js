@@ -5,7 +5,7 @@
  * @return {*} string in lower case
  */
 const cndtnFunc = (text) => {
-  return String(text).toLocaleLowerCase();
+  return String(text)?.toLocaleLowerCase();
 };
 
 module.exports = { cndtnFunc };

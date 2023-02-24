@@ -119,7 +119,7 @@ const cndtnPool = (text) => {
 
 const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
-  const text = String(t).toLocaleLowerCase().match(/\D+/g)[0].trim();
+  const text = String(t)?.toLocaleLowerCase().match(/\D+/g)[0].trim();
 
   if (['stat', '/stat', 'стат'].includes(text) && reader) return true;
   return false;
@@ -129,9 +129,13 @@ const cndtnEugFunc = (text, msg) => {
   const id = msg.from.id;
 
   return (
-    text.toLocaleLowerCase() === shortSign &&
+    text?.toLocaleLowerCase() === shortSign &&
     String(id).indexOf(eugPartId) !== -1
   );
+};
+
+const cndtnEmoji = (text) => {
+  return /\p{Emoji}/u.test(text);
 };
 
 module.exports = {
@@ -144,4 +148,5 @@ module.exports = {
   cndtnPool,
   cndtnStatistic,
   cndtnEugFunc,
+  cndtnEmoji,
 };

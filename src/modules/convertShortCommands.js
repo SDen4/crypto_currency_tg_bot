@@ -1,5 +1,5 @@
 const convertShortCommands = (text) => {
-  switch (String(text).toLocaleLowerCase().trim()) {
+  switch (String(text)?.toLocaleLowerCase().trim()) {
     case 'btc':
       return '/btcusd';
 

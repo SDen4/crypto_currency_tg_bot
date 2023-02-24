@@ -23,6 +23,7 @@ const {
   cndtnPool,
   cndtnStatistic,
   cndtnEugFunc,
+  cndtnEmoji,
 } = require('./src/modules/conditions');
 const {
   unkCmd,
@@ -34,6 +35,7 @@ const {
   allCurrencies,
   poolMsg,
   statisticMsg,
+  emojiMsg,
 } = require('./src/modules/messages');
 
 let selectedCurrency = '';
@@ -75,6 +77,8 @@ const messageFunc = async (msg) => {
   } else if (cndtnEugFunc(text, msg)) {
     await bfHttpRequest(bot, chatId, '/btcusd');
     await btcBlockInfo(bot, chatId);
+  } else if (cndtnEmoji(text)) {
+    emojiMsg(text, bot, chatId);
   } else {
     unkCmd(bot, chatId);
   }

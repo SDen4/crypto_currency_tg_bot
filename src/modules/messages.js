@@ -83,6 +83,13 @@ const statisticMsg = async (bot, chatId, stat, quant) => {
   );
 };
 
+const emojiMsg = async (text, bot, chatId) => {
+  const hex = (
+    Number(text.codePointAt(0)) + Number((Math.random() * 10 + 1).toFixed(0))
+  ).toString(16);
+  await bot.sendMessage(chatId, String.fromCodePoint('0x' + hex));
+};
+
 module.exports = {
   unkCmd,
   start,
@@ -93,4 +100,5 @@ module.exports = {
   allCurrencies,
   poolMsg,
   statisticMsg,
+  emojiMsg,
 };
