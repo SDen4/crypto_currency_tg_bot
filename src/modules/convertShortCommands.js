@@ -81,6 +81,18 @@ const convertShortCommands = (text) => {
     case 'matic':
       return '/matic:usd';
 
+    case 'ethw':
+      return '/ethw:usd';
+
+    case 'ftm':
+      return '/ftmusd';
+
+    case 'neo':
+      return '/neousd';
+
+    case 'xaut':
+      return '/xaut:usd';
+
     default:
       return text;
   }

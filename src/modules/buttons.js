@@ -31,25 +31,31 @@ const btnsCurrenciesArr = [
   ],
   [
     { text: 'ETC/USD', callback_data: '/etcusd' },
+    { text: 'ETHW/USD', callback_data: '/ethw:usd' },
     { text: 'FIL/USD', callback_data: '/filusd' },
+    { text: 'FTM/USD', callback_data: '/ftmusd' },
+  ],
+  [
     { text: 'GALA/USD', callback_data: '/gala:usd' },
     { text: 'HI/USD', callback_data: '/hixusd' },
-  ],
-  [
     { text: 'IOTA/USD', callback_data: '/iotusd' },
     { text: 'LEO/USD', callback_data: '/leousd' },
-    { text: 'LINK/USD', callback_data: '/link:usd' },
-    { text: 'LTC/USD', callback_data: '/ltcusd' },
   ],
   [
+    { text: 'LINK/USD', callback_data: '/link:usd' },
+    { text: 'LTC/USD', callback_data: '/ltcusd' },
     { text: 'MATIC/USD', callback_data: '/matic:usd' },
+    { text: 'NEO/USD', callback_data: '/neousd' },
+  ],
+  [
     { text: 'PAX/USD', callback_data: '/paxusd' },
     { text: 'SOL/USD', callback_data: '/solusd' },
     { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
+    { text: 'TRX/USD', callback_data: '/trxusd' },
   ],
   [
-    { text: 'TRX/USD', callback_data: '/trxusd' },
     { text: 'UNI/USD', callback_data: '/uniusd' },
+    { text: 'XAUt/USD', callback_data: '/xaut:usd' },
     { text: 'XCN/USD', callback_data: '/xcnusd' },
     { text: 'XLM/USD', callback_data: '/xlmusd' },
   ],

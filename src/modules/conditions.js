@@ -63,6 +63,8 @@ const cndtnCurrencies = (text) =>
     'dshusd',
     'hixusd',
     'xcnusd',
+    'xaut:usd',
+    'xaut',
     'xlmusd',
     'xmrusd',
     'xrpusd',
@@ -70,6 +72,12 @@ const cndtnCurrencies = (text) =>
     'apeusd',
     'bsvusd',
     'yfiusd',
+    'neousd',
+    'neo',
+    'ftmusd',
+    'ftm',
+    'ethw',
+    'ethw:usd',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 const cndtnInfo = (text) =>
