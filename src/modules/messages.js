@@ -14,7 +14,7 @@ const unkCmd = async (bot, chatId) => {
 
 const start = async (bot, chatId, msg) => {
   const text1 = `Hello, ${msg?.from?.first_name}! Welcome to Crypto Currency Light Bot!`;
-  const text2 = 'Use menu to see the available commands';
+  const text2 = 'Use menu to see available commands';
   await bot.sendMessage(chatId, text1);
   await bot.sendMessage(chatId, text2);
 };

@@ -103,9 +103,19 @@ const cndtnSecret = (text) =>
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 const cndtnStart = (text) =>
-  ['start', 'ыефке', 'старт', 'begin'].includes(
-    cndtnFunc(String(text).replace('/', '')),
-  );
+  [
+    'start',
+    'ыефке',
+    'старт',
+    'begin',
+    'hello',
+    'hey',
+    'привет',
+    'привте',
+    'превет',
+    'превед',
+    'хай',
+  ].includes(cndtnFunc(String(text).replace('/', '')));
 
 const cndtnBtcBlockInfo = (text) =>
   ['btcblockinfo', 'btcblocksinfo', 'btcblock', 'blockinfo', 'block'].includes(
