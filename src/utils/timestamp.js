@@ -1,10 +1,10 @@
 /**
- *Format timestamp to 'dd.mm.yyyy hh.mm'
- *
+ *Format timestamp to 'dd.mm.yyyy hh:mm' or 'hh:mm:ss'
  * @param {*} timestamp
- * @return {*} string 'dd.mm.yyyy hh.mm'
+ * @param {boolean} [isTime=false]
+ * @return {*}  string
  */
-const timestamp = (timestamp) => {
+const timestamp = (timestamp, isTime = false) => {
   const formatValue = (val) => (String(val).length === 1 ? `0${val}` : val);
 
   const rightTimeStamp =
@@ -16,6 +16,9 @@ const timestamp = (timestamp) => {
   const month = formatValue(date.getMonth() + 1);
   const hour = formatValue(date.getHours());
   const min = formatValue(date.getMinutes());
+  const sec = formatValue(date.getSeconds());
+
+  if (isTime) return `${hour}:${min}:${sec}`;
 
   return `${day}.${month}.${date.getFullYear()} ${hour}:${min}`;
 };
