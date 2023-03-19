@@ -8,9 +8,9 @@ const {
 const { timestamp } = require('../utils/timestamp');
 
 const btcBlockInfo = async (bot, chatId) => {
+  const hash = await mpHashRequest();
   const allData = await mpCurBlockRequest();
   // const id = await mpIdRequest();
-  const hash = await mpHashRequest();
   const lastBlock = await mpLastBlockRequest(hash);
 
   console.log('lastBlock in btc block: ', lastBlock);
