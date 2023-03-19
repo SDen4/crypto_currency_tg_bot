@@ -9,14 +9,16 @@ const { timestamp } = require('../utils/timestamp');
 
 const btcBlockInfo = async (bot, chatId) => {
   const allData = await mpCurBlockRequest();
-  const id = await mpIdRequest();
+  // const id = await mpIdRequest();
   const hash = await mpHashRequest();
   const lastBlock = await mpLastBlockRequest(hash);
+
+  console.log('lastBlock in btc block: ', lastBlock);
 
   if (allData?.length) {
     await bot.sendMessage(
       chatId,
-      `Last block:\n - id: ${id}\n - transactions: ${
+      `Last block:\n - id: ${lastBlock?.height}\n - transactions: ${
         lastBlock?.tx_count || '?'
       }\n - time: ${timestamp(
         lastBlock?.timestamp,

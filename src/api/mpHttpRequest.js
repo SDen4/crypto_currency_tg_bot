@@ -26,6 +26,8 @@ const mpHashRequest = async () => {
 };
 
 const mpLastBlockRequest = async (hash) => {
+  console.log('hash in request: ', hash);
+
   const data = axios.get(`${mpLastBlock}${hash}`).then((res) => res.data);
 
   return data;
