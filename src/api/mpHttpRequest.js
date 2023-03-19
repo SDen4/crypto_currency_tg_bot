@@ -13,12 +13,6 @@ const mpCurBlockRequest = async () => {
   return data;
 };
 
-const mpIdRequest = async () => {
-  const data = axios.get(mpIdUrl).then((res) => res.data);
-
-  return data;
-};
-
 const mpHashRequest = async () => {
   const data = axios.get(mpHashUrl).then((res) => res.data);
 
@@ -26,8 +20,6 @@ const mpHashRequest = async () => {
 };
 
 const mpLastBlockRequest = async (hash) => {
-  console.log('hash in request: ', hash);
-
   const data = axios.get(`${mpLastBlock}${hash}`).then((res) => res.data);
 
   return data;
@@ -35,7 +27,6 @@ const mpLastBlockRequest = async (hash) => {
 
 module.exports = {
   mpCurBlockRequest,
-  mpIdRequest,
   mpHashRequest,
   mpLastBlockRequest,
 };
