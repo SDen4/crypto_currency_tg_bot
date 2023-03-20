@@ -7,17 +7,17 @@
 const timestamp = (timestamp, isTime = false) => {
   const formatValue = (val) => (String(val).length === 1 ? `0${val}` : val);
 
-  const offSet = new Date().getTimezoneOffset() * 60000;
+  const offSet = 300000;
 
-  console.log(offSet)
+  console.log(offSet);
 
   const rightTimeStamp =
     (String(timestamp).length <= 10 ? timestamp * 1000 : timestamp) - offSet;
 
   const date = new Date(rightTimeStamp);
 
-  const hour = formatValue(date.getUTCHours());
-  const min = formatValue(date.getUTCMinutes());
+  const hour = formatValue(date.getHours());
+  const min = formatValue(date.getMinutes());
 
   if (isTime) {
     const sec = formatValue(date.getUTCSeconds());
@@ -28,10 +28,10 @@ const timestamp = (timestamp, isTime = false) => {
     return `${hour}:${min}:${sec} (${deltaStr})`;
   }
 
-  const day = formatValue(date.getUTCDate());
-  const month = formatValue(date.getUTCMonth() + 1);
+  const day = formatValue(date.getDate());
+  const month = formatValue(date.getMonth() + 1);
 
-  return `${day}.${month}.${date.getUTCFullYear()} ${hour}:${min}`;
+  return `${day}.${month}.${date.getFullYear()} ${hour}:${min}`;
 };
 
 module.exports = { timestamp };
