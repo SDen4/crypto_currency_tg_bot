@@ -9,6 +9,8 @@ const timestamp = (timestamp, isTime = false) => {
 
   const offSet = new Date().getTimezoneOffset() * 60000;
 
+  console.log(offSet)
+
   const rightTimeStamp =
     (String(timestamp).length <= 10 ? timestamp * 1000 : timestamp) - offSet;
 
