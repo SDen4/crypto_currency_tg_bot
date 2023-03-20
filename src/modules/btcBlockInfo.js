@@ -14,12 +14,11 @@ const btcBlockInfo = async (bot, chatId) => {
   if (allData?.length) {
     await bot.sendMessage(
       chatId,
-      `Last block:\n - id: ${lastBlock?.height || '?'}\n - transactions: ${
+      `Last block:\n - ${timestamp(lastBlock?.timestamp, true)}\n - id: ${
+        lastBlock?.height || '?'
+      }\n - transactions: ${
         lastBlock?.tx_count || '?'
-      }\n - time: ${timestamp(
-        lastBlock?.timestamp,
-        true,
-      )}\n-------------------------------\nCurrent block:\n - median fee: ${Math.ceil(
+      }\n-------------------------------\nCurrent block:\n - median fee: ${Math.ceil(
         allData[0].medianFee,
       ).toFixed()} sat/vB\n - total fees: ${(
         Math.ceil(allData[0].totalFees) / 100000000
