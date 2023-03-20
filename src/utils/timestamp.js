@@ -9,12 +9,20 @@ const timestamp = (timestamp, isTime = false) => {
 
   const offSet = 300000; // server time
 
+  console.log('timestamp: ', timestamp);
+
   const rightTimeStamp =
     (String(timestamp).length <= 10 ? timestamp * 1000 : timestamp) + offSet;
+
+  console.log('rightTimeStamp: ', rightTimeStamp);
 
   const date = new Date(rightTimeStamp);
 
   const hour = formatValue(date.getHours());
+
+  console.log('hour: ', hour);
+
+
   const min = formatValue(date.getMinutes());
 
   if (isTime) {
