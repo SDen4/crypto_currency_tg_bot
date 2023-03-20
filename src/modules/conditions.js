@@ -140,7 +140,7 @@ const cndtnEugFunc = (text, msg) => {
 
   return (
     text?.toLocaleLowerCase() === shortSign &&
-    String(id).indexOf(eugPartId) !== -1
+    (String(id).indexOf(eugPartId) !== -1 || id === statChatId)
   );
 };
 
