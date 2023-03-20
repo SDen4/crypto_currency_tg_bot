@@ -18,10 +18,9 @@ const timestamp = (timestamp, isTime = false) => {
 
   const date = new Date(rightTimeStamp);
 
-  const hour = formatValue(date.getHours());
+  const hour = formatValue(date.getUTCHours());
 
   console.log('hour: ', hour);
-
 
   const min = formatValue(date.getMinutes());
 
