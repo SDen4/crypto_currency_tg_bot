@@ -75,6 +75,7 @@ const messageFunc = async (msg) => {
     const stat = await getStat();
     await statisticMsg(bot, chatId, stat, quant);
   } else if (cndtnEugFunc(text, msg)) {
+    // parallel requests
     await Promise.all([
       bfHttpRequest(bot, chatId, '/btcusd'),
       btcBlockInfo(bot, chatId),

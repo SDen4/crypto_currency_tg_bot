@@ -7,8 +7,12 @@ const {
 const { timestamp } = require('../utils/timestamp');
 
 const btcBlockInfo = async (bot, chatId) => {
-  const hash = await mpHashRequest();
-  const allData = await mpCurBlockRequest();
+  // parallel requests
+  const [hash, allData] = await Promise.all([
+    mpHashRequest(),
+    mpCurBlockRequest(),
+  ]);
+
   const lastBlock = await mpLastBlockRequest(hash);
 
   if (allData?.length) {
