@@ -1,11 +1,6 @@
 const axios = require('axios');
 
-const {
-  mpCurBlockUrl,
-  mpIdUrl,
-  mpHashUrl,
-  mpLastBlock,
-} = require('../../token');
+const { mpCurBlockUrl, mpHashUrl, mpLastBlock } = require('../../token');
 
 const mpCurBlockRequest = async () => {
   const data = axios.get(mpCurBlockUrl).then((res) => res.data);
