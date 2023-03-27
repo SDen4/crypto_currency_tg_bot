@@ -2,23 +2,12 @@ const axios = require('axios');
 
 const { mpCurBlockUrl, mpHashUrl, mpLastBlock } = require('../../token');
 
-const mpCurBlockRequest = async () => {
-  const data = axios.get(mpCurBlockUrl).then((res) => res.data);
+const mpCurBlockRequest = () => axios.get(mpCurBlockUrl).then((r) => r.data);
 
-  return data;
-};
+const mpHashRequest = () => axios.get(mpHashUrl).then((r) => r.data);
 
-const mpHashRequest = async () => {
-  const data = axios.get(mpHashUrl).then((res) => res.data);
-
-  return data;
-};
-
-const mpLastBlockRequest = async (hash) => {
-  const data = axios.get(`${mpLastBlock}${hash}`).then((res) => res.data);
-
-  return data;
-};
+const mpLastBlockRequest = (hash) =>
+  axios.get(`${mpLastBlock}${hash}`).then((r) => r.data);
 
 module.exports = {
   mpCurBlockRequest,
