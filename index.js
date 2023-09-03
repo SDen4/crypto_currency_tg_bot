@@ -105,7 +105,6 @@ const buttonsFunc = async (msg) => {
     allCurrencies(bot, chatId);
   } else if (text.includes('/timer')) {
     timer(bot, chatId, text, selectedCurrency);
-    selectedCurrency = '';
   } else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
   } else if (text === '/pool') {
