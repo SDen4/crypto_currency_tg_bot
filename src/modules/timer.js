@@ -10,9 +10,11 @@ const timer = async (bot, chatId, text, selectedCurrency) => {
         timeInMinutes === 1 ? '1 minute' : `${timeInMinutes} minutes`
       }`,
     );
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       bfHttpRequest(bot, chatId, selectedCurrency);
+      clearTimeout(timer)
     }, timeInMinutes * 60000);
+
   } else {
     await bot.sendMessage(chatId, 'Invalid parameter');
   }
