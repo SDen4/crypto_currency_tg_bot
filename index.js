@@ -75,7 +75,7 @@ const messageFunc = async (msg) => {
   } else if (text === '/pool') {
     poolMsg(bot, chatId);
   } else if (cndtnStatistic(text, msg)) {
-    const quant = Number(String(text).match(/\d+/g)[0]);
+    const quant = Number(String(text).match(/\d+/g)?.[0]) || 10;
     const stat = await getStat();
     await statisticMsg(bot, chatId, stat, quant);
   } else if (cndtnEugFunc(text, msg)) {
