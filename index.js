@@ -37,16 +37,20 @@ const {
   statisticMsg,
   emojiMsg,
 } = require('./src/modules/messages');
+const { percentAlertMessage } = require('./src/modules/percentAlertMessage');
 
 let selectedCurrency = '';
 
 bot.setMyCommands(commands);
+
+percentAlertMessage(bot);
 
 const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
   saveStat(msg);
+
 
   if (ban(bot, chatId, msg)) return null;
 
