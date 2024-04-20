@@ -1,25 +1,30 @@
-const {
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
+
+import {
   btnsCurrencies,
   btnsStart,
   bnsTimer,
   btnsCurrenciesTimer,
-} = require('./buttons');
+  btnsDonate,
+} from './buttons.js';
+import { timestamp } from '../utils/timestamp.js';
 
-const { timestamp } = require('../utils/timestamp');
-
-const unkCmd = async (bot, chatId) => {
+export const unkCmd = async (bot, chatId) => {
   const text = "Sorry, I don't understand you, please try again.";
   await bot.sendMessage(chatId, text);
 };
 
-const start = async (bot, chatId, msg) => {
+export const start = async (bot, chatId, msg) => {
   const text1 = `Hello, ${msg?.from?.first_name}! Welcome to Crypto Currency Light Bot!`;
   const text2 = 'Use menu to see available commands';
   await bot.sendMessage(chatId, text1);
   await bot.sendMessage(chatId, text2);
 };
 
-const info = async (bot, chatId) => {
+export const info = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     'Use buttons to get the currencies, BTC blocks info, to set a timer, to calculate your pool to USD or visit the application',
@@ -27,17 +32,17 @@ const info = async (bot, chatId) => {
   );
 };
 
-const allCurrencies = async (bot, chatId) => {
+export const allCurrencies = async (bot, chatId) => {
   await bot.sendMessage(chatId, 'All currencies', btnsCurrencies);
 };
 
-const secret = async (bot, chatId) => {
+export const secret = async (bot, chatId) => {
   const url =
     'https://tlgrm.eu/_/stickers/4e0/60a/4e060a5e-5bbe-3863-a9c7-62a5483692d4/2.webp';
   await bot.sendSticker(chatId, url);
 };
 
-const setTmrMsgCur = async (bot, chatId) => {
+export const setTmrMsgCur = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     'Select the currency for timer:',
@@ -45,7 +50,26 @@ const setTmrMsgCur = async (bot, chatId) => {
   );
 };
 
-const setTmrMsgTime = async (bot, chatId) => {
+export const donate = async (bot, chatId) => {
+  await bot.sendMessage(
+    chatId,
+    'You can thank the developer if you like this bot',
+    btnsDonate,
+  );
+};
+
+export const showQr = async (bot, chatId) => {
+  await bot.sendPhoto(chatId, pathToQr);
+};
+
+// TODO
+// export const copyBtcAddress = async (bot, chatId) => {
+//   await global.navigator?.clipboard.writeText('roritdjfdlkgjsldfjgdfslkd');
+
+//   // await bot.sendMessage(chatId, 'The address has been copied to clipboard');
+// };
+
+export const setTmrMsgTime = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     "You can set the timer manually in the format '/timer1', where '1' is the number of minutes after which the message will arrive or push a button below.",
@@ -53,14 +77,14 @@ const setTmrMsgTime = async (bot, chatId) => {
   );
 };
 
-const poolMsg = async (bot, chatId) => {
+export const poolMsg = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     'Type your pool to convert it to USD (format: 3 btc 1 eth ...etc)',
   );
 };
 
-const statisticMsg = async (bot, chatId, stat, quant) => {
+export const statisticMsg = async (bot, chatId, stat, quant) => {
   const formatStat = Object.values(stat.data)
     .slice(-quant)
     .map((el, i) => {
@@ -83,22 +107,9 @@ const statisticMsg = async (bot, chatId, stat, quant) => {
   );
 };
 
-const emojiMsg = async (text, bot, chatId) => {
+export const emojiMsg = async (text, bot, chatId) => {
   const hex = (
     Number(text.codePointAt(0)) + Number((Math.random() * 10 + 1).toFixed(0))
   ).toString(16);
   await bot.sendMessage(chatId, String.fromCodePoint('0x' + hex));
-};
-
-module.exports = {
-  unkCmd,
-  start,
-  info,
-  secret,
-  setTmrMsgCur,
-  setTmrMsgTime,
-  allCurrencies,
-  poolMsg,
-  statisticMsg,
-  emojiMsg,
 };

@@ -1,4 +1,4 @@
-const btnsCurrenciesArr = [
+export const btnsCurrenciesArr = [
   [
     { text: 'BTC/USD', callback_data: '/btcusd' },
     { text: 'BTC/EUR', callback_data: '/btceur' },
@@ -67,30 +67,31 @@ const btnsCurrenciesArr = [
   ],
 ];
 
-const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
+export const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
   return el.map((i) => {
     return { ...i, callback_data: `${i.callback_data}_set_timer` };
   });
 });
 
-const btnsCurrencies = {
+export const btnsCurrencies = {
   reply_markup: {
     inline_keyboard: btnsCurrenciesArr,
   },
 };
 
-const btnsCurrenciesTimer = {
+export const btnsCurrenciesTimer = {
   reply_markup: {
     inline_keyboard: btnsCurrenciesTimerArr,
   },
 };
 
-const btnsStart = {
+export const btnsStart = {
   reply_markup: {
     inline_keyboard: [
       [
         { text: 'All currencies', callback_data: '/currencies' },
         { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
+        { text: 'Calculate pool', callback_data: '/pool' },
       ],
       [
         { text: 'Timer', callback_data: '/settimer' },
@@ -98,13 +99,13 @@ const btnsStart = {
           text: 'App',
           web_app: { url: 'https://sden4.github.io/crypto_currency/' },
         },
-        { text: 'Calculate pool', callback_data: '/pool' },
+        { text: 'Donate', callback_data: '/donate' },
       ],
     ],
   },
 };
 
-const bnsTimer = {
+export const bnsTimer = {
   reply_markup: {
     inline_keyboard: [
       [
@@ -125,15 +126,18 @@ const bnsTimer = {
   },
 };
 
-const commands = [
+export const btnsDonate = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: 'Show QR', callback_data: '/showQr' },
+        // { text: 'Copy BTC address', callback_data: '/copyBtcAddress' },
+      ],
+    ],
+  },
+};
+
+export const commands = [
   { command: '/info', description: 'Information' },
   { command: '/currencies', description: 'All currencies' },
 ];
-
-module.exports = {
-  btnsCurrenciesTimer,
-  btnsCurrencies,
-  btnsStart,
-  bnsTimer,
-  commands,
-};

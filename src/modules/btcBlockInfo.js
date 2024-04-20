@@ -1,12 +1,12 @@
-const {
+import {
   mpCurBlockRequest,
   mpHashRequest,
   mpLastBlockRequest,
-} = require('../api/mpHttpRequest');
+} from '../api/mpHttpRequest.js';
 
-const { timestamp } = require('../utils/timestamp');
+import { timestamp } from '../utils/timestamp.js';
 
-const btcBlockInfo = async (bot, chatId) => {
+export const btcBlockInfo = async (bot, chatId) => {
   // parallel requests
   const [hash, allData] = await Promise.all([
     mpHashRequest(),
@@ -34,5 +34,3 @@ const btcBlockInfo = async (bot, chatId) => {
     await bot.sendMessage(chatId, 'No data');
   }
 };
-
-module.exports = { btcBlockInfo };

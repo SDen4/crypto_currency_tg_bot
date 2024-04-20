@@ -4,7 +4,7 @@
  * @param {boolean} [isTime=false]
  * @return {*}  string
  */
-const timestamp = (timestamp, isTime = false) => {
+export const timestamp = (timestamp, isTime = false) => {
   const formatValue = (val) => (String(val).length === 1 ? `0${val}` : val);
 
   const rightTimeStamp =
@@ -27,5 +27,3 @@ const timestamp = (timestamp, isTime = false) => {
 
   return `${day}.${month}.${date.getFullYear()} ${hour}:${min}`;
 };
-
-module.exports = { timestamp };

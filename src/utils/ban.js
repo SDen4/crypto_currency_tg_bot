@@ -1,6 +1,6 @@
-const { banned } = require('../../token');
+import { banned } from '../../token.js';
 
-const ban = (bot, chatId, msg) => {
+export const ban = (bot, chatId, msg) => {
   if (msg?.from?.is_bot) {
     bot.sendMessage(
       chatId,
@@ -14,5 +14,3 @@ const ban = (bot, chatId, msg) => {
 
   return false;
 };
-
-module.exports = { ban };

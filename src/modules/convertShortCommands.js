@@ -1,4 +1,4 @@
-const convertShortCommands = (text) => {
+export const convertShortCommands = (text) => {
   switch (String(text)?.toLocaleLowerCase().trim()) {
     case 'btc':
       return '/btcusd';
@@ -97,5 +97,3 @@ const convertShortCommands = (text) => {
       return text;
   }
 };
-
-module.exports = { convertShortCommands };

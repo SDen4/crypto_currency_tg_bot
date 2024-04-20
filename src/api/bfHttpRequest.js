@@ -1,14 +1,14 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const { formatNumber } = require('../utils/formatNumber');
-const { bfUrl } = require('../../token');
+import { formatNumber } from '../utils/formatNumber.js';
+import { bfUrl } from '../../token.js';
 
-const bfHttpRequest = (bot, chatId, textInner) => {
+export const bfHttpRequest = (bot, chatId, textInner) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
 
-  return (promise = axios.get(`${bfUrl}/${pathParams}/${queryParams}`).then(
+  return axios.get(`${bfUrl}/${pathParams}/${queryParams}`).then(
     (response) => {
       const data = response.data;
       const isBuy = Number(data?.[1]) < Number(data?.[3]);
@@ -48,7 +48,5 @@ Recommendation: ${isBuyText}`;
     (error) => {
       bot.sendMessage(chatId, `No data... Error: ${error}`);
     },
-  ));
+  );
 };
-
-module.exports = { bfHttpRequest };

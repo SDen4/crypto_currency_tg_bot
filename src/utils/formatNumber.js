@@ -6,7 +6,7 @@
  * @param {*} symbol - additional symbol after number (if nessesary)
  * @return {*} formatted result in string
  */
-const formatNumber = (number, max, symbol) => {
+export const formatNumber = (number, max, symbol) => {
   const beforeDecimalLength = 7 - String(number.toFixed(0)).length;
   const numberLength = beforeDecimalLength >= 0 ? beforeDecimalLength : 0;
 
@@ -16,5 +16,3 @@ const formatNumber = (number, max, symbol) => {
 
   return `${formattedNumber}${symbol || ''}`;
 };
-
-module.exports = { formatNumber };

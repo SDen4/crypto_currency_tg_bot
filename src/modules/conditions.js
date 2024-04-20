@@ -1,7 +1,7 @@
-const { cndtnFunc } = require('../utils/cndtnFunc');
-const { statChatId, shortSign, eugPartId } = require('../../token');
+import { cndtnFunc } from '../utils/cndtnFunc.js';
+import { statChatId, shortSign, eugPartId } from '../../token.js';
 
-const cndtnCurrencies = (text) =>
+export const cndtnCurrencies = (text) =>
   [
     'btc',
     'eth',
@@ -80,17 +80,17 @@ const cndtnCurrencies = (text) =>
     'ethw:usd',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
-const cndtnInfo = (text) =>
+export const cndtnInfo = (text) =>
   ['info', 'штащ', 'help', 'рудз', 'инфо'].includes(
     cndtnFunc(String(text).replace('/', '')),
   );
 
-const cndtnCurrenciesBtns = (text) =>
+export const cndtnCurrenciesBtns = (text) =>
   ['currencies', 'сгккутсшуы', 'curr', 'сгкк', 'cur', 'сгк'].includes(
     cndtnFunc(String(text).replace('/', '')),
   );
 
-const cndtnSecret = (text) =>
+export const cndtnSecret = (text) =>
   [
     'secret',
     'ыускуе',
@@ -102,7 +102,7 @@ const cndtnSecret = (text) =>
     'excelent',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
-const cndtnStart = (text) =>
+export const cndtnStart = (text) =>
   [
     'start',
     'ыефке',
@@ -117,17 +117,17 @@ const cndtnStart = (text) =>
     'хай',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
-const cndtnBtcBlockInfo = (text) =>
+export const cndtnBtcBlockInfo = (text) =>
   ['btcblockinfo', 'btcblocksinfo', 'btcblock', 'blockinfo', 'block'].includes(
     cndtnFunc(String(text).replace('/', '')),
   );
 
-const cndtnPool = (text) => {
+export const cndtnPool = (text) => {
   const formatText = String(text).trim()[0] / 2;
   return typeof formatText === 'number' && !isNaN(formatText);
 };
 
-const cndtnStatistic = (t, msg) => {
+export const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
   const text = String(t)?.toLocaleLowerCase().match(/\D+/g)[0].trim();
 
@@ -135,7 +135,7 @@ const cndtnStatistic = (t, msg) => {
   return false;
 };
 
-const cndtnEugFunc = (text, msg) => {
+export const cndtnEugFunc = (text, msg) => {
   const id = msg.from.id;
 
   return (
@@ -144,19 +144,6 @@ const cndtnEugFunc = (text, msg) => {
   );
 };
 
-const cndtnEmoji = (text) => {
+export const cndtnEmoji = (text) => {
   return /\p{Emoji}/u.test(text);
-};
-
-module.exports = {
-  cndtnCurrencies,
-  cndtnInfo,
-  cndtnCurrenciesBtns,
-  cndtnSecret,
-  cndtnStart,
-  cndtnBtcBlockInfo,
-  cndtnPool,
-  cndtnStatistic,
-  cndtnEugFunc,
-  cndtnEmoji,
 };

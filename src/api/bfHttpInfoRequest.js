@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const { formatNumber } = require('../utils/formatNumber');
-const { bfUrl, statChatId } = require('../../token');
+import { formatNumber } from '../utils/formatNumber.js';
+import { bfUrl, statChatId } from '../../token.js';
 
-const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
+export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
@@ -27,13 +27,13 @@ const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
       if (text === '/hixusd') title = 'HI/USD';
       if (text === '/dshusd') title = 'DASH/USD';
 
-// ============================== answer text, do not format ============================== //
+      // ============================== answer text, do not format ============================== //
       const answer = `
 ${title}: ${formatNumber(data[0])}
 -------------------
 ❗️ 24h: ${formatNumber(data[5] * 100, 2, '%')} ❗️
 `;
-// ============================== answer text, do not format ============================== //
+      // ============================== answer text, do not format ============================== //
 
       if (Math.abs(data[5] * 100) >= alertPersent) {
         for (let i = 0; i < chatIdArr.length; i++) {
@@ -46,5 +46,3 @@ ${title}: ${formatNumber(data[0])}
     },
   ));
 };
-
-module.exports = { bfHttpInfoRequest };

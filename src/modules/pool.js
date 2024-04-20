@@ -1,9 +1,9 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const { cndtnPool } = require('./conditions');
-const { formatNumber } = require('../utils/formatNumber');
+import { cndtnPool } from './conditions.js';
+import { formatNumber } from '../utils/formatNumber.js';
 
-const pool = async (bot, chatId, msg) => {
+export const pool = async (bot, chatId, msg) => {
   const msgArr = String(msg)
     .trim()
     .split(' ')
@@ -76,5 +76,3 @@ const pool = async (bot, chatId, msg) => {
 
   await bot.sendMessage(chatId, `${result.join('')}`);
 };
-
-module.exports = { pool };

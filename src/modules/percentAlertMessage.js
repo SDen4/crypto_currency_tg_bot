@@ -1,9 +1,11 @@
-const { statChatId, eugPartId } = require('../../token');
-const { bfHttpInfoRequest } = require('../api/bfHttpInfoRequest');
+import { statChatId, eugPartId } from '../../token.js';
+import { bfHttpInfoRequest } from '../api/bfHttpInfoRequest.js';
 
-const percentAlertMessage = (bot) => {
+export const percentAlertMessage = (bot) => {
   const timeInMinutes = 60;
-  const timer = setInterval(async() => await bfHttpInfoRequest(bot, [statChatId, eugPartId], '/btcusd', 5), timeInMinutes * 60000);
+  const timer = setInterval(
+    async () =>
+      await bfHttpInfoRequest(bot, [statChatId, eugPartId], '/btcusd', 5),
+    timeInMinutes * 60000,
+  );
 };
-
-module.exports = { percentAlertMessage };

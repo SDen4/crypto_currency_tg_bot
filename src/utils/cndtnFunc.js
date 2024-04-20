@@ -4,8 +4,6 @@
  * @param {*} text: any
  * @return {*} string in lower case
  */
-const cndtnFunc = (text) => {
+export const cndtnFunc = (text) => {
   return String(text)?.toLocaleLowerCase();
 };
-
-module.exports = { cndtnFunc };

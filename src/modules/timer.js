@@ -1,6 +1,6 @@
-const { bfHttpRequest } = require('../api/bfHttpRequest');
+import { bfHttpRequest } from '../api/bfHttpRequest.js';
 
-const timer = async (bot, chatId, text, selectedCurrency) => {
+export const timer = async (bot, chatId, text, selectedCurrency) => {
   const timeInMinutes = Number(text.slice(6));
 
   if (timeInMinutes) {
@@ -12,12 +12,9 @@ const timer = async (bot, chatId, text, selectedCurrency) => {
     );
     const timer = setTimeout(() => {
       bfHttpRequest(bot, chatId, selectedCurrency);
-      clearTimeout(timer)
+      clearTimeout(timer);
     }, timeInMinutes * 60000);
-
   } else {
     await bot.sendMessage(chatId, 'Invalid parameter');
   }
 };
-
-module.exports = { timer };

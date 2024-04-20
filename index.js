@@ -1,19 +1,20 @@
-const TgBotApi = require('node-telegram-bot-api');
+import TgBotApi from 'node-telegram-bot-api';
 
-const { token } = require('./token');
+import { token } from './token.js';
+
 const bot = new TgBotApi(token, { polling: true });
 
-const { ban } = require('./src/utils/ban');
-const { cndtnFunc } = require('./src/utils/cndtnFunc');
-const { bfHttpRequest } = require('./src/api/bfHttpRequest');
-const { btcBlockInfo } = require('./src/modules/btcBlockInfo');
-const { timer } = require('./src/modules/timer');
-const { pool } = require('./src/modules/pool');
-const { visitors } = require('./src/statistic/visitors');
-const { saveStat, getStat } = require('./src/statistic/statistic');
-const { convertShortCommands } = require('./src/modules/convertShortCommands');
-const { commands } = require('./src/modules/buttons');
-const {
+import { ban } from './src/utils/ban.js';
+import { cndtnFunc } from './src/utils/cndtnFunc.js';
+import { bfHttpRequest } from './src/api/bfHttpRequest.js';
+import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
+import { timer } from './src/modules/timer.js';
+import { pool } from './src/modules/pool.js';
+import { visitors } from './src/statistic/visitors.js';
+import { saveStat, getStat } from './src/statistic/statistic.js';
+import { convertShortCommands } from './src/modules/convertShortCommands.js';
+import { commands } from './src/modules/buttons.js';
+import {
   cndtnCurrencies,
   cndtnInfo,
   cndtnCurrenciesBtns,
@@ -24,20 +25,23 @@ const {
   cndtnStatistic,
   cndtnEugFunc,
   cndtnEmoji,
-} = require('./src/modules/conditions');
-const {
+} from './src/modules/conditions.js';
+import {
   unkCmd,
   start,
   info,
   secret,
   setTmrMsgCur,
+  donate,
+  showQr,
+  // copyBtcAddress,
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
   statisticMsg,
   emojiMsg,
-} = require('./src/modules/messages');
-const { percentAlertMessage } = require('./src/modules/percentAlertMessage');
+} from './src/modules/messages.js';
+import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
 let selectedCurrency = '';
 
@@ -50,7 +54,6 @@ const messageFunc = async (msg) => {
   const chatId = msg?.chat?.id;
 
   saveStat(msg);
-
 
   if (ban(bot, chatId, msg)) return null;
 
@@ -102,6 +105,12 @@ const buttonsFunc = async (msg) => {
 
   if (text === '/settimer') {
     setTmrMsgCur(bot, chatId);
+  } else if (text === '/donate') {
+    donate(bot, chatId);
+  } else if (text === '/showQr') {
+    showQr(bot, chatId);
+  } else if (text === '/copyBtcAddress') {
+    // copyBtcAddress(bot, chatId);
   } else if (text.includes('_set_timer')) {
     selectedCurrency = String(text).slice(0, 7);
     setTmrMsgTime(bot, chatId);

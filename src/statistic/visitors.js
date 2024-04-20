@@ -1,6 +1,6 @@
-const { statChatId } = require('../../token');
+import { statChatId } from '../../token.js';
 
-const visitors = async (bot, msg) => {
+export const visitors = async (bot, msg) => {
   const command = msg?.data || msg?.text;
 
   if (msg.from.id === statChatId) return;
@@ -10,5 +10,3 @@ const visitors = async (bot, msg) => {
     `User ${msg.from.id} (${msg?.from?.first_name} ${msg?.from?.last_name}, ${msg?.from?.language_code}) requests ${command}`,
   );
 };
-
-module.exports = { visitors };
