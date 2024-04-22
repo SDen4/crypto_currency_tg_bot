@@ -3,6 +3,10 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
 
+import { spawn } from 'child_process';
+
+import { donateAddress } from '../../token.js';
+
 import {
   btnsCurrencies,
   btnsStart,
@@ -51,23 +55,26 @@ export const setTmrMsgCur = async (bot, chatId) => {
 };
 
 export const donate = async (bot, chatId) => {
-  await bot.sendMessage(
-    chatId,
-    'You can thank the developer if you like this bot',
-    btnsDonate,
-  );
+  await bot.sendMessage(chatId, 'You can support the developer:', btnsDonate);
 };
 
 export const showQr = async (bot, chatId) => {
   await bot.sendPhoto(chatId, pathToQr);
 };
 
-// TODO
-// export const copyBtcAddress = async (bot, chatId) => {
-//   await global.navigator?.clipboard.writeText('roritdjfdlkgjsldfjgdfslkd');
+export const copyBtcAddress = async (bot, chatId) => {
+  // copy for mac os
+  function pbcopy() {
+    let proc = spawn('pbcopy');
+    proc.stdin.write(donateAddress);
+    proc.stdin.end();
+  }
+  pbcopy();
 
-//   // await bot.sendMessage(chatId, 'The address has been copied to clipboard');
-// };
+  // copy for others
+  bot.sendMessage(chatId, 'To copy address to clipboard tap on:');
+  bot.sendMessage(chatId, `\`${donateAddress}\``, { parse_mode: 'Markdown' });
+};
 
 export const setTmrMsgTime = async (bot, chatId) => {
   await bot.sendMessage(

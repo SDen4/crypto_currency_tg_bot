@@ -131,7 +131,7 @@ export const btnsDonate = {
     inline_keyboard: [
       [
         { text: 'Show QR', callback_data: '/showQr' },
-        // { text: 'Copy BTC address', callback_data: '/copyBtcAddress' },
+        { text: 'Copy BTC address', callback_data: '/copyBtcAddress' },
       ],
     ],
   },

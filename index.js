@@ -34,7 +34,7 @@ import {
   setTmrMsgCur,
   donate,
   showQr,
-  // copyBtcAddress,
+  copyBtcAddress,
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
@@ -110,7 +110,7 @@ const buttonsFunc = async (msg) => {
   } else if (text === '/showQr') {
     showQr(bot, chatId);
   } else if (text === '/copyBtcAddress') {
-    // copyBtcAddress(bot, chatId);
+    copyBtcAddress(bot, chatId);
   } else if (text.includes('_set_timer')) {
     selectedCurrency = String(text).slice(0, 7);
     setTmrMsgTime(bot, chatId);
