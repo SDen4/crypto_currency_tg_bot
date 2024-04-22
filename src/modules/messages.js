@@ -3,8 +3,6 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
 
-import { spawn } from 'child_process';
-
 import { donateAddress } from '../../token.js';
 
 import {
@@ -63,15 +61,6 @@ export const showQr = async (bot, chatId) => {
 };
 
 export const copyBtcAddress = async (bot, chatId) => {
-  // copy for mac os
-  function pbcopy() {
-    let proc = spawn('pbcopy');
-    proc.stdin.write(donateAddress);
-    proc.stdin.end();
-  }
-  pbcopy();
-
-  // copy for others
   bot.sendMessage(chatId, 'To copy address to clipboard tap on:');
   bot.sendMessage(chatId, `\`${donateAddress}\``, { parse_mode: 'Markdown' });
 };
