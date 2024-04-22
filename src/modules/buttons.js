@@ -2,14 +2,20 @@ export const btnsCurrenciesArr = [
   [
     { text: 'BTC/USD', callback_data: '/btcusd' },
     { text: 'BTC/EUR', callback_data: '/btceur' },
+    { text: 'BTC/JPY', callback_data: '/btcjpy' },
+    { text: 'BTC/GBP', callback_data: '/btcgbp' },
+  ],
+  [
     { text: 'ETH/USD', callback_data: '/ethusd' },
     { text: 'ETH/EUR', callback_data: '/etheur' },
+    { text: 'ETH/JPY', callback_data: '/ethjpy' },
+    { text: 'ETH/GBP', callback_data: '/ethgbp' },
   ],
   [
     { text: 'EURt/EUR', callback_data: '/euteur' },
     { text: 'USDt/USD', callback_data: '/ustusd' },
     { text: 'USDC/USD', callback_data: '/udcusd' },
-    { text: 'DOGE/USD', callback_data: '/doge:usd' },
+    { text: 'TON/USD', callback_data: '/tonusd' },
   ],
   [
     { text: 'ADA/USD', callback_data: '/adausd' },
@@ -18,21 +24,27 @@ export const btnsCurrenciesArr = [
     { text: 'APT/USD', callback_data: '/aptusd' },
   ],
   [
+    { text: 'ARB/USD', callback_data: '/arbusd' },
     { text: 'AVAX/USD', callback_data: '/avax:usd' },
     { text: 'AXS/USD', callback_data: '/axsusd' },
     { text: 'BCHN/USD', callback_data: '/bchn:usd' },
-    { text: 'BSV/USD', callback_data: '/bsvusd' },
   ],
   [
+    { text: 'BSV/USD', callback_data: '/bsvusd' },
     { text: 'CLO/USD', callback_data: '/clousd' },
     { text: 'DASH/USD', callback_data: '/dshusd' },
     { text: 'DOT/USD', callback_data: '/dotusd' },
-    { text: 'EOS/USD', callback_data: '/eosusd' },
   ],
   [
+    { text: 'DOGE/USD', callback_data: '/doge:usd' },
+    { text: 'EOS/USD', callback_data: '/eosusd' },
     { text: 'ETC/USD', callback_data: '/etcusd' },
     { text: 'ETHW/USD', callback_data: '/ethw:usd' },
+  ],
+  [
+    { text: 'FET/USD', callback_data: '/fetusd' },
     { text: 'FIL/USD', callback_data: '/filusd' },
+    { text: 'FLR/USD', callback_data: '/flrusd' },
     { text: 'FTM/USD', callback_data: '/ftmusd' },
   ],
   [
