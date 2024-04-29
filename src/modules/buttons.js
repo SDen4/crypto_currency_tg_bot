@@ -79,22 +79,26 @@ export const btnsCurrenciesArr = [
   ],
 ];
 
-export const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
+const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
   return el.map((i) => {
     return { ...i, callback_data: `${i.callback_data}_set_timer` };
   });
 });
-
-export const btnsCurrencies = {
-  reply_markup: {
-    inline_keyboard: btnsCurrenciesArr,
-  },
+export const btnsCurrenciesTimer = {
+  reply_markup: { inline_keyboard: btnsCurrenciesTimerArr },
 };
 
-export const btnsCurrenciesTimer = {
-  reply_markup: {
-    inline_keyboard: btnsCurrenciesTimerArr,
-  },
+const btnsCurrenciesChartArr = btnsCurrenciesArr.map((el) => {
+  return el.map((i) => {
+    return { ...i, callback_data: `${i.callback_data}_set_chart` };
+  });
+});
+export const btnsCurrenciesChart = {
+  reply_markup: { inline_keyboard: btnsCurrenciesChartArr },
+};
+
+export const btnsCurrencies = {
+  reply_markup: { inline_keyboard: btnsCurrenciesArr },
 };
 
 export const btnsStart = {
@@ -106,6 +110,7 @@ export const btnsStart = {
         { text: 'Calculate pool', callback_data: '/pool' },
       ],
       [
+        { text: 'Charts (\u03B1)', callback_data: '/charts' },
         { text: 'Timer', callback_data: '/settimer' },
         {
           text: 'App',

@@ -14,6 +14,7 @@ import { visitors } from './src/statistic/visitors.js';
 import { saveStat, getStat } from './src/statistic/statistic.js';
 import { convertShortCommands } from './src/modules/convertShortCommands.js';
 import { commands } from './src/modules/buttons.js';
+import { getCharts } from './src/modules/charts.js';
 import {
   cndtnCurrencies,
   cndtnInfo,
@@ -32,6 +33,7 @@ import {
   info,
   secret,
   setTmrMsgCur,
+  setChartCur,
   donate,
   showQr,
   copyBtcAddress,
@@ -103,7 +105,9 @@ const buttonsFunc = async (msg) => {
 
   if (ban(bot, chatId, msg)) return null;
 
-  if (text === '/settimer') {
+  if (text === '/charts') {
+    setChartCur(bot, chatId);
+  } else if (text === '/settimer') {
     setTmrMsgCur(bot, chatId);
   } else if (text === '/donate') {
     donate(bot, chatId);
@@ -111,6 +115,9 @@ const buttonsFunc = async (msg) => {
     showQr(bot, chatId);
   } else if (text === '/copyBtcAddress') {
     copyBtcAddress(bot, chatId);
+  } else if (text.includes('_set_chart')) {
+    selectedCurrency = String(text).slice(0, 7);
+    getCharts(bot, chatId, selectedCurrency);
   } else if (text.includes('_set_timer')) {
     selectedCurrency = String(text).slice(0, 7);
     setTmrMsgTime(bot, chatId);

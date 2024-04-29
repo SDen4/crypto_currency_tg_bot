@@ -10,6 +10,7 @@ import {
   btnsStart,
   bnsTimer,
   btnsCurrenciesTimer,
+  btnsCurrenciesChart,
   btnsDonate,
 } from './buttons.js';
 import { timestamp } from '../utils/timestamp.js';
@@ -49,6 +50,14 @@ export const setTmrMsgCur = async (bot, chatId) => {
     chatId,
     'Select the currency for timer:',
     btnsCurrenciesTimer,
+  );
+};
+
+export const setChartCur = async (bot, chatId) => {
+  await bot.sendMessage(
+    chatId,
+    'Select the currency for chart:',
+    btnsCurrenciesChart,
   );
 };
 
