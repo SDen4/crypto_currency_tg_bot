@@ -110,7 +110,7 @@ export const btnsStart = {
         { text: 'Calculate pool', callback_data: '/pool' },
       ],
       [
-        { text: 'Charts (\u03B1)', callback_data: '/charts' },
+        { text: 'Charts', callback_data: '/charts' },
         { text: 'Timer', callback_data: '/settimer' },
         {
           text: 'App',
