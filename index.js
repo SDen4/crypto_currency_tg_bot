@@ -11,10 +11,14 @@ import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { visitors } from './src/statistic/visitors.js';
-import { saveStat, getStat } from './src/statistic/statistic.js';
+import {
+  saveStat,
+  getVisitsStat,
+  getUsersStat,
+} from './src/statistic/statistic.js';
 import { convertShortCommands } from './src/modules/convertShortCommands.js';
 import { commands } from './src/modules/buttons.js';
-import { getCharts } from './src/modules/charts.js';
+import { getChart } from './src/modules/charts.js';
 import {
   cndtnCurrencies,
   cndtnInfo,
@@ -24,6 +28,7 @@ import {
   cndtnBtcBlockInfo,
   cndtnPool,
   cndtnStatistic,
+  cndtnStatisticUsers,
   cndtnEugFunc,
   cndtnEmoji,
 } from './src/modules/conditions.js';
@@ -33,7 +38,7 @@ import {
   info,
   secret,
   setTmrMsgCur,
-  setChartCur,
+  sendChartCurBtns,
   donate,
   showQr,
   copyBtcAddress,
@@ -41,6 +46,7 @@ import {
   allCurrencies,
   poolMsg,
   statisticMsg,
+  statisticUsersMsg,
   emojiMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
@@ -81,8 +87,11 @@ const messageFunc = async (msg) => {
     poolMsg(bot, chatId);
   } else if (cndtnStatistic(text, msg)) {
     const quant = Number(String(text).match(/\d+/g)?.[0]) || 10;
-    const stat = await getStat();
+    const stat = await getVisitsStat();
     await statisticMsg(bot, chatId, stat, quant);
+  } else if (cndtnStatisticUsers(text, msg)) {
+    const stat = await getUsersStat();
+    await statisticUsersMsg(bot, chatId, stat);
   } else if (cndtnEugFunc(text, msg)) {
     // parallel requests
     await Promise.all([
@@ -106,7 +115,7 @@ const buttonsFunc = async (msg) => {
   if (ban(bot, chatId, msg)) return null;
 
   if (text === '/charts') {
-    setChartCur(bot, chatId);
+    sendChartCurBtns(bot, chatId);
   } else if (text === '/settimer') {
     setTmrMsgCur(bot, chatId);
   } else if (text === '/donate') {
@@ -117,7 +126,7 @@ const buttonsFunc = async (msg) => {
     copyBtcAddress(bot, chatId);
   } else if (text.includes('_set_chart')) {
     selectedCurrency = String(text).slice(0, 7);
-    getCharts(bot, chatId, selectedCurrency);
+    getChart(bot, chatId, selectedCurrency);
   } else if (text.includes('_set_timer')) {
     selectedCurrency = String(text).slice(0, 7);
     setTmrMsgTime(bot, chatId);

@@ -53,7 +53,7 @@ export const setTmrMsgCur = async (bot, chatId) => {
   );
 };
 
-export const setChartCur = async (bot, chatId) => {
+export const sendChartCurBtns = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
     'Select the currency for chart:',
@@ -109,6 +109,24 @@ export const statisticMsg = async (bot, chatId, stat, quant) => {
   await bot.sendMessage(
     chatId,
     `Statistic:\n----------------------\n${formatStat}`,
+  );
+};
+
+export const statisticUsersMsg = async (bot, chatId, stat) => {
+  const formatStat = Object.values(stat.data)
+    .map(
+      (el, i) => `${i + 1}. ${el.firstName} ${el.lastName} (${el.id} / ${
+        el.username
+      }), ${el.lang}, bot: ${el.isBot}\n
+premium: ${el.isPremium || '?'}, firstVisit: ${timestamp(el.firstVisit)}\n
+==================================
+      `,
+    )
+    .join('');
+
+  await bot.sendMessage(
+    chatId,
+    `Users:\n==================================\n${formatStat}`,
   );
 };
 

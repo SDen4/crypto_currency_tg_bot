@@ -135,6 +135,13 @@ export const cndtnStatistic = (t, msg) => {
   return false;
 };
 
+export const cndtnStatisticUsers = (t, msg) => {
+  const reader = msg.from.id === statChatId;
+
+  if (t.toLowerCase() === 'users' && reader) return true;
+  return false;
+};
+
 export const cndtnEugFunc = (text, msg) => {
   const id = msg.from.id;
 

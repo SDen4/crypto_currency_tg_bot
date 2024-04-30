@@ -5,7 +5,7 @@ import { bfUrl } from '../../token.js';
 import { timestamp } from '../utils/timestamp.js';
 
 // TODO: add tooltips
-export const getCharts = async (bot, chatId, selectedCurrency) => {
+export const getChart = async (bot, chatId, selectedCurrency) => {
   const currency = String(selectedCurrency).substring(1).toUpperCase();
 
   await axios
@@ -28,9 +28,9 @@ export const getCharts = async (bot, chatId, selectedCurrency) => {
             labels: data.map((el) => el.date.substring(10)),
             datasets: [
               {
-                tooltip: '12121',
                 borderColor: 'orange',
-                backgroundColor: 'transparent',
+                backgroundColor: 'white',
+                fill: false,
                 borderWidth: 4,
                 data: data.map((el) => el.value),
               },
