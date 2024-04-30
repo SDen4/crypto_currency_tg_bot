@@ -28,6 +28,7 @@ export const getCharts = async (bot, chatId, selectedCurrency) => {
             labels: data.map((el) => el.date.substring(10)),
             datasets: [
               {
+                tooltip: '12121',
                 borderColor: 'orange',
                 backgroundColor: 'transparent',
                 borderWidth: 4,
@@ -47,8 +48,8 @@ export const getCharts = async (bot, chatId, selectedCurrency) => {
           },
         })
         .backgroundColor('white')
-        .width(600)
-        .height(300);
+        .width(800)
+        .height(400);
 
       chart.toDataURI().then((res) => {
         bot.sendPhoto(chatId, Buffer.from(res.substr(21), 'base64'), {
