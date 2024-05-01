@@ -113,21 +113,27 @@ export const statisticMsg = async (bot, chatId, stat, quant) => {
 };
 
 export const statisticUsersMsg = async (bot, chatId, stat) => {
-  const formatStat = Object.values(stat.data)
+  const data = Object.values(stat.data);
+  const formatStat = data
     .map(
-      (el, i) => `${i + 1}. ${el.firstName} ${el.lastName} (${el.id} / ${
-        el.username
-      }), ${el.lang}, bot: ${el.isBot}\n
-premium: ${el.isPremium || '?'}, firstVisit: ${timestamp(el.firstVisit)}\n
-==================================
-      `,
+      (el, i) =>
+        `<b>${i + 1}</b>. <u>${el.firstName} ${
+          el.lastName ? el.lastName : ''
+        }</u> (<tg-spoiler>${el.id}</tg-spoiler>, ${
+          el.username ? `<i>${el.username}</i>` : '?'
+        }), ${el.lang}, bot: ${el.isBot ? '🟢' : '🔴'}\npremium: ${
+          el.isPremium ? '🟢' : '🔴'
+        }, first visit: ${timestamp(el.firstVisit)}${
+          i !== data.length - 1
+            ? '\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
+            : ''
+        }`,
     )
     .join('');
 
-  await bot.sendMessage(
-    chatId,
-    `Users:\n==================================\n${formatStat}`,
-  );
+  await bot.sendMessage(chatId, `Users:\n\n${formatStat}`, {
+    parse_mode: 'HTML',
+  });
 };
 
 export const emojiMsg = async (text, bot, chatId) => {
