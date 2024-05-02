@@ -2,21 +2,21 @@ import axios from 'axios';
 
 import { visitsStatUrl, usersStatUrl, statChatId } from '../../token.js';
 
+let userIds = [];
+
 export const saveStat = async (visit) => {
   const id = visit?.from?.id || visit?.chat?.id;
   if (id === statChatId) return;
 
-  const users = await axios
-    .get(usersStatUrl, visit)
-    .then((response) => response);
+  if (!userIds.length) {
+    const users = await axios
+      .get(usersStatUrl, visit)
+      .then((response) => response);
 
-  // save new user
-  if (
-    users?.data === null ||
-    !Object.values(users?.data)
-      .map((el) => el?.id)
-      .includes(id)
-  ) {
+    userIds = Object.values(users?.data).map((el) => el?.id);
+  }
+
+  if (!userIds.includes(id)) {
     const newUser = {
       id,
       firstName: visit?.from?.first_name,
@@ -27,6 +27,8 @@ export const saveStat = async (visit) => {
       firstVisit: new Date().getTime(),
       isPremium: visit?.from?.is_premium,
     };
+
+    userIds.push(id);
 
     await axios.post(usersStatUrl, newUser).then((response) => response);
   }
