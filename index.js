@@ -31,6 +31,7 @@ import {
   cndtnStatisticUsers,
   cndtnEugFunc,
   cndtnEmoji,
+  cndtnDonate,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -41,7 +42,7 @@ import {
   sendChartCurBtns,
   donate,
   showQr,
-  copyBtcAddress,
+  copyDonateAddress,
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
@@ -122,8 +123,8 @@ const buttonsFunc = async (msg) => {
     donate(bot, chatId);
   } else if (text === '/showQr') {
     showQr(bot, chatId);
-  } else if (text === '/copyBtcAddress') {
-    copyBtcAddress(bot, chatId);
+  } else if (cndtnDonate(text)) {
+    copyDonateAddress(bot, chatId, text);
   } else if (text.includes('_set_chart')) {
     selectedCurrency = String(text).slice(0, 7);
     getChart(bot, chatId, selectedCurrency);

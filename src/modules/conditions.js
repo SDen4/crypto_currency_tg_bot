@@ -154,3 +154,15 @@ export const cndtnEugFunc = (text, msg) => {
 export const cndtnEmoji = (text) => {
   return /\p{Emoji}/u.test(text);
 };
+
+export const cndtnDonate = (text) => {
+  if (
+    text === '/copyBtcAddress' ||
+    text === '/copyEthAddress' ||
+    text === '/copyDogeAddress'
+  ) {
+    return true;
+  }
+
+  return false;
+};

@@ -3,7 +3,11 @@ import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
 
-import { donateAddress } from '../../token.js';
+import {
+  donateBtcAddress,
+  donateEthAddress,
+  donateDogeAddress,
+} from '../../token.js';
 
 import {
   btnsCurrencies,
@@ -69,9 +73,24 @@ export const showQr = async (bot, chatId) => {
   await bot.sendPhoto(chatId, pathToQr);
 };
 
-export const copyBtcAddress = async (bot, chatId) => {
+export const copyDonateAddress = async (bot, chatId, text) => {
+  let address = '';
+  switch (text) {
+    case '/copyBtcAddress':
+      address = donateBtcAddress;
+      break;
+    case '/copyEthAddress':
+      address = donateEthAddress;
+      break;
+    case '/copyDogeAddress':
+      address = donateDogeAddress;
+      break;
+    default:
+      break;
+  }
+
   bot.sendMessage(chatId, 'To copy address to clipboard tap on:');
-  bot.sendMessage(chatId, `\`${donateAddress}\``, { parse_mode: 'Markdown' });
+  bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
 };
 
 export const setTmrMsgTime = async (bot, chatId) => {

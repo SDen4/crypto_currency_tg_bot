@@ -147,8 +147,10 @@ export const btnsDonate = {
   reply_markup: {
     inline_keyboard: [
       [
-        { text: 'Show QR', callback_data: '/showQr' },
-        { text: 'Copy BTC address', callback_data: '/copyBtcAddress' },
+        { text: 'BTC QR', callback_data: '/showQr' },
+        { text: 'BTC addr', callback_data: '/copyBtcAddress' },
+        { text: 'ETH addr', callback_data: '/copyEthAddress' },
+        { text: 'Doge addr', callback_data: '/copyDogeAddress' },
       ],
     ],
   },
