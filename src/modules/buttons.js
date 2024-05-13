@@ -97,25 +97,33 @@ export const btnsCurrencies = {
   reply_markup: { inline_keyboard: btnsCurrenciesArr },
 };
 
-export const btnsStart = {
-  reply_markup: {
-    inline_keyboard: [
-      [
-        { text: 'All Currencies', callback_data: '/currencies' },
-        { text: 'BTC Blocks Info', callback_data: '/btcBlockInfo' },
-        { text: 'Calculate Pool', callback_data: '/pool' },
-      ],
-      [
-        { text: 'Charts', callback_data: '/charts' },
-        { text: 'Timer', callback_data: '/settimer' },
-        {
-          text: 'App',
-          web_app: { url: 'https://sden4.github.io/crypto_currency/' },
-        },
-        { text: 'Donate', callback_data: '/donate' },
-      ],
-    ],
-  },
+const keyboardStart = [
+  [
+    { text: 'All Currencies', callback_data: '/currencies' },
+    { text: 'BTC Blocks Info', callback_data: '/btcBlockInfo' },
+    { text: 'Calculate Pool', callback_data: '/pool' },
+  ],
+  [
+    { text: 'Charts', callback_data: '/charts' },
+    { text: 'Timer', callback_data: '/settimer' },
+    {
+      text: 'App',
+      web_app: { url: 'https://sden4.github.io/crypto_currency/' },
+    },
+    { text: 'Donate', callback_data: '/donate' },
+  ],
+];
+const keyboardAdminStart = [
+  ...keyboardStart,
+  [
+    { text: 'Users', callback_data: 'users' },
+    { text: 'Last 10', callback_data: 'stat' },
+  ],
+];
+
+export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };
+export const btnsAdminStart = {
+  reply_markup: { inline_keyboard: keyboardAdminStart },
 };
 
 export const bnsTimer = {

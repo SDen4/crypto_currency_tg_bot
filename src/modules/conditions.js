@@ -137,9 +137,7 @@ export const cndtnStatistic = (t, msg) => {
 };
 
 export const cndtnStatisticUsers = (t, msg) => {
-  const reader = msg.from.id === statChatId;
-
-  if (t.toLowerCase() === 'users' && reader) return true;
+  if (t.toLowerCase() === 'users' && msg.from.id === statChatId) return true;
   return false;
 };
 

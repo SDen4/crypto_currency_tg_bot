@@ -4,6 +4,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
 
 import {
+  statChatId,
   donateBtcAddress,
   donateEthAddress,
   donateDogeAddress,
@@ -12,6 +13,7 @@ import {
 import {
   btnsCurrencies,
   btnsStart,
+  btnsAdminStart,
   bnsTimer,
   btnsCurrenciesTimer,
   btnsCurrenciesChart,
@@ -31,8 +33,9 @@ export const start = async (bot, chatId, msg) => {
   await bot.sendMessage(chatId, text2);
 };
 
-export const info = async (bot, chatId) => {
-  await bot.sendMessage(chatId, 'Menu:', btnsStart);
+export const menu = async (bot, chatId, msg) => {
+  let btns = msg?.from?.id === statChatId ? btnsAdminStart : btnsStart;
+  await bot.sendMessage(chatId, 'Menu:', btns);
 };
 
 export const allCurrencies = async (bot, chatId) => {

@@ -36,7 +36,7 @@ import {
 import {
   unkCmd,
   start,
-  info,
+  menu,
   secret,
   setTmrMsgCur,
   sendChartCurBtns,
@@ -70,9 +70,9 @@ const messageFunc = async (msg) => {
   if (cndtnStart(text)) {
     start(bot, chatId, msg);
   }
-  // Info
+  // Menu
   else if (cndtnInfo(text)) {
-    info(bot, chatId);
+    menu(bot, chatId, msg);
   }
   // Short commands
   else if (cndtnCurrencies(text)) {
@@ -174,6 +174,16 @@ const buttonsFunc = async (msg) => {
   // Calculate Pool
   else if (text === '/pool') {
     poolMsg(bot, chatId);
+  }
+  // Statistic (Users)
+  else if (cndtnStatisticUsers(text, msg)) {
+    const stat = await getUsersStat();
+    await statisticUsersMsg(bot, chatId, stat);
+  }
+  // Statistic (visits 10)
+  else if (cndtnStatistic(text, msg)) {
+    const stat = await getVisitsStat();
+    await statisticMsg(bot, chatId, stat, 10);
   }
   // Currencies
   else {
