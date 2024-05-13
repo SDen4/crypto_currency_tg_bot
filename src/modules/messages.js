@@ -137,9 +137,9 @@ export const statisticUsersMsg = async (bot, chatId, stat) => {
       (el, i) =>
         `<b>${i + 1}</b>. <u>${el.firstName} ${
           el.lastName ? el.lastName : ''
-        }</u> (<tg-spoiler>${el.id}</tg-spoiler>, ${
-          el.username ? `<i>${el.username}</i>` : '?'
-        }), ${el.lang}, bot: ${el.isBot ? '🟢' : '🔴'}\npremium: ${
+        }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
+          el.username ? `, <i>${el.username}</i>` : ''
+        }), <b>${el.lang}</b>, bot: ${el.isBot ? '🟢' : '🔴'}\npremium: ${
           el.isPremium ? '🟢' : '🔴'
         }, first visit: ${timestamp(el.firstVisit)}${
           i !== data.length - 1
