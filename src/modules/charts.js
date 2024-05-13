@@ -5,7 +5,7 @@ import { bfUrl } from '../../token.js';
 import { timestamp } from '../utils/timestamp.js';
 
 // TODO: add tooltips
-export const getChart = async (bot, chatId, selectedCurrency) => {
+export const getChart = async (bot, chatId, selectedCurrency, msg) => {
   const currency = String(selectedCurrency).substring(1).toUpperCase();
 
   await axios
@@ -57,5 +57,8 @@ export const getChart = async (bot, chatId, selectedCurrency) => {
           contentType: 'image/png',
         });
       });
+    })
+    .finally(() => {
+      bot.deleteMessage(chatId, msg.message.message_id);
     });
 };

@@ -93,6 +93,9 @@ export const convertShortCommands = (text) => {
     case 'xaut':
       return '/xaut:usd';
 
+    case 'ton':
+      return '/tonusd';
+
     default:
       return text;
   }
