@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { cndtnPool } from './conditions.js';
 import { formatNumber } from '../utils/formatNumber.js';
+import { bfUrl } from '../../token.js';
 
 export const pool = async (bot, chatId, msg) => {
   const msgArr = String(msg)
@@ -24,7 +25,6 @@ export const pool = async (bot, chatId, msg) => {
     }
   }
 
-  const baseUrl = 'https://api-pub.bitfinex.com/v2';
   const pathParams = 'ticker';
 
   for (let i = 0; i < resultArr.length; i++) {
@@ -45,7 +45,7 @@ export const pool = async (bot, chatId, msg) => {
     const queryParams = `t${requestStr.toLocaleUpperCase()}`;
 
     const pr = await axios
-      .get(`${baseUrl}/${pathParams}/${queryParams}`)
+      .get(`${bfUrl}/${pathParams}/${queryParams}`)
       .then((response) => {
         const data = response?.data[0];
         return data;
