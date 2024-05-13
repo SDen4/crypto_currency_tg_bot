@@ -7,7 +7,6 @@ import {
 import { timestamp } from '../utils/timestamp.js';
 
 export const btcBlockInfo = async (bot, chatId) => {
-  // parallel requests
   const [hash, allData] = await Promise.all([
     mpHashRequest(),
     mpCurBlockRequest(),

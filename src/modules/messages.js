@@ -32,11 +32,7 @@ export const start = async (bot, chatId, msg) => {
 };
 
 export const info = async (bot, chatId) => {
-  await bot.sendMessage(
-    chatId,
-    'Use buttons to get the currencies, BTC blocks info, to set a timer, to calculate your pool to USD or visit the application',
-    btnsStart,
-  );
+  await bot.sendMessage(chatId, 'Menu:', btnsStart);
 };
 
 export const allCurrencies = async (bot, chatId) => {

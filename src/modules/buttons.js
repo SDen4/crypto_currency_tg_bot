@@ -79,20 +79,16 @@ export const btnsCurrenciesArr = [
   ],
 ];
 
-const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) => {
-  return el.map((i) => {
-    return { ...i, callback_data: `${i.callback_data}_set_timer` };
-  });
-});
+const btnsCurrenciesTimerArr = btnsCurrenciesArr.map((el) =>
+  el.map((i) => ({ ...i, callback_data: `${i.callback_data}_set_timer` })),
+);
 export const btnsCurrenciesTimer = {
   reply_markup: { inline_keyboard: btnsCurrenciesTimerArr },
 };
 
-const btnsCurrenciesChartArr = btnsCurrenciesArr.map((el) => {
-  return el.map((i) => {
-    return { ...i, callback_data: `${i.callback_data}_set_chart` };
-  });
-});
+const btnsCurrenciesChartArr = btnsCurrenciesArr.map((el) =>
+  el.map((i) => ({ ...i, callback_data: `${i.callback_data}_set_chart` })),
+);
 export const btnsCurrenciesChart = {
   reply_markup: { inline_keyboard: btnsCurrenciesChartArr },
 };
@@ -105,9 +101,9 @@ export const btnsStart = {
   reply_markup: {
     inline_keyboard: [
       [
-        { text: 'All currencies', callback_data: '/currencies' },
-        { text: 'BTC blocks info', callback_data: '/btcBlockInfo' },
-        { text: 'Calculate pool', callback_data: '/pool' },
+        { text: 'All Currencies', callback_data: '/currencies' },
+        { text: 'BTC Blocks Info', callback_data: '/btcBlockInfo' },
+        { text: 'Calculate Pool', callback_data: '/pool' },
       ],
       [
         { text: 'Charts', callback_data: '/charts' },
@@ -157,6 +153,6 @@ export const btnsDonate = {
 };
 
 export const commands = [
-  { command: '/info', description: 'Information' },
-  { command: '/currencies', description: 'All currencies' },
+  { command: '/menu', description: 'Menu' },
+  { command: '/currencies', description: 'All Currencies' },
 ];

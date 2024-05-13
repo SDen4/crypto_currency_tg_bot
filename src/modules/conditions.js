@@ -82,7 +82,7 @@ export const cndtnCurrencies = (text) =>
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 export const cndtnInfo = (text) =>
-  ['info', 'штащ', 'help', 'рудз', 'инфо'].includes(
+  ['menu', 'info', 'штащ', 'help', 'рудз', 'инфо'].includes(
     cndtnFunc(String(text).replace('/', '')),
   );
 
