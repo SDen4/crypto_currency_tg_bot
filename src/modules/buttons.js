@@ -1,3 +1,5 @@
+import { webAppUrl } from '../../token.js';
+
 export const btnsCurrenciesArr = [
   [
     { text: 'BTC/USD', callback_data: '/btcusd' },
@@ -106,10 +108,7 @@ const keyboardStart = [
   [
     { text: 'Charts', callback_data: '/charts' },
     { text: 'Timer', callback_data: '/settimer' },
-    {
-      text: 'App',
-      web_app: { url: 'https://sden4.github.io/crypto_currency/' },
-    },
+    { text: 'App', web_app: { url: webAppUrl } },
     { text: 'Donate', callback_data: '/donate' },
   ],
 ];
