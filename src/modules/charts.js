@@ -8,6 +8,10 @@ import { timestamp } from '../utils/timestamp.js';
 export const getChart = async (bot, chatId, selectedCurrency, msg) => {
   const currency = String(selectedCurrency).substring(1).toUpperCase();
 
+  const dateDiff = -new Date().getTimezoneOffset() / 60;
+  const gtmDiff =
+    dateDiff === 0 ? '' : dateDiff > 0 ? `+${dateDiff}` : dateDiff;
+
   await axios
     .get(`${bfUrl}/tickers/hist?symbols=t${currency}&limit=24`)
     .then((response) => {
@@ -41,7 +45,7 @@ export const getChart = async (bot, chatId, selectedCurrency, msg) => {
               display: true,
               text: `${currency.substring(0, 3)}/${currency.substring(
                 3,
-              )} (${titleDate})`,
+              )} (${titleDate}, GMT${gtmDiff})`,
             },
             legend: { display: false },
             scales: { yAxes: [{ ticks: { beginAtZero: false } }] },
