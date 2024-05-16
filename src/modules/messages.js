@@ -35,7 +35,7 @@ export const start = async (bot, chatId, msg) => {
 
 export const menu = async (bot, chatId, msg) => {
   let btns = msg?.from?.id === statChatId ? btnsAdminStart : btnsStart;
-  await bot.sendMessage(chatId, 'Menu:', btns);
+  await bot.sendMessage(chatId, 'Menu', btns);
 };
 
 export const allCurrencies = async (bot, chatId) => {
@@ -51,7 +51,7 @@ export const secret = async (bot, chatId) => {
 export const setTmrMsgCur = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Select the currency for timer:',
+    'Select the currency for timer',
     btnsCurrenciesTimer,
   );
 };
@@ -59,13 +59,13 @@ export const setTmrMsgCur = async (bot, chatId) => {
 export const sendChartCurBtns = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Select the currency for chart:',
+    'Select the currency for chart',
     btnsCurrenciesChart,
   );
 };
 
 export const donate = async (bot, chatId) => {
-  await bot.sendMessage(chatId, 'You can support the developer:', btnsDonate);
+  await bot.sendMessage(chatId, 'You can support the developer', btnsDonate);
 };
 
 export const showQr = async (bot, chatId) => {
@@ -88,7 +88,7 @@ export const copyDonateAddress = async (bot, chatId, text) => {
       break;
   }
 
-  bot.sendMessage(chatId, 'To copy address to clipboard tap on:');
+  bot.sendMessage(chatId, 'To copy address to clipboard tap on');
   bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
 };
 
@@ -126,7 +126,7 @@ export const statisticMsg = async (bot, chatId, stat, quant) => {
 
   await bot.sendMessage(
     chatId,
-    `Statistic:\n----------------------\n${formatStat}`,
+    `Statistic\n----------------------\n${formatStat}`,
   );
 };
 
