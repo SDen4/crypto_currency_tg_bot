@@ -149,7 +149,7 @@ export const statisticUsersMsg = async (bot, chatId, stat) => {
     )
     .join('');
 
-  await bot.sendMessage(chatId, `Users:\n\n${formatStat}`, {
+  await bot.sendMessage(chatId, `Users\n\n${formatStat}`, {
     parse_mode: 'HTML',
   });
 };

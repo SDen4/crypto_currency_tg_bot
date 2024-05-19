@@ -1,6 +1,7 @@
 import { statChatId } from '../../token.js';
 import { getUsers } from '../api/getUsers.js';
 import { postMsg } from '../api/postMsg.js';
+import { postUsers } from '../api/postUsers.js';
 
 let userIds = [];
 
@@ -9,7 +10,7 @@ export const saveStat = async (msg) => {
   if (id === statChatId) return;
 
   if (!userIds.length) {
-    const users = getUsers();
+    const users = await getUsers();
 
     userIds = Object.values(users?.data).map((el) => el?.id);
   }
@@ -28,8 +29,8 @@ export const saveStat = async (msg) => {
 
     userIds.push(id);
 
-    postUsers(newUser);
+    await postUsers(newUser);
   }
 
-  postMsg(newUser);
+  await postMsg(msg);
 };
