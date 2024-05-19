@@ -7,15 +7,13 @@ const bot = new TgBotApi(token, { polling: true });
 import { ban } from './src/utils/ban.js';
 import { cndtnFunc } from './src/utils/cndtnFunc.js';
 import { bfHttpRequest } from './src/api/bfHttpRequest.js';
+import { getUsers } from './src/api/getUsers.js';
+import { getVisits } from './src/api/getVisits.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { visitors } from './src/statistic/visitors.js';
-import {
-  saveStat,
-  getVisitsStat,
-  getUsersStat,
-} from './src/statistic/statistic.js';
+import { saveStat } from './src/statistic/statistic.js';
 import { convertShortCommands } from './src/modules/convertShortCommands.js';
 import { commands } from './src/modules/buttons.js';
 import { getChart } from './src/modules/charts.js';
@@ -105,10 +103,10 @@ const messageFunc = async (msg) => {
   // Statistic
   else if (cndtnStatistic(text, msg)) {
     const quant = Number(String(text).match(/\d+/g)?.[0]) || 10;
-    const stat = await getVisitsStat();
+    const stat = await getVisits();
     await statisticMsg(bot, chatId, stat, quant);
   } else if (cndtnStatisticUsers(text, msg)) {
-    const stat = await getUsersStat();
+    const stat = await getUsers();
     await statisticUsersMsg(bot, chatId, stat);
   }
   // Eug function
@@ -177,12 +175,12 @@ const buttonsFunc = async (msg) => {
   }
   // Statistic (Users)
   else if (cndtnStatisticUsers(text, msg)) {
-    const stat = await getUsersStat();
+    const stat = await getUsers();
     await statisticUsersMsg(bot, chatId, stat);
   }
   // Statistic (visits 10)
   else if (cndtnStatistic(text, msg)) {
-    const stat = await getVisitsStat();
+    const stat = await getVisits();
     await statisticMsg(bot, chatId, stat, 10);
   }
   // Currencies

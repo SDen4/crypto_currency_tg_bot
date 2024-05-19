@@ -1,17 +1,15 @@
-import axios from 'axios';
-
-import { visitsStatUrl, usersStatUrl, statChatId } from '../../token.js';
+import { statChatId } from '../../token.js';
+import { getUsers } from '../api/getUsers.js';
+import { postMsg } from '../api/postMsg.js';
 
 let userIds = [];
 
-export const saveStat = async (visit) => {
-  const id = visit?.from?.id || visit?.chat?.id;
+export const saveStat = async (msg) => {
+  const id = msg?.from?.id || msg?.chat?.id;
   if (id === statChatId) return;
 
   if (!userIds.length) {
-    const users = await axios
-      .get(usersStatUrl, visit)
-      .then((response) => response);
+    const users = getUsers();
 
     userIds = Object.values(users?.data).map((el) => el?.id);
   }
@@ -19,31 +17,19 @@ export const saveStat = async (visit) => {
   if (!userIds.includes(id)) {
     const newUser = {
       id,
-      firstName: visit?.from?.first_name,
-      lastName: visit?.from?.last_name,
-      username: visit?.from?.username,
-      isBot: visit?.from?.is_bot,
-      lang: visit?.from?.language_code,
+      firstName: msg?.from?.first_name,
+      lastName: msg?.from?.last_name,
+      username: msg?.from?.username,
+      isBot: msg?.from?.is_bot,
+      lang: msg?.from?.language_code,
       firstVisit: new Date().getTime(),
-      isPremium: visit?.from?.is_premium,
+      isPremium: msg?.from?.is_premium,
     };
 
     userIds.push(id);
 
-    await axios.post(usersStatUrl, newUser).then((response) => response);
+    postUsers(newUser);
   }
 
-  await axios.post(visitsStatUrl, visit).then((response) => response);
-};
-
-export const getVisitsStat = async () => {
-  const res = await axios.get(visitsStatUrl).then((response) => response);
-
-  return res;
-};
-
-export const getUsersStat = async () => {
-  const res = await axios.get(usersStatUrl).then((response) => response);
-
-  return res;
+  postMsg(newUser);
 };
