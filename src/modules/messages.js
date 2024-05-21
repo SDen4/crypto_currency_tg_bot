@@ -1,13 +1,15 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pathToQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
+const pathToBtcQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
+const pathToLightQr = `${path.join(__dirname, '..', 'pics')}/qrLightning.png`;
 
 import {
   statChatId,
   donateBtcAddress,
   donateEthAddress,
   donateDogeAddress,
+  donateLightningAddress,
 } from '../../token.js';
 
 import {
@@ -68,28 +70,48 @@ export const donate = async (bot, chatId) => {
   await bot.sendMessage(chatId, 'You can support the developer', btnsDonate);
 };
 
-export const showQr = async (bot, chatId) => {
-  await bot.sendPhoto(chatId, pathToQr);
-};
+export const showQr = async (bot, chatId, text) => {
+  let pathToFile = '';
 
-export const copyDonateAddress = async (bot, chatId, text) => {
-  let address = '';
   switch (text) {
-    case '/copyBtcAddress':
-      address = donateBtcAddress;
+    case '/showQrBtc':
+      pathToFile = pathToBtcQr;
       break;
-    case '/copyEthAddress':
-      address = donateEthAddress;
-      break;
-    case '/copyDogeAddress':
-      address = donateDogeAddress;
+    case '/showQrLightning':
+      pathToFile = pathToLightQr;
       break;
     default:
       break;
   }
 
-  bot.sendMessage(chatId, 'To copy address to clipboard tap on');
-  bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
+  await bot.sendPhoto(chatId, pathToFile);
+};
+
+export const copyDonateAddress = async (bot, chatId, text) => {
+  let address = '';
+  switch (text) {
+    case '/copyAddressBTC':
+      address = donateBtcAddress;
+      break;
+    case '/copyAddressETH':
+      address = donateEthAddress;
+      break;
+    case '/copyAddressDoge':
+      address = donateDogeAddress;
+      break;
+    case '/copyAddressLightning':
+      address = donateLightningAddress;
+      break;
+    default:
+      break;
+  }
+
+  const currencyName = text.slice(12);
+  await bot.sendMessage(
+    chatId,
+    `To copy ${currencyName} address to clipboard tap on`,
+  );
+  await bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
 };
 
 export const setTmrMsgTime = async (bot, chatId) => {

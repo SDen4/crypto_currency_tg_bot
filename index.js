@@ -30,6 +30,7 @@ import {
   cndtnEugFunc,
   cndtnEmoji,
   cndtnDonate,
+  cndtnDonateQr,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -152,8 +153,8 @@ const buttonsFunc = async (msg) => {
   // Donate
   else if (text === '/donate') {
     donate(bot, chatId);
-  } else if (text === '/showQr') {
-    showQr(bot, chatId);
+  } else if (cndtnDonateQr(text)) {
+    showQr(bot, chatId, text);
   } else if (cndtnDonate(text)) {
     copyDonateAddress(bot, chatId, text);
   }

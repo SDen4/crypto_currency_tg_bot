@@ -156,12 +156,19 @@ export const cndtnEmoji = (text) => {
 
 export const cndtnDonate = (text) => {
   if (
-    text === '/copyBtcAddress' ||
-    text === '/copyEthAddress' ||
-    text === '/copyDogeAddress'
+    text === '/copyAddressBTC' ||
+    text === '/copyAddressETH' ||
+    text === '/copyAddressDoge' ||
+    text === '/copyAddressLightning'
   ) {
     return true;
   }
+  return false;
+};
 
+export const cndtnDonateQr = (text) => {
+  if (text === '/showQrBtc' || text === '/showQrLightning') {
+    return true;
+  }
   return false;
 };

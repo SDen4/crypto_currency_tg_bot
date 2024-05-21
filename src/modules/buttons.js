@@ -150,10 +150,16 @@ export const btnsDonate = {
   reply_markup: {
     inline_keyboard: [
       [
-        { text: 'BTC addr', callback_data: '/copyBtcAddress' },
-        { text: 'ETH addr', callback_data: '/copyEthAddress' },
-        { text: 'Doge addr', callback_data: '/copyDogeAddress' },
-        { text: 'BTC QR', callback_data: '/showQr' },
+        { text: 'Lightning addr', callback_data: '/copyAddressLightning' },
+        { text: 'Lightning QR', callback_data: '/showQrLightning' },
+      ],
+      [
+        { text: 'BTC addr', callback_data: '/copyAddressBTC' },
+        { text: 'BTC QR', callback_data: '/showQrBtc' },
+      ],
+      [
+        { text: 'ETH addr', callback_data: '/copyAddressETH' },
+        { text: 'Doge addr', callback_data: '/copyAddressDoge' },
       ],
     ],
   },
