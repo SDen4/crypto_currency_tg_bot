@@ -1,7 +1,7 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const pathToBtcQr = `${path.join(__dirname, '..', 'pics')}/qr.png`;
+const pathToBtcQr = `${path.join(__dirname, '..', 'pics')}/qrBtc.png`;
 const pathToLightQr = `${path.join(__dirname, '..', 'pics')}/qrLightning.png`;
 
 import {

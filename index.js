@@ -9,6 +9,7 @@ import { cndtnFunc } from './src/utils/cndtnFunc.js';
 import { bfHttpRequest } from './src/api/bfHttpRequest.js';
 import { getUsers } from './src/api/getUsers.js';
 import { getVisits } from './src/api/getVisits.js';
+import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
@@ -140,8 +141,8 @@ const buttonsFunc = async (msg) => {
   if (text === '/charts') {
     sendChartCurBtns(bot, chatId);
   } else if (text.includes('_set_chart')) {
-    selectedCurrency = String(text).slice(0, 7);
-    getChart(bot, chatId, selectedCurrency, msg);
+    const curValue = await getChatCurValue(text);
+    await getChart(bot, chatId, text, msg, curValue);
   }
   // Timer
   else if (text === '/settimer') {

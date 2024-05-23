@@ -5,8 +5,14 @@ import { bfUrl } from '../../token.js';
 import { timestamp } from '../utils/timestamp.js';
 
 // TODO: add tooltips
-export const getChart = async (bot, chatId, selectedCurrency, msg) => {
-  const currency = String(selectedCurrency).substring(1).toUpperCase();
+export const getChart = async (
+  bot,
+  chatId,
+  selectedCurrency,
+  msg,
+  curValue,
+) => {
+  const currency = String(selectedCurrency).slice(1, -10).toUpperCase();
 
   const dateDiff = -new Date().getTimezoneOffset() / 60;
   const gtmDiff =
@@ -20,8 +26,12 @@ export const getChart = async (bot, chatId, selectedCurrency, msg) => {
         date: timestamp(el[12]),
       }));
 
-      const firstDate = data?.[0].date.substring(0, 10);
-      const lastDate = data?.[data.length - 1].date.substring(0, 10);
+      if (curValue) {
+        data.push({ value: curValue, date: timestamp(new Date().getTime()) });
+      }
+
+      const firstDate = data?.[0]?.date.substring(0, 10);
+      const lastDate = data?.[data.length - 1]?.date.substring(0, 10);
       const titleDate =
         firstDate === lastDate ? `${firstDate}` : `${firstDate} - ${lastDate}`;
 
@@ -52,8 +62,8 @@ export const getChart = async (bot, chatId, selectedCurrency, msg) => {
           },
         })
         .backgroundColor('white')
-        .width(800)
-        .height(400);
+        .width(600)
+        .height(300);
 
       chart.toDataURI().then((res) => {
         bot.sendPhoto(chatId, Buffer.from(res.substr(21), 'base64'), {
