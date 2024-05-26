@@ -157,7 +157,7 @@ const buttonsFunc = async (msg) => {
   } else if (cndtnDonateQr(text)) {
     showQr(bot, chatId, text);
   } else if (cndtnDonate(text)) {
-    copyDonateAddress(bot, chatId, text);
+    copyDonateAddress(bot, chatId, text, msg);
   }
   // All Currencies
   else if (cndtnCurrenciesBtns(text)) {

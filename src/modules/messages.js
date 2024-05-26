@@ -87,7 +87,7 @@ export const showQr = async (bot, chatId, text) => {
   await bot.sendPhoto(chatId, pathToFile);
 };
 
-export const copyDonateAddress = async (bot, chatId, text) => {
+export const copyDonateAddress = async (bot, chatId, text, msg) => {
   let address = '';
   switch (text) {
     case '/copyAddressBTC':
@@ -107,11 +107,14 @@ export const copyDonateAddress = async (bot, chatId, text) => {
   }
 
   const currencyName = text.slice(12);
+
   await bot.sendMessage(
     chatId,
     `To copy ${currencyName} address to clipboard tap on`,
   );
   await bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
+
+  await bot.deleteMessage(chatId, msg.message.message_id);
 };
 
 export const setTmrMsgTime = async (bot, chatId) => {
