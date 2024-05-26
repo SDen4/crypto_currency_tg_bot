@@ -9,6 +9,7 @@ import { cndtnFunc } from './src/utils/cndtnFunc.js';
 import { bfHttpRequest } from './src/api/bfHttpRequest.js';
 import { getUsers } from './src/api/getUsers.js';
 import { getVisits } from './src/api/getVisits.js';
+import { getAddressInfo } from './src/api/getAddressInfo.js';
 import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { timer } from './src/modules/timer.js';
@@ -49,13 +50,14 @@ import {
   statisticMsg,
   statisticUsersMsg,
   emojiMsg,
+  checkAddressMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
 let selectedCurrency = '';
+let checkAddressMode = false;
 
 bot.setMyCommands(commands);
-
 percentAlertMessage(bot);
 
 const messageFunc = async (msg) => {
@@ -69,6 +71,11 @@ const messageFunc = async (msg) => {
   // Start
   if (cndtnStart(text)) {
     start(bot, chatId, msg);
+  }
+  // check the address
+  else if (checkAddressMode) {
+    checkAddressMode = false;
+    await getAddressInfo(bot, chatId, msg);
   }
   // Menu
   else if (cndtnInfo(text)) {
@@ -126,6 +133,7 @@ const messageFunc = async (msg) => {
   else {
     unkCmd(bot, chatId);
   }
+
   visitors(bot, msg);
 };
 
@@ -143,6 +151,11 @@ const buttonsFunc = async (msg) => {
   } else if (text.includes('_set_chart')) {
     const curValue = await getChatCurValue(text);
     await getChart(bot, chatId, text, msg, curValue);
+  }
+  // check the address
+  else if (text === 'checkBtcAddress') {
+    checkAddressMsg(bot, chatId);
+    checkAddressMode = true;
   }
   // Timer
   else if (text === '/settimer') {
@@ -189,6 +202,7 @@ const buttonsFunc = async (msg) => {
   else {
     bfHttpRequest(bot, chatId, text, msg);
   }
+
   await bot.answerCallbackQuery(msg.id);
   visitors(bot, msg);
 };

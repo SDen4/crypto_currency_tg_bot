@@ -185,3 +185,7 @@ export const emojiMsg = async (text, bot, chatId) => {
   ).toString(16);
   await bot.sendMessage(chatId, String.fromCodePoint('0x' + hex));
 };
+
+export const checkAddressMsg = async (bot, chatId) => {
+  await bot.sendMessage(chatId, 'Send me the address');
+};

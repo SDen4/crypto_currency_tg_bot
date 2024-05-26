@@ -111,6 +111,7 @@ const keyboardStart = [
     { text: 'App', web_app: { url: webAppUrl } },
     { text: 'Donate', callback_data: '/donate' },
   ],
+  [{ text: 'Check BTC address', callback_data: 'checkBtcAddress' }],
 ];
 const keyboardAdminStart = [
   ...keyboardStart,
