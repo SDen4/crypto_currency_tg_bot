@@ -189,6 +189,7 @@ const buttonsFunc = async (msg) => {
   else {
     bfHttpRequest(bot, chatId, text, msg);
   }
+  await bot.answerCallbackQuery(msg.id);
   visitors(bot, msg);
 };
 
