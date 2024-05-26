@@ -164,8 +164,8 @@ export const statisticUsersMsg = async (bot, chatId, stat) => {
           el.lastName ? el.lastName : ''
         }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
           el.username ? `, <i>${el.username}</i>` : ''
-        }), <b>${el.lang}</b>, bot: ${el.isBot ? '🟢' : '🔴'}\npremium: ${
-          el.isPremium ? '🟢' : '🔴'
+        }), ${el.lang}, ${el.isBot ? '<b>bot</b>' : '<s>bot</s>'}\n${
+          el.isPremium ? '<b>premium</b>' : '<s>premium</s>'
         }, first visit: ${timestamp(el.firstVisit)}${
           i !== data.length - 1
             ? '\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
