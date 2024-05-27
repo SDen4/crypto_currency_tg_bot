@@ -8,8 +8,6 @@ export const getAddressInfo = async (bot, chatId, msg) => {
       .get(`${checkBtcAddrUrl}${msg.text}`)
       .then((response) => response);
 
-    console.log(result);
-
     let message = 'No data';
     const values = Object.values(result?.data?.data);
     if (values?.length) {
