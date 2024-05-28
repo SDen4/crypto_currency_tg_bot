@@ -1,5 +1,6 @@
 import { cndtnFunc } from '../utils/cndtnFunc.js';
 import { statChatId, shortSign, eugPartId } from '../../token.js';
+import { checkAddrBtns } from './buttons.js';
 
 export const cndtnCurrencies = (text) =>
   [
@@ -171,4 +172,8 @@ export const cndtnDonateQr = (text) => {
     return true;
   }
   return false;
+};
+
+export const cndtnCheckAddress = (text) => {
+  return checkAddrBtns.map((el) => el.callback_data).includes(text);
 };

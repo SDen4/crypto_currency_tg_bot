@@ -33,6 +33,7 @@ import {
   cndtnEmoji,
   cndtnDonate,
   cndtnDonateQr,
+  cndtnCheckAddress,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -55,7 +56,7 @@ import {
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
 let selectedCurrency = '';
-let checkAddressMode = false;
+let checkAddressMode = null;
 
 bot.setMyCommands(commands);
 percentAlertMessage(bot);
@@ -74,8 +75,8 @@ const messageFunc = async (msg) => {
   }
   // check the address
   else if (checkAddressMode) {
-    checkAddressMode = false;
-    await getAddressInfo(bot, chatId, msg);
+    await getAddressInfo(bot, chatId, msg, checkAddressMode);
+    checkAddressMode = null;
   }
   // Menu
   else if (cndtnInfo(text)) {
@@ -153,9 +154,9 @@ const buttonsFunc = async (msg) => {
     await getChart(bot, chatId, text, msg, curValue);
   }
   // check the address
-  else if (text === 'checkBtcAddress') {
+  else if (cndtnCheckAddress(text)) {
     checkAddressMsg(bot, chatId);
-    checkAddressMode = true;
+    checkAddressMode = text.slice(13);
   }
   // Timer
   else if (text === '/settimer') {

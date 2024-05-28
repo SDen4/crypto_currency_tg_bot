@@ -99,6 +99,11 @@ export const btnsCurrencies = {
   reply_markup: { inline_keyboard: btnsCurrenciesArr },
 };
 
+export const checkAddrBtns = [
+  { text: 'Check BTC address', callback_data: 'checkAddress_bitcoin' },
+  { text: 'Check Doge address', callback_data: 'checkAddress_dogecoin' },
+];
+
 const keyboardStart = [
   [
     { text: 'All Currencies', callback_data: '/currencies' },
@@ -111,7 +116,7 @@ const keyboardStart = [
     { text: 'App', web_app: { url: webAppUrl } },
     { text: 'Donate', callback_data: '/donate' },
   ],
-  [{ text: 'Check BTC address', callback_data: 'checkBtcAddress' }],
+  checkAddrBtns,
 ];
 const keyboardAdminStart = [
   ...keyboardStart,
