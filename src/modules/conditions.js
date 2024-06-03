@@ -79,6 +79,11 @@ export const cndtnCurrencies = (text) =>
     'ftmusd',
     'ftm',
     'ethw',
+    'not',
+    'dym',
+    'ftm',
+    'omg',
+    'xdc',
     'ethw:usd',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 

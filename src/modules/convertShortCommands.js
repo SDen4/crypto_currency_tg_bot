@@ -96,6 +96,21 @@ export const convertShortCommands = (text) => {
     case 'ton':
       return '/tonusd';
 
+    case 'not':
+      return '/notusd';
+
+    case 'dym':
+      return '/dymusd';
+
+    case 'ftm':
+      return '/ftmusd';
+
+    case 'omg':
+      return '/omgusd';
+
+    case 'xdc':
+      return '/xdcusd';
+
     default:
       return text;
   }
