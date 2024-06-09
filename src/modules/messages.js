@@ -157,26 +157,28 @@ export const statisticMsg = async (bot, chatId, stat, quant) => {
 
 export const statisticUsersMsg = async (bot, chatId, stat) => {
   const data = Object.values(stat.data);
-  const formatStat = data
-    .map(
-      (el, i) =>
-        `<b>${i + 1}</b>. <u>${el.firstName} ${
-          el.lastName ? el.lastName : ''
-        }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
-          el.username ? `, <i>${el.username}</i>` : ''
-        }), ${el.lang}, ${el.isBot ? '<b>bot</b>' : '<s>bot</s>'}\n${
-          el.isPremium ? '<b>premium</b>' : '<s>premium</s>'
-        }, first visit: ${timestamp(el.firstVisit)}${
-          i !== data.length - 1
-            ? '\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
-            : ''
-        }`,
-    )
-    .join('');
 
-  await bot.sendMessage(chatId, `Users\n\n${formatStat}`, {
-    parse_mode: 'HTML',
-  });
+  let message = '';
+  for (let i = 1; i <= data.length; i++) {
+    const el = data[i - 1];
+
+    message += `<b>${i}</b>. <u>${el.firstName} ${
+      el.lastName ? el.lastName : ''
+    }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
+      el.username ? `, <i>${el.username}</i>` : ''
+    }), ${el.lang}, ${el.isBot ? '<b>bot</b>' : '<s>bot</s>'}\n${
+      el.isPremium ? '<b>premium</b>' : '<s>premium</s>'
+    }, first visit: ${timestamp(el.firstVisit)}${
+      i !== data.length
+        ? '\n- - - - - - - - - - - - - - - - - - - - - - - - - - -\n'
+        : ''
+    }`;
+
+    if (i === data.length || (i !== 0 && i % 10 === 0)) {
+      await bot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+      message = '';
+    }
+  }
 };
 
 export const emojiMsg = async (text, bot, chatId) => {
