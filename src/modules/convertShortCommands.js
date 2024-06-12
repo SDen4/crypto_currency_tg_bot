@@ -3,6 +3,9 @@ export const convertShortCommands = (text) => {
     case 'btc':
       return '/btcusd';
 
+    case 'bitcoin':
+      return '/btcusd';
+
     case 'eth':
       return '/ethusd';
 

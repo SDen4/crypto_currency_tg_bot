@@ -5,6 +5,7 @@ import { checkAddrBtns } from './buttons.js';
 export const cndtnCurrencies = (text) =>
   [
     'btc',
+    'bitcoin',
     'eth',
     'usd',
     'eur',
