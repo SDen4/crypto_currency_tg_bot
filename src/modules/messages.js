@@ -162,7 +162,9 @@ export const statisticUsersMsg = async (bot, chatId, stat) => {
   for (let i = 1; i <= data.length; i++) {
     const el = data[i - 1];
 
-    message += `<b>${i}</b>. <u>${el.firstName} ${
+    message += `${
+      el?.isBanned ? '❗️❗️❗️ USER BANNED ❗️❗️❗️\n' : ''
+    } <b>${i}</b>. <u>${el.firstName} ${
       el.lastName ? el.lastName : ''
     }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
       el.username ? `, <i>${el.username}</i>` : ''
@@ -190,4 +192,8 @@ export const emojiMsg = async (text, bot, chatId) => {
 
 export const checkAddressMsg = async (bot, chatId) => {
   await bot.sendMessage(chatId, 'Send me the address');
+};
+
+export const sendBannedUserIdMsg = async (bot, chatId, text) => {
+  await bot.sendMessage(chatId, `Send me user id you want to be ${text}`);
 };

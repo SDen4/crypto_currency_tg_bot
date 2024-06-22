@@ -12,6 +12,7 @@ import { getVisits } from './src/api/getVisits.js';
 import { getAddressInfo } from './src/api/getAddressInfo.js';
 import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
+import { changeBannedUser } from './src/api/changeBannedUser.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { visitors } from './src/statistic/visitors.js';
@@ -34,6 +35,8 @@ import {
   cndtnDonate,
   cndtnDonateQr,
   cndtnCheckAddress,
+  cndtnBanUser,
+  cndtnUnbanUser,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -52,11 +55,14 @@ import {
   statisticUsersMsg,
   emojiMsg,
   checkAddressMsg,
+  sendBannedUserIdMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
 let selectedCurrency = '';
 let checkAddressMode = null;
+let isBanUser = false;
+let isUnbanUser = false;
 
 bot.setMyCommands(commands);
 percentAlertMessage(bot);
@@ -77,6 +83,16 @@ const messageFunc = async (msg) => {
   else if (checkAddressMode) {
     await getAddressInfo(bot, chatId, msg, checkAddressMode);
     checkAddressMode = null;
+  }
+  // Ban user
+  else if (isBanUser) {
+    await changeBannedUser(bot, chatId, msg, true);
+    isBanUser = false;
+  }
+  // Unban user
+  else if (isUnbanUser) {
+    await changeBannedUser(bot, chatId, msg, false);
+    isUnbanUser = false;
   }
   // Menu
   else if (cndtnInfo(text)) {
@@ -198,6 +214,16 @@ const buttonsFunc = async (msg) => {
   else if (cndtnStatistic(text, msg)) {
     const stat = await getVisits();
     await statisticMsg(bot, chatId, stat, 10);
+  }
+  // Ban user (message: send Id)
+  else if (cndtnBanUser(text, msg)) {
+    await sendBannedUserIdMsg(bot, chatId, 'banned');
+    isBanUser = true;
+  }
+  // Unban user (message: send Id)
+  else if (cndtnUnbanUser(text, msg)) {
+    await sendBannedUserIdMsg(bot, chatId, 'unbanned');
+    isUnbanUser = true;
   }
   // Currencies
   else {

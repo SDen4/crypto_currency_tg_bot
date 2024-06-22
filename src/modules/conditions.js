@@ -143,6 +143,17 @@ export const cndtnStatistic = (t, msg) => {
   return false;
 };
 
+export const cndtnBanUser = (t, msg) => {
+  if (t.toLowerCase() === 'banuser' && msg.from.id === statChatId) return true;
+  return false;
+};
+
+export const cndtnUnbanUser = (t, msg) => {
+  if (t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId)
+    return true;
+  return false;
+};
+
 export const cndtnStatisticUsers = (t, msg) => {
   if (t.toLowerCase() === 'users' && msg.from.id === statChatId) return true;
   return false;
