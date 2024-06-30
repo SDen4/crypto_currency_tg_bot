@@ -13,6 +13,7 @@ import { getAddressInfo } from './src/api/getAddressInfo.js';
 import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { changeBannedUser } from './src/api/changeBannedUser.js';
+import { checkBannedUsers } from './src/api/checkBannedUsers.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { visitors } from './src/statistic/visitors.js';
@@ -73,6 +74,8 @@ const messageFunc = async (msg) => {
 
   saveStat(msg);
 
+  const isBannedUser = await checkBannedUsers(bot, chatId);
+  if (isBannedUser) return null;
   if (ban(bot, chatId, msg)) return null;
 
   // Start
@@ -160,6 +163,8 @@ const buttonsFunc = async (msg) => {
 
   saveStat(msg);
 
+  const isBannedUser = await checkBannedUsers(bot, chatId);
+  if (isBannedUser) return null;
   if (ban(bot, chatId, msg)) return null;
 
   // Charts

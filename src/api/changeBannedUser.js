@@ -13,6 +13,31 @@ export const changeBannedUser = async (bot, chatId, msg, isBanFlag) => {
 
   const [bannedUserObjId, bannedUserObjData] = bannedUserObj;
 
+  // ============================ banned ids api ============================ //
+  const data = await axios
+    .get(`${statUrl}bannedIds.json`)
+    .then((response) => response);
+  const allBannedUsersIds = await data.data;
+
+  if (isBanFlag) {
+    await axios.post(`${statUrl}bannedIds.json`, bannedId);
+  } else {
+    const deletedDbId = Object.entries(allBannedUsersIds).find(
+      (el) => String(el[1]) === String(bannedId),
+    )?.[0];
+
+    if (allBannedUsersIds?.[deletedDbId]) {
+      delete allBannedUsersIds[deletedDbId];
+    } else {
+      await bot.sendMessage(
+        chatId,
+        `Sorry, I did't find the user with id ${deletedDbId} in data base`,
+      );
+    }
+    await axios.put(`${statUrl}bannedIds.json`, allBannedUsersIds);
+  }
+  // ============================ banned ids api ============================ //
+
   if (bannedUserObjId) {
     const newAllUsers = {
       ...allUsers.data,
