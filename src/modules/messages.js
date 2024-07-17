@@ -143,15 +143,16 @@ export const statisticMsg = async (bot, chatId, stat, quant) => {
       const text = el?.text || el?.data;
       const lang = el?.from?.language_code;
 
-      return `${i + 1}. ${timestamp(date)} | ${firstName} (${id}${
+      return `${i + 1}. ${timestamp(date)} | ${firstName} (<code>${id}</code>${
         username && '/'
-      }${username}) | ${lang} | text: ${text}\n`;
+      }<code>${username}</code>) | ${lang} | text: ${text}\n`;
     })
     .join('');
 
   await bot.sendMessage(
     chatId,
     `Statistic\n----------------------\n${formatStat}`,
+    { parse_mode: 'HTML' },
   );
 };
 
@@ -166,9 +167,11 @@ export const statisticUsersMsg = async (bot, chatId, stat) => {
       el?.isBanned ? '❗️❗️❗️ USER BANNED ❗️❗️❗️\n' : ''
     } <b>${i}</b>. <u>${el.firstName} ${
       el.lastName ? el.lastName : ''
-    }</u> (<tg-spoiler>${el.id}</tg-spoiler>${
-      el.username ? `, <i>${el.username}</i>` : ''
-    }), ${el.lang}, ${el.isBot ? '<b>bot</b>' : '<s>bot</s>'}\n${
+    }</u> (<code>${el.id}</code>${
+      el.username ? `, <tg-spoiler><i>${el.username}</i></tg-spoiler>` : ''
+    }), ${el.lang ? `${el.lang},` : ''} ${
+      el.isBot ? '<b>bot</b>' : '<s>bot</s>'
+    }\n${
       el.isPremium ? '<b>premium</b>' : '<s>premium</s>'
     }, first visit: ${timestamp(el.firstVisit)}${
       i !== data.length
