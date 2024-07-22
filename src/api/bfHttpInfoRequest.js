@@ -28,14 +28,16 @@ export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
       if (text === '/dshusd') title = 'DASH/USD';
 
       // ============================== answer text, do not format ============================== //
+      const number = Math.abs(data[5] * 100);
+      const emoji = number > 0 ? '🔼' : '🔽';
       const answer = `
 ${title}: ${formatNumber(data[0])}
 -------------------
-❗️ 24h: ${formatNumber(data[5] * 100, 2, '%')} ❗️
+${emoji} 24h: ${formatNumber(number, 2, '%')} ${emoji}
 `;
       // ============================== answer text, do not format ============================== //
 
-      if (Math.abs(data[5] * 100) >= alertPersent) {
+      if (number >= alertPersent) {
         for (let i = 0; i < chatIdArr.length; i++) {
           bot.sendMessage(chatIdArr[i], answer);
         }
