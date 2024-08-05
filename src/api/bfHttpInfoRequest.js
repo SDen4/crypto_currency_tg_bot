@@ -29,11 +29,12 @@ export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
 
       // ============================== answer text, do not format ============================== //
       const number = Math.abs(data[5] * 100);
-      const emoji = number > 0 ? '🔼' : '🔽';
+      const emojiL = data[5] > 0 ? '🟢' : '❗️🔻';
+      const emojiR = data[5] > 0 ? '🟢' : '🔻❗️';
       const answer = `
 ${title}: ${formatNumber(data[0])}
 -------------------
-${emoji} 24h: ${formatNumber(number, 2, '%')} ${emoji}
+${emojiL} 24h: ${formatNumber(number, 2, '%')} ${emojiR}
 `;
       // ============================== answer text, do not format ============================== //
 
