@@ -24,8 +24,9 @@ import {
 import { timestamp } from '../utils/timestamp.js';
 
 export const unkCmd = async (bot, chatId) => {
-  const text = "Sorry, I don't understand you, please try again.";
-  await bot.sendMessage(chatId, text);
+  const text =
+    "Sorry, I don't understand you, please try again or use menu buttons.";
+  await bot.sendMessage(chatId, text, btnsStart);
 };
 
 export const start = async (bot, chatId, msg) => {
