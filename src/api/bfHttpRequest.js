@@ -30,6 +30,8 @@ export const bfHttpRequest = (bot, chatId, textInner, msg) => {
         if (text === '/algusd') title = 'ALGO/USD';
         if (text === '/hixusd') title = 'HI/USD';
         if (text === '/dshusd') title = 'DASH/USD';
+        if (text === '/hmstr:usd') title = 'HUMSTER/USD';
+        if (text === '/hmstr:ust') title = 'HUMSTER/USDt';
 
         const answer = `${title}: ${formatNumber(data[0])}
 -----------------------------------
