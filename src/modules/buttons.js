@@ -136,6 +136,7 @@ const keyboardAdminStart = [
     { text: 'Ban user', callback_data: 'banuser' },
     { text: 'Unban user', callback_data: 'unbanuser' },
   ],
+  [{ text: 'test button', callback_data: 'testbutton' }],
 ];
 
 export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };
@@ -168,6 +169,12 @@ export const btnsDonate = {
   reply_markup: {
     inline_keyboard: [
       [
+        {
+          text: '⭐️ Telegram stars ⭐️',
+          callback_data: '/sendTelegramStarInvoice',
+        },
+      ],
+      [
         { text: 'Lightning addr', callback_data: '/copyAddressLightning' },
         { text: 'Lightning QR', callback_data: '/showQrLightning' },
       ],
@@ -187,3 +194,17 @@ export const commands = [
   { command: '/menu', description: 'Menu' },
   { command: '/currencies', description: 'All Currencies' },
 ];
+
+export const tgStarsCallbackData = [
+  'sendTelegramStarInvoice1',
+  'sendTelegramStarInvoice10',
+  'sendTelegramStarInvoice100',
+];
+const inlineKeyboard = tgStarsCallbackData.map((el, i) => ({
+  text: `${10 ** i} ⭐️`,
+  callback_data: el,
+}));
+
+export const donateTgStarsBtns = {
+  reply_markup: { inline_keyboard: [inlineKeyboard] },
+};

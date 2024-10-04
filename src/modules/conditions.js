@@ -1,6 +1,6 @@
 import { cndtnFunc } from '../utils/cndtnFunc.js';
 import { statChatId, shortSign, eugPartId } from '../../token.js';
-import { checkAddrBtns } from './buttons.js';
+import { checkAddrBtns, tgStarsCallbackData } from './buttons.js';
 
 export const cndtnCurrencies = (text) =>
   [
@@ -184,6 +184,8 @@ export const cndtnDonate = (text) => {
   return false;
 };
 
+export const cndtnTgStarDonate = (text) => text === '/sendTelegramStarInvoice';
+
 export const cndtnDonateQr = (text) => {
   if (text === '/showQrBtc' || text === '/showQrLightning') {
     return true;
@@ -194,3 +196,6 @@ export const cndtnDonateQr = (text) => {
 export const cndtnCheckAddress = (text) => {
   return checkAddrBtns.map((el) => el.callback_data).includes(text);
 };
+
+export const cndtnTgStarDonateBtn = (text) =>
+  tgStarsCallbackData.includes(text);

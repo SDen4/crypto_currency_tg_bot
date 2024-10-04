@@ -34,6 +34,8 @@ import {
   cndtnEugFunc,
   cndtnEmoji,
   cndtnDonate,
+  cndtnTgStarDonate,
+  cndtnTgStarDonateBtn,
   cndtnDonateQr,
   cndtnCheckAddress,
   cndtnBanUser,
@@ -49,6 +51,8 @@ import {
   donate,
   showQr,
   copyDonateAddress,
+  sendTgStarInvoice,
+  sendTgStarInvoiceBtns,
   setTmrMsgTime,
   allCurrencies,
   poolMsg,
@@ -193,6 +197,10 @@ const buttonsFunc = async (msg) => {
     showQr(bot, chatId, text);
   } else if (cndtnDonate(text)) {
     copyDonateAddress(bot, chatId, text, msg);
+  } else if (cndtnTgStarDonate(text)) {
+    sendTgStarInvoiceBtns(bot, chatId, text, msg);
+  } else if (cndtnTgStarDonateBtn(text)) {
+    sendTgStarInvoice(bot, chatId, text);
   }
   // All Currencies
   else if (cndtnCurrenciesBtns(text)) {

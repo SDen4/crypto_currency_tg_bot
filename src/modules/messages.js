@@ -20,6 +20,7 @@ import {
   btnsCurrenciesTimer,
   btnsCurrenciesChart,
   btnsDonate,
+  donateTgStarsBtns,
 } from './buttons.js';
 import { timestamp } from '../utils/timestamp.js';
 
@@ -116,6 +117,26 @@ export const copyDonateAddress = async (bot, chatId, text, msg) => {
   await bot.sendMessage(chatId, `\`${address}\``, { parse_mode: 'Markdown' });
 
   await bot.deleteMessage(chatId, msg.message.message_id);
+};
+
+export const sendTgStarInvoiceBtns = async (bot, chatId) => {
+  await bot.sendMessage(
+    chatId,
+    'You can support the developer by Telegram Stars',
+    donateTgStarsBtns,
+  );
+};
+
+export const sendTgStarInvoice = async (bot, chatId, text) => {
+  await bot.sendInvoice(
+    chatId,
+    'Support the developer',
+    'Thank you for supporting us!',
+    'payload',
+    '',
+    'XTR',
+    [{ label: 'label', amount: Number(text.slice(23)) }],
+  );
 };
 
 export const setTmrMsgTime = async (bot, chatId) => {
