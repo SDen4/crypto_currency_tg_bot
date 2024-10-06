@@ -122,20 +122,22 @@ export const copyDonateAddress = async (bot, chatId, text, msg) => {
 export const sendTgStarInvoiceBtns = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'You can support the developer by Telegram Stars',
+    'You can support the developer by Telegram Stars, choose the amount:',
     donateTgStarsBtns,
   );
 };
 
 export const sendTgStarInvoice = async (bot, chatId, text) => {
+  const amount = Number(text.slice(23));
+
   await bot.sendInvoice(
     chatId,
     'Support the developer',
-    'Thank you for supporting us!',
+    `Please, confirm your payment: ${amount}⭐️`,
     'payload',
     '',
     'XTR',
-    [{ label: 'label', amount: Number(text.slice(23)) }],
+    [{ label: 'label', amount }],
   );
 };
 
