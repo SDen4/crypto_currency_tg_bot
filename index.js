@@ -255,7 +255,6 @@ const buttonsFunc = async (msg) => {
 
 const answerPreCheckoutQuery = async (query) => {
   await bot.answerPreCheckoutQuery(String(query.id), true);
-  // return;
 };
 
 bot.on('message', messageFunc);
