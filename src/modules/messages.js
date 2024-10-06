@@ -222,3 +222,12 @@ export const checkAddressMsg = async (bot, chatId) => {
 export const sendBannedUserIdMsg = async (bot, chatId, text) => {
   await bot.sendMessage(chatId, `Send me user id you want to be ${text}`);
 };
+
+export const thankDonateStarMsg = async (bot, msg) => {
+  await bot.sendMessage(
+    msg?.chat?.id,
+    `Thank you, ${
+      msg?.from?.first_name || msg?.from?.username || 'dude'
+    }, for supporting us!`,
+  );
+};

@@ -155,7 +155,7 @@ export const cndtnUnbanUser = (t, msg) => {
 };
 
 export const cndtnStatisticUsers = (t, msg) => {
-  if (t.toLowerCase() === 'users' && msg.from.id === statChatId) return true;
+  if (t?.toLowerCase() === 'users' && msg.from.id === statChatId) return true;
   return false;
 };
 
@@ -199,3 +199,7 @@ export const cndtnCheckAddress = (text) => {
 
 export const cndtnTgStarDonateBtn = (text) =>
   tgStarsCallbackData.includes(text);
+
+export const cndtnThankAfterDonate = (msg) => {
+  return msg?.text === undefined && msg?.successful_payment?.total_amount > 0;
+};

@@ -40,6 +40,7 @@ import {
   cndtnCheckAddress,
   cndtnBanUser,
   cndtnUnbanUser,
+  cndtnThankAfterDonate,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -61,6 +62,7 @@ import {
   emojiMsg,
   checkAddressMsg,
   sendBannedUserIdMsg,
+  thankDonateStarMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
@@ -152,6 +154,10 @@ const messageFunc = async (msg) => {
   // Emoji messages
   else if (cndtnEmoji(text)) {
     emojiMsg(text, bot, chatId);
+  }
+  // thaks after telegram stars donate
+  else if (cndtnThankAfterDonate(msg)) {
+    thankDonateStarMsg(bot, msg);
   }
   // Unknown command
   else {
@@ -247,5 +253,11 @@ const buttonsFunc = async (msg) => {
   visitors(bot, msg);
 };
 
+const answerPreCheckoutQuery = async (query) => {
+  await bot.answerPreCheckoutQuery(String(query.id), true);
+  // return;
+};
+
 bot.on('message', messageFunc);
 bot.on('callback_query', buttonsFunc);
+bot.on('pre_checkout_query', answerPreCheckoutQuery);

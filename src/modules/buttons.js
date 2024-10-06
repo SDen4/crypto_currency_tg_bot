@@ -136,7 +136,6 @@ const keyboardAdminStart = [
     { text: 'Ban user', callback_data: 'banuser' },
     { text: 'Unban user', callback_data: 'unbanuser' },
   ],
-  [{ text: 'test button', callback_data: 'testbutton' }],
 ];
 
 export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };
