@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-import { formatNumber } from '../utils/formatNumber.js';
 import { bfUrl } from '../../token.js';
 
 export const getChatCurValue = (textInner) => {
@@ -9,5 +8,6 @@ export const getChatCurValue = (textInner) => {
 
   return axios
     .get(`${bfUrl}/ticker/${queryParams}`)
-    .then((response) => response.data[0]);
+    .then((response) => response.data[0])
+    .catch((error) => console.log(error));
 };

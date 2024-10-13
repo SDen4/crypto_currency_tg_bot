@@ -226,10 +226,15 @@ export const sendBannedUserIdMsg = async (bot, chatId, text) => {
 };
 
 export const thankDonateStarMsg = async (bot, msg) => {
+  // TODO добавить chatId параметром функции, тк от по-разному определяется в messages и buttons
   await bot.sendMessage(
     msg?.chat?.id,
     `Thank you, ${
       msg?.from?.first_name || msg?.from?.username || 'dude'
     }, for supporting us!`,
   );
+};
+
+export const sendErrorMessage = async (error, bot, chatId) => {
+  await bot.sendMessage(chatId, `Error: "${error}"`);
 };

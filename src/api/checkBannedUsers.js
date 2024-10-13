@@ -6,7 +6,8 @@ export const checkBannedUsers = async (bot, chatId) => {
 
   const data = await axios
     .get(`${statUrl}bannedIds.json`)
-    .then((response) => response);
+    .then((response) => response)
+    .catch((error) => console.log(error));
 
   const allBannedUsersIds = await data.data;
 

@@ -1,22 +1,27 @@
 import axios from 'axios';
 import { statUrl } from '../../token.js';
 
+import { sendErrorMessage } from '../modules/messages.js';
+
 export const changeBannedUser = async (bot, chatId, msg, isBanFlag) => {
   const bannedId = msg.text;
+
   const allUsers = await axios
     .get(`${statUrl}users.json`)
-    .then((response) => response);
+    .then((response) => response)
+    .catch((error) => sendErrorMessage(error, bot, chatId));
 
-  const bannedUserObj = await Object.entries(allUsers.data).find(
+  const bannedUserObj = await Object.entries(allUsers?.data)?.find(
     (el) => String(el[1].id) === String(bannedId),
   );
 
-  const [bannedUserObjId, bannedUserObjData] = bannedUserObj;
+  const [bannedUserObjId, bannedUserObjData] = bannedUserObj || [null, null];
 
   // ============================ banned ids api ============================ //
   const data = await axios
     .get(`${statUrl}bannedIds.json`)
-    .then((response) => response);
+    .then((response) => response)
+    .catch((error) => sendErrorMessage(error, bot, chatId));
   const allBannedUsersIds = await data.data;
 
   if (isBanFlag) {

@@ -94,12 +94,12 @@ const messageFunc = async (msg) => {
     checkAddressMode = null;
   }
   // Ban user
-  else if (isBanUser) {
+  else if (isBanUser && !isNaN(Number(text))) {
     await changeBannedUser(bot, chatId, msg, true);
     isBanUser = false;
   }
   // Unban user
-  else if (isUnbanUser) {
+  else if (isUnbanUser && !isNaN(Number(text))) {
     await changeBannedUser(bot, chatId, msg, false);
     isUnbanUser = false;
   }

@@ -3,6 +3,7 @@ import ChartJSImage from 'chart.js-image';
 
 import { bfUrl } from '../../token.js';
 import { timestamp } from '../utils/timestamp.js';
+import { sendErrorMessage } from './messages.js';
 
 // TODO: add tooltips
 export const getChart = async (
@@ -72,6 +73,7 @@ export const getChart = async (
         });
       });
     })
+    .catch((error) => sendErrorMessage(error, bot, chatId))
     .finally(() => {
       bot.deleteMessage(chatId, msg.message.message_id);
     });
