@@ -86,6 +86,7 @@ export const cndtnCurrencies = (text) =>
     'omg',
     'xdc',
     'ethw:usd',
+    'pepe',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 export const cndtnInfo = (text) =>

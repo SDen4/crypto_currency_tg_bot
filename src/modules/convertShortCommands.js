@@ -114,6 +114,9 @@ export const convertShortCommands = (text) => {
     case 'xdc':
       return '/xdcusd';
 
+    case 'pepe':
+      return '/pepe:usd';
+
     default:
       return text;
   }

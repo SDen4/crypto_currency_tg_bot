@@ -52,23 +52,26 @@ export const btnsCurrenciesArr = [
   [
     { text: 'GALA/USD', callback_data: '/gala:usd' },
     { text: 'HI/USD', callback_data: '/hixusd' },
-    { text: 'HMSTR/USD', callback_data: '/hmstr:usd' },
-  ],
-  [
-    { text: 'HMSTR/USDt', callback_data: '/hmstr:ust' },
     { text: 'IOTA/USD', callback_data: '/iotusd' },
-    { text: 'LEO/USD', callback_data: '/leousd' },
   ],
   [
+    { text: 'HMSTR/USD', callback_data: '/hmstr:usd' },
+    { text: 'HMSTR/USDt', callback_data: '/hmstr:ust' },
+  ],
+  [
+    { text: 'LEO/USD', callback_data: '/leousd' },
     { text: 'LINK/USD', callback_data: '/link:usd' },
     { text: 'LTC/USD', callback_data: '/ltcusd' },
-    { text: 'MATIC/USD', callback_data: '/matic:usd' },
-    { text: 'NEO/USD', callback_data: '/neousd' },
   ],
   [
+    { text: 'MATIC/USD', callback_data: '/matic:usd' },
+    { text: 'NEO/USD', callback_data: '/neousd' },
     { text: 'NOT/USD', callback_data: '/notusd' },
+  ],
+  [
     { text: 'OMG/USD', callback_data: '/omgusd' },
     { text: 'PAX/USD', callback_data: '/paxusd' },
+    { text: 'PEPE/USD', callback_data: '/pepe:usd' },
     { text: 'SOL/USD', callback_data: '/solusd' },
   ],
   [
