@@ -130,6 +130,7 @@ const keyboardStart = [
     { text: 'Donate', callback_data: '/donate' },
   ],
   checkAddrBtns,
+  [{ text: 'Crypto Info', callback_data: '/cryptoInfo' }],
 ];
 const keyboardAdminStart = [
   ...keyboardStart,

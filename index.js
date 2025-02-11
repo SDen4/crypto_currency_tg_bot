@@ -41,6 +41,7 @@ import {
   cndtnBanUser,
   cndtnUnbanUser,
   cndtnThankAfterDonate,
+  cndtnCryptoInfo,
 } from './src/modules/conditions.js';
 import {
   unkCmd,
@@ -62,6 +63,7 @@ import {
   emojiMsg,
   checkAddressMsg,
   sendBannedUserIdMsg,
+  sendCryptoInfoMsg,
   thankDonateStarMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
@@ -160,6 +162,10 @@ const messageFunc = async (msg) => {
   else if (cndtnThankAfterDonate(msg)) {
     thankDonateStarMsg(bot, msg);
   }
+  // crypto info
+  else if (cndtnCryptoInfo(text)) {
+    await sendCryptoInfoMsg(bot, chatId, msg);
+  }
   // Unknown command
   else {
     unkCmd(bot, chatId);
@@ -246,6 +252,10 @@ const buttonsFunc = async (msg) => {
   else if (cndtnUnbanUser(text, msg)) {
     await sendBannedUserIdMsg(bot, chatId, 'unbanned');
     isUnbanUser = true;
+  }
+  // crypto info
+  else if (cndtnCryptoInfo(text)) {
+    await sendCryptoInfoMsg(bot, chatId, msg);
   }
   // Currencies
   else {

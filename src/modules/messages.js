@@ -239,3 +239,17 @@ export const thankDonateStarMsg = async (bot, msg) => {
 export const sendErrorMessage = async (error, bot, chatId) => {
   await bot.sendMessage(chatId, `Error: "${error}"`);
 };
+
+export const sendCryptoInfoMsg = async (bot, chatId, msg) => {
+  await bot.sendMessage(
+    chatId,
+    `Hi ${msg?.from?.first_name || msg?.from?.username || 'dude'}!
+Crypto currency or just [crypto](https://en.wikipedia.org/wiki/Cryptocurrency) is a digital currency designed to work through a computer network that is not reliant on any central authority, such as a government or bank, to uphold or maintain it.
+- [History](https://en.wikipedia.org/wiki/Cryptocurrency#History)
+- [Architecture](https://en.wikipedia.org/wiki/Cryptocurrency#Architecture)
+- [Regulation](https://en.wikipedia.org/wiki/Cryptocurrency#Regulation)
+- [Legality](https://en.wikipedia.org/wiki/Cryptocurrency#Legality)
+`,
+    { parse_mode: 'markdown', disable_web_page_preview: true },
+  );
+};

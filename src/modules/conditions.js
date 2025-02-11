@@ -205,3 +205,12 @@ export const cndtnTgStarDonateBtn = (text) =>
 export const cndtnThankAfterDonate = (msg) => {
   return msg?.text === undefined && msg?.successful_payment?.total_amount > 0;
 };
+
+export const cndtnCryptoInfo = (t) =>
+  t.toLowerCase() === '/cryptoinfo' ||
+  [
+    "what's crypto",
+    'what is crypto?',
+    'what is crypto',
+    'crypto currency',
+  ].includes(t.toLowerCase());
