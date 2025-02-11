@@ -5,5 +5,5 @@
  * @return {*} string in lower case
  */
 export const cndtnFunc = (text) => {
-  return String(text)?.toLocaleLowerCase();
+  return String(text)?.toLowerCase();
 };

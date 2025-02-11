@@ -107,33 +107,37 @@ const messageFunc = async (msg) => {
   else if (cndtnInfo(text)) {
     menu(bot, chatId, msg);
   }
-  // Short commands
-  else if (cndtnCurrencies(text)) {
-    const formatText = convertShortCommands(text);
-    bfHttpRequest(bot, chatId, formatText);
+  // All Currencies
+  else if (cndtnCurrenciesBtns(text)) {
+    allCurrencies(bot, chatId);
   }
-  // Secret
-  else if (cndtnSecret(text)) {
-    secret(bot, chatId);
+  // BTC Block Info
+  else if (cndtnBtcBlockInfo(text)) {
+    btcBlockInfo(bot, chatId);
   }
   // Timer
   else if (cndtnFunc(text).includes('/timer')) {
     timer(bot, chatId, text, selectedCurrency);
     selectedCurrency = '';
   }
-  // BTC Block Info
-  else if (cndtnBtcBlockInfo(text)) {
-    btcBlockInfo(bot, chatId);
-  }
-  // All Currencies
-  else if (cndtnCurrenciesBtns(text)) {
-    allCurrencies(bot, chatId);
-  }
+
   // Calculate Pool
   else if (cndtnPool(text)) {
     pool(bot, chatId, text);
   } else if (text === '/pool') {
     poolMsg(bot, chatId);
+  }
+  // Eug function
+  else if (cndtnEugFunc(text, msg)) {
+    await Promise.all([
+      bfHttpRequest(bot, chatId, '/btcusd'),
+      btcBlockInfo(bot, chatId),
+    ]);
+  }
+  // Short commands
+  else if (cndtnCurrencies(text)) {
+    const formatText = convertShortCommands(text);
+    bfHttpRequest(bot, chatId, formatText);
   }
   // Statistic
   else if (cndtnStatistic(text, msg)) {
@@ -144,12 +148,9 @@ const messageFunc = async (msg) => {
     const stat = await getUsers();
     await statisticUsersMsg(bot, chatId, stat);
   }
-  // Eug function
-  else if (cndtnEugFunc(text, msg)) {
-    await Promise.all([
-      bfHttpRequest(bot, chatId, '/btcusd'),
-      btcBlockInfo(bot, chatId),
-    ]);
+  // Secret
+  else if (cndtnSecret(text)) {
+    secret(bot, chatId);
   }
   // Emoji messages
   else if (cndtnEmoji(text)) {
@@ -180,9 +181,19 @@ const buttonsFunc = async (msg) => {
   // Charts
   if (text === '/charts') {
     sendChartCurBtns(bot, chatId);
-  } else if (text.includes('_set_chart')) {
+  }
+  // set charts
+  else if (text.includes('_set_chart')) {
     const curValue = await getChatCurValue(text);
     await getChart(bot, chatId, text, msg, curValue);
+  }
+  // All Currencies
+  else if (cndtnCurrenciesBtns(text)) {
+    allCurrencies(bot, chatId);
+  }
+  // BTC Block Info
+  else if (cndtnBtcBlockInfo(text)) {
+    btcBlockInfo(bot, chatId);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {
@@ -208,17 +219,9 @@ const buttonsFunc = async (msg) => {
   } else if (cndtnTgStarDonateBtn(text)) {
     sendTgStarInvoice(bot, chatId, text);
   }
-  // All Currencies
-  else if (cndtnCurrenciesBtns(text)) {
-    allCurrencies(bot, chatId);
-  }
   // Timer
   else if (text.includes('/timer')) {
     timer(bot, chatId, text, selectedCurrency);
-  }
-  // BTC Block Info
-  else if (cndtnBtcBlockInfo(text)) {
-    btcBlockInfo(bot, chatId);
   }
   // Calculate Pool
   else if (text === '/pool') {

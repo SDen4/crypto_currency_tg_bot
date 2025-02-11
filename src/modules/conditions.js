@@ -119,6 +119,7 @@ export const cndtnStart = (text) =>
     'begin',
     'hello',
     'hey',
+    'ghbdtn',
     'привет',
     'привте',
     'превет',

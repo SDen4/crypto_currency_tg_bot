@@ -35,6 +35,7 @@ export const start = async (bot, chatId, msg) => {
   const text2 = 'Use menu to see available commands';
   await bot.sendMessage(chatId, text1);
   await bot.sendMessage(chatId, text2);
+  await bot.sendMessage(chatId, 'Menu', btnsStart);
 };
 
 export const menu = async (bot, chatId, msg) => {
