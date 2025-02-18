@@ -124,7 +124,6 @@ const messageFunc = async (msg) => {
     timer(bot, chatId, text, selectedCurrency);
     selectedCurrency = '';
   }
-
   // Calculate Pool
   else if (cndtnPool(text)) {
     pool(bot, chatId, text);
@@ -156,10 +155,6 @@ const messageFunc = async (msg) => {
   else if (cndtnSecret(text)) {
     secret(bot, chatId);
   }
-  // Emoji messages
-  else if (cndtnEmoji(text)) {
-    emojiMsg(text, bot, chatId);
-  }
   // thaks after telegram stars donate
   else if (cndtnThankAfterDonate(msg)) {
     thankDonateStarMsg(bot, msg);
@@ -167,6 +162,10 @@ const messageFunc = async (msg) => {
   // crypto info
   else if (cndtnCryptoInfo(text)) {
     await sendCryptoInfoMsg(bot, chatId, msg);
+  }
+  // Emoji messages
+  else if (cndtnEmoji(text)) {
+    emojiMsg(text, bot, chatId);
   }
   // Unknown command
   else {
