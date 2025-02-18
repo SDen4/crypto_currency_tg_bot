@@ -145,6 +145,13 @@ export const cndtnStatistic = (t, msg) => {
   return false;
 };
 
+export const cndtnStatisticQuantity = (t, msg) => {
+  const reader = msg.from.id === statChatId;
+  const isRigthCommand = String(t)?.toLocaleLowerCase() === 'usersquantity';
+
+  return isRigthCommand && reader;
+};
+
 export const cndtnBanUser = (t, msg) => {
   if (t.toLowerCase() === 'banuser' && msg.from.id === statChatId) return true;
   return false;

@@ -136,7 +136,10 @@ const keyboardAdminStart = [
   ...keyboardStart,
   [
     { text: 'Users', callback_data: 'users' },
+    { text: 'Users quantity', callback_data: 'usersquantity' },
     { text: 'Last 10', callback_data: 'stat' },
+  ],
+  [
     { text: 'Ban user', callback_data: 'banuser' },
     { text: 'Unban user', callback_data: 'unbanuser' },
   ],

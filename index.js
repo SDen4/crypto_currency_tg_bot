@@ -9,6 +9,7 @@ import { cndtnFunc } from './src/utils/cndtnFunc.js';
 import { bfHttpRequest } from './src/api/bfHttpRequest.js';
 import { getUsers } from './src/api/getUsers.js';
 import { getVisits } from './src/api/getVisits.js';
+import { getUsersQuantity } from './src/api/getUsersQuantity.js';
 import { getAddressInfo } from './src/api/getAddressInfo.js';
 import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
@@ -30,6 +31,7 @@ import {
   cndtnBtcBlockInfo,
   cndtnPool,
   cndtnStatistic,
+  cndtnStatisticQuantity,
   cndtnStatisticUsers,
   cndtnEugFunc,
   cndtnEmoji,
@@ -242,6 +244,11 @@ const buttonsFunc = async (msg) => {
   else if (cndtnStatistic(text, msg)) {
     const stat = await getVisits();
     await statisticMsg(bot, chatId, stat, 10);
+  }
+  // Statistic (unique visitors quantity)
+  else if (cndtnStatisticQuantity(text, msg)) {
+    const usersQuantity = await getUsersQuantity();
+    await bot.sendMessage(chatId, `Total: ${usersQuantity} unique visitors`);
   }
   // Ban user (message: send Id)
   else if (cndtnBanUser(text, msg)) {
