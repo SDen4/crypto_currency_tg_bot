@@ -1,9 +1,12 @@
 export const convertShortCommands = (text) => {
-  switch (String(text)?.toLocaleLowerCase().trim()) {
+  switch (String(text)?.toLowerCase().trim()) {
     case 'btc':
       return '/btcusd';
 
     case 'bitcoin':
+      return '/btcusd';
+
+    case 'bit coin':
       return '/btcusd';
 
     case 'eth':
@@ -93,11 +96,17 @@ export const convertShortCommands = (text) => {
     case 'neo':
       return '/neousd';
 
+    case 'not':
+      return '/notusd';
+
     case 'xaut':
       return '/xaut:usd';
 
     case 'ton':
       return '/tonusd';
+
+    case 'trx':
+      return '/trxusd';
 
     case 'not':
       return '/notusd';

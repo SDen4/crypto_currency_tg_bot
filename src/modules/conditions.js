@@ -4,89 +4,91 @@ import { checkAddrBtns, tgStarsCallbackData } from './buttons.js';
 
 export const cndtnCurrencies = (text) =>
   [
-    'btc',
-    'bitcoin',
-    'eth',
-    'usd',
-    'eur',
-    'eurt',
-    'usdt',
-    'usdc',
-    'doge',
     'ada',
+    'adausd',
     'algo',
+    'algusd',
+    'apeusd',
     'apt',
+    'aptusd',
+    'avax:usd',
     'avax',
     'axs',
+    'axsusd',
+    'bchn:usd',
     'bchn',
+    'bit coin',
+    'bitcoin',
+    'bsvusd',
+    'btc',
+    'btceur',
+    'btcusd',
     'clo',
+    'clousd',
     'dash',
+    'doge:usd',
+    'doge',
     'dot',
+    'dotusd',
+    'dshusd',
+    'dym',
     'eos',
+    'eosusd',
     'etc',
+    'eth',
+    'etheur',
+    'ethusd',
+    'ethw:usd',
+    'ethw',
+    'eur',
+    'eurt',
+    'euteur',
     'fil',
+    'filusd',
+    'ftm',
+    'ftm',
+    'ftmusd',
+    'gala:usd',
     'gala',
     'hi',
+    'hixusd',
     'iota',
+    'iotusd',
     'leo',
+    'leousd',
+    'link:usd',
     'link',
     'ltc',
-    'ton',
-    'matic',
-    'btcusd',
-    'btceur',
-    'ethusd',
-    'etheur',
-    'euteur',
-    'ltcusd',
     'ltceur',
-    'solusd',
-    'adausd',
-    'eosusd',
-    'aptusd',
-    'filusd',
-    'ustusd',
-    'doge:usd',
+    'ltcusd',
     'matic:usd',
-    'sushi:usd',
-    'link:usd',
-    'avax:usd',
-    'axsusd',
-    'dotusd',
-    'bchn:usd',
-    'udcusd',
-    'iotusd',
-    'trxusd',
-    'uniusd',
-    'gala:usd',
-    'leousd',
+    'matic',
+    'neo',
+    'neousd',
+    'not',
+    'omg',
     'paxusd',
-    'algusd',
-    'clousd',
-    'dshusd',
-    'hixusd',
-    'xcnusd',
+    'pepe',
+    'solusd',
+    'sushi:usd',
+    'ton',
+    'trx',
+    'trxusd',
+    'udcusd',
+    'uniusd',
+    'usd',
+    'usdc',
+    'usdt',
+    'ustusd',
     'xaut:usd',
     'xaut',
+    'xcnusd',
+    'xdc',
     'xlmusd',
     'xmrusd',
     'xrpusd',
     'xtzusd',
-    'apeusd',
-    'bsvusd',
     'yfiusd',
-    'neousd',
-    'neo',
-    'ftmusd',
-    'ftm',
-    'ethw',
-    'not',
-    'dym',
-    'ftm',
-    'omg',
-    'xdc',
-    'ethw:usd',
-    'pepe',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 export const cndtnInfo = (text) =>
@@ -116,7 +118,6 @@ export const cndtnStart = (text) =>
     'start',
     'ыефке',
     'старт',
-    'begin',
     'hello',
     'hey',
     'ghbdtn',
@@ -124,6 +125,7 @@ export const cndtnStart = (text) =>
     'привте',
     'превет',
     'превед',
+    'yo',
     'хай',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
@@ -153,19 +155,15 @@ export const cndtnStatisticQuantity = (t, msg) => {
 };
 
 export const cndtnBanUser = (t, msg) => {
-  if (t.toLowerCase() === 'banuser' && msg.from.id === statChatId) return true;
-  return false;
+  return t.toLowerCase() === 'banuser' && msg.from.id === statChatId;
 };
 
 export const cndtnUnbanUser = (t, msg) => {
-  if (t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId)
-    return true;
-  return false;
+  return t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
 };
 
 export const cndtnStatisticUsers = (t, msg) => {
-  if (t?.toLowerCase() === 'users' && msg.from.id === statChatId) return true;
-  return false;
+  return t?.toLowerCase() === 'users' && msg.from.id === statChatId;
 };
 
 export const cndtnEugFunc = (text, msg) => {
@@ -177,29 +175,21 @@ export const cndtnEugFunc = (text, msg) => {
   );
 };
 
-export const cndtnEmoji = (text) => {
-  return /\p{Emoji}/u.test(text);
-};
+export const cndtnEmoji = (text) => /\p{Emoji}/u.test(text);
 
 export const cndtnDonate = (text) => {
-  if (
+  return (
     text === '/copyAddressBTC' ||
     text === '/copyAddressETH' ||
     text === '/copyAddressDoge' ||
     text === '/copyAddressLightning'
-  ) {
-    return true;
-  }
-  return false;
+  );
 };
 
 export const cndtnTgStarDonate = (text) => text === '/sendTelegramStarInvoice';
 
 export const cndtnDonateQr = (text) => {
-  if (text === '/showQrBtc' || text === '/showQrLightning') {
-    return true;
-  }
-  return false;
+  return text === '/showQrBtc' || text === '/showQrLightning';
 };
 
 export const cndtnCheckAddress = (text) => {
@@ -220,4 +210,5 @@ export const cndtnCryptoInfo = (t) =>
     'what is crypto?',
     'what is crypto',
     'crypto currency',
+    'i am beginner',
   ].includes(t.toLowerCase());
