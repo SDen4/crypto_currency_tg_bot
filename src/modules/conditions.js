@@ -111,6 +111,7 @@ export const cndtnSecret = (text) =>
     'good bot',
     'great',
     'excelent',
+    'cool',
   ].includes(cndtnFunc(String(text).replace('/', '')));
 
 export const cndtnStart = (text) =>
@@ -135,8 +136,6 @@ export const cndtnBtcBlockInfo = (text) =>
   );
 
 export const cndtnPool = (text) => {
-  if (!isNaN(text)) return false;
-
   const formatText = String(text).trim()[0] / 2;
   return typeof formatText === 'number' && !isNaN(formatText);
 };
@@ -145,8 +144,7 @@ export const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
   const text = String(t)?.toLocaleLowerCase().match(/\D+/g)?.[0].trim();
 
-  if (['stat', '/stat', 'стат'].includes(text) && reader) return true;
-  return false;
+  return ['stat', '/stat', 'стат'].includes(text) && reader;
 };
 
 export const cndtnStatisticQuantity = (t, msg) => {

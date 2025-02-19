@@ -1,21 +1,37 @@
 import axios from 'axios';
 
-import { mpCurBlockUrl, mpHashUrl, mpLastBlock } from '../../token.js';
+import { sendErrorMessage } from '../modules/messages.js';
+import {
+  mpCurBlockUrl,
+  mpHashUrl,
+  mpLastBlock,
+  statChatId,
+} from '../../token.js';
 
-export const mpCurBlockRequest = () =>
+export const mpCurBlockRequest = (bot) =>
   axios
     .get(mpCurBlockUrl)
     .then((r) => r.data)
-    .catch((error) => console.log(error));
+    .catch((error) =>
+      sendErrorMessage(`Error in mpCurBlockRequest: ${error}`, bot, statChatId),
+    );
 
-export const mpHashRequest = () =>
+export const mpHashRequest = (bot) =>
   axios
     .get(mpHashUrl)
     .then((r) => r.data)
-    .catch((error) => console.log(error));
+    .catch((error) =>
+      sendErrorMessage(`Error in mpHashRequest: ${error}`, bot, statChatId),
+    );
 
-export const mpLastBlockRequest = (hash) =>
+export const mpLastBlockRequest = (bot, hash) =>
   axios
     .get(`${mpLastBlock}${hash}`)
     .then((r) => r.data)
-    .catch((error) => console.log(error));
+    .catch((error) =>
+      sendErrorMessage(
+        `Error in mpLastBlockRequest: ${error}`,
+        bot,
+        statChatId,
+      ),
+    );

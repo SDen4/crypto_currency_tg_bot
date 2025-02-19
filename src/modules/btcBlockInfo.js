@@ -10,11 +10,11 @@ import { timestamp } from '../utils/timestamp.js';
 export const btcBlockInfo = async (bot, chatId) => {
   try {
     const [hash, allData] = await Promise.all([
-      mpHashRequest(),
-      mpCurBlockRequest(),
+      mpHashRequest(bot),
+      mpCurBlockRequest(bot),
     ]);
 
-    const lastBlock = await mpLastBlockRequest(hash);
+    const lastBlock = await mpLastBlockRequest(bot, hash);
 
     if (allData?.length) {
       await bot.sendMessage(

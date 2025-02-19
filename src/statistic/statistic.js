@@ -5,12 +5,12 @@ import { postUsers } from '../api/postUsers.js';
 
 let userIds = [];
 
-export const saveStat = async (msg) => {
+export const saveStat = async (bot, msg) => {
   const id = msg?.from?.id || msg?.chat?.id;
   if (id === statChatId) return;
 
   if (!userIds.length) {
-    const users = await getUsers();
+    const users = await getUsers(bot);
 
     userIds = Object.values(users?.data).map((el) => el?.id);
   }
@@ -29,8 +29,8 @@ export const saveStat = async (msg) => {
 
     userIds.push(id);
 
-    await postUsers(newUser);
+    await postUsers(bot, newUser);
   }
 
-  await postMsg(msg);
+  await postMsg(bot, msg);
 };

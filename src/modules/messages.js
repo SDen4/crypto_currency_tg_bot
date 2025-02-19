@@ -158,21 +158,25 @@ export const poolMsg = async (bot, chatId) => {
 };
 
 export const statisticMsg = async (bot, chatId, stat, quant) => {
-  const formatStat = Object.values(stat.data)
-    .slice(-quant)
-    .map((el, i) => {
-      const date = el?.message?.date || el?.date;
-      const firstName = el?.chat?.first_name || el?.from?.first_name;
-      const id = el?.chat?.id || el?.from?.id;
-      const username = el?.chat?.username || el?.from?.username || '';
-      const text = el?.text || el?.data;
-      const lang = el?.from?.language_code;
+  const formatStat = stat?.data
+    ? Object.values(stat.data)
+        .slice(-quant)
+        .map((el, i) => {
+          const date = el?.message?.date || el?.date;
+          const firstName = el?.chat?.first_name || el?.from?.first_name;
+          const id = el?.chat?.id || el?.from?.id;
+          const username = el?.chat?.username || el?.from?.username || '';
+          const text = el?.text || el?.data;
+          const lang = el?.from?.language_code;
 
-      return `${i + 1}. ${timestamp(date)} | ${firstName} (<code>${id}</code>${
-        username && '/'
-      }<code>${username}</code>) | ${lang} | text: ${text}\n`;
-    })
-    .join('');
+          return `${i + 1}. ${timestamp(
+            date,
+          )} | ${firstName} (<code>${id}</code>${
+            username && '/'
+          }<code>${username}</code>) | ${lang} | text: ${text}\n`;
+        })
+        .join('')
+    : 'Error! No data...';
 
   await bot.sendMessage(
     chatId,

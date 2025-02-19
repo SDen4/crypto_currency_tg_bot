@@ -82,7 +82,7 @@ const messageFunc = async (msg) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
-  saveStat(msg);
+  saveStat(bot, msg);
 
   const isBannedUser = await checkBannedUsers(bot, chatId);
   if (isBannedUser) return null;
@@ -145,10 +145,10 @@ const messageFunc = async (msg) => {
   // Statistic
   else if (cndtnStatistic(text, msg)) {
     const quant = Number(String(text).match(/\d+/g)?.[0]) || 10;
-    const stat = await getVisits();
+    const stat = await getVisits(bot);
     await statisticMsg(bot, chatId, stat, quant);
   } else if (cndtnStatisticUsers(text, msg)) {
-    const stat = await getUsers();
+    const stat = await getUsers(bot);
     await statisticUsersMsg(bot, chatId, stat);
   }
   // Secret
@@ -179,7 +179,7 @@ const buttonsFunc = async (msg) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
-  saveStat(msg);
+  saveStat(bot, msg);
 
   const isBannedUser = await checkBannedUsers(bot, chatId);
   if (isBannedUser) return null;
@@ -191,7 +191,7 @@ const buttonsFunc = async (msg) => {
   }
   // set charts
   else if (text.includes('_set_chart')) {
-    const curValue = await getChatCurValue(text);
+    const curValue = await getChatCurValue(bot, text);
     await getChart(bot, chatId, text, msg, curValue);
   }
   // All Currencies
@@ -236,17 +236,17 @@ const buttonsFunc = async (msg) => {
   }
   // Statistic (Users)
   else if (cndtnStatisticUsers(text, msg)) {
-    const stat = await getUsers();
+    const stat = await getUsers(bot);
     await statisticUsersMsg(bot, chatId, stat);
   }
   // Statistic (visits 10)
   else if (cndtnStatistic(text, msg)) {
-    const stat = await getVisits();
+    const stat = await getVisits(bot);
     await statisticMsg(bot, chatId, stat, 10);
   }
   // Statistic (unique visitors quantity)
   else if (cndtnStatisticQuantity(text, msg)) {
-    const usersQuantity = await getUsersQuantity();
+    const usersQuantity = await getUsersQuantity(bot);
     await bot.sendMessage(chatId, `Total: ${usersQuantity} unique visitors`);
   }
   // Ban user (message: send Id)

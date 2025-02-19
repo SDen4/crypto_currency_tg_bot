@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+import { sendErrorMessage } from '../modules/messages.js';
 import { statUrl, statChatId } from '../../token.js';
 
 export const checkBannedUsers = async (bot, chatId) => {
@@ -7,7 +9,9 @@ export const checkBannedUsers = async (bot, chatId) => {
   const data = await axios
     .get(`${statUrl}bannedIds.json`)
     .then((response) => response)
-    .catch((error) => console.log(error));
+    .catch((error) =>
+      sendErrorMessage(`Error in checkBannedUsers: ${error}`, bot, statChatId),
+    );
 
   const allBannedUsersIds = await data.data;
 
