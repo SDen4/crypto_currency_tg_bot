@@ -7,6 +7,7 @@ export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
+  let promise;
 
   return (promise = axios.get(`${bfUrl}/${pathParams}/${queryParams}`).then(
     (response) => {
