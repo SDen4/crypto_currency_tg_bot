@@ -22,6 +22,7 @@ import {
   btnsDonate,
   donateTgStarsBtns,
 } from './buttons.js';
+import { formatNumber } from '../utils/formatNumber.js';
 import { timestamp } from '../utils/timestamp.js';
 
 export const unkCmd = async (bot, chatId) => {
@@ -257,3 +258,18 @@ Crypto currency or just [crypto](https://en.wikipedia.org/wiki/Cryptocurrency) i
     { parse_mode: 'markdown', disable_web_page_preview: true },
   );
 };
+
+export const currencyMsg = (title, data, recommendationText) =>
+  `${title}: ${formatNumber(data[0])}
+-----------------------------------
+24h: ${formatNumber(data[5] * 100, 2, '%')} ${data[5] * 100 < 0 ? '⬇️' : '⬆️'}
+Price of the last trade: ${formatNumber(data[6])}
+Price of the last lowest ask: ${formatNumber(data[2])}
+Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
+Sum of the 25 lowest ask sizes: ${formatNumber(data[3], 2)}
+Daily high: ${formatNumber(data[8])}
+Daily low: ${formatNumber(data[9])}
+Daily volume: ${formatNumber(data[7], 0)}
+Amount that the last price has changed since yesterday: ${formatNumber(data[4])}
+-----------------------------------
+Recommendation: ${recommendationText}`;

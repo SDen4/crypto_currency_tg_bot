@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { formatNumber } from '../utils/formatNumber.js';
+import { chartBtn } from '../modules/buttons.js';
+import { currencyMsg } from '../modules/messages.js';
 import { bfUrl } from '../../token.js';
 
 export const bfHttpRequest = (bot, chatId, textInner, msg) => {
@@ -14,7 +15,7 @@ export const bfHttpRequest = (bot, chatId, textInner, msg) => {
       (response) => {
         const data = response.data;
         const isBuy = Number(data?.[1]) < Number(data?.[3]);
-        const isBuyText = isBuy ? 'Buy 🟢' : 'Sell 🔴';
+        const recommendationText = isBuy ? 'Buy 🟢' : 'Sell 🔴';
 
         let title =
           String(text).length === 7
@@ -33,21 +34,11 @@ export const bfHttpRequest = (bot, chatId, textInner, msg) => {
         if (text === '/hmstr:usd') title = 'HUMSTER/USD';
         if (text === '/hmstr:ust') title = 'HUMSTER/USDt';
 
-        const answer = `${title}: ${formatNumber(data[0])}
------------------------------------
-24h: ${formatNumber(data[5] * 100, 2, '%')} ${data[5] * 100 < 0 ? '⬇️' : '⬆️'}
-Price of the last trade: ${formatNumber(data[6])}
-Price of the last lowest ask: ${formatNumber(data[2])}
-Sum of the 25 highest bid sizes: ${formatNumber(data[1], 2)}
-Sum of the 25 lowest ask sizes: ${formatNumber(data[3], 2)}
-Daily high: ${formatNumber(data[8])}
-Daily low: ${formatNumber(data[9])}
-Daily volume: ${formatNumber(data[7], 0)}
-Amount that the last price has changed since yesterday: ${formatNumber(data[4])}
------------------------------------
-Recommendation: ${isBuyText}`;
+        // message text
+        const answer = currencyMsg(title, data, recommendationText);
+        const chartButton = chartBtn(`${textInner}_set_chart`);
 
-        bot.sendMessage(chatId, answer);
+        bot.sendMessage(chatId, answer, chartButton);
       },
       (error) => {
         bot.sendMessage(chatId, `No data... Error: ${error}`);

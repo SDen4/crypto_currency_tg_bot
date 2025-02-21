@@ -137,7 +137,7 @@ const messageFunc = async (msg) => {
       btcBlockInfo(bot, chatId),
     ]);
   }
-  // Short commands
+  // Short commands (currencies)
   else if (cndtnCurrencies(text)) {
     const formatText = convertShortCommands(text);
     bfHttpRequest(bot, chatId, formatText);

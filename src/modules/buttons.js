@@ -214,3 +214,7 @@ const inlineKeyboard = tgStarsCallbackData.map((el, i) => ({
 export const donateTgStarsBtns = {
   reply_markup: { inline_keyboard: [inlineKeyboard] },
 };
+
+export const chartBtn = (callback_data) => ({
+  reply_markup: { inline_keyboard: [[{ text: '📈 Chart', callback_data }]] },
+});
