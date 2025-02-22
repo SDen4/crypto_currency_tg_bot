@@ -29,6 +29,7 @@ import {
   cndtnSecret,
   cndtnStart,
   cndtnBtcBlockInfo,
+  cndtnBtcBlockInfoRefresh,
   cndtnPool,
   cndtnStatistic,
   cndtnStatisticQuantity,
@@ -201,6 +202,10 @@ const buttonsFunc = async (msg) => {
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
     btcBlockInfo(bot, chatId);
+  }
+  // BTC Block Info (REFRESH)
+  else if (cndtnBtcBlockInfoRefresh(text)) {
+    btcBlockInfo(bot, chatId, true);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {

@@ -3,11 +3,13 @@ import {
   mpHashRequest,
   mpLastBlockRequest,
 } from '../api/mpHttpRequest.js';
-import { sendErrorMessage } from './messages.js';
+import { refreshBtcBlockInfo } from '../modules/buttons.js';
+import { sendErrorMessage, btcBlockInfoMsg } from './messages.js';
 
-import { timestamp } from '../utils/timestamp.js';
+let messageId = '';
+let refreshBtnMessageId = '';
 
-export const btcBlockInfo = async (bot, chatId) => {
+export const btcBlockInfo = async (bot, chatId, isRefresh) => {
   try {
     const [hash, allData] = await Promise.all([
       mpHashRequest(bot),
@@ -17,24 +19,34 @@ export const btcBlockInfo = async (bot, chatId) => {
     const lastBlock = await mpLastBlockRequest(bot, hash);
 
     if (allData?.length) {
-      await bot.sendMessage(
-        chatId,
-        `Last block:\n - ${timestamp(lastBlock?.timestamp, true)}\n - id: ${
-          lastBlock?.height || '?'
-        }\n - transactions: ${
-          lastBlock?.tx_count || '?'
-        }\n-------------------------------\nCurrent block:\n - median fee: ${Math.ceil(
-          allData[0].medianFee,
-        ).toFixed()} sat/vB\n - total fees: ${(
-          Math.ceil(allData[0].totalFees) / 100000000
-        ).toFixed(3)} BTC\n - size: ${(allData[0].blockSize / 1000000).toFixed(
-          2,
-        )} MB\n - transactions: ${allData[0].nTx}`,
-      );
+      if (isRefresh) {
+        await bot.editMessageText(btcBlockInfoMsg(lastBlock, allData), {
+          chat_id: chatId,
+          message_id: messageId,
+        });
+      } else {
+        const sentMessage = await bot.sendMessage(
+          chatId,
+          btcBlockInfoMsg(lastBlock, allData),
+        );
+
+        const sentRefresh = await bot.sendMessage(
+          chatId,
+          'Refresh',
+          refreshBtcBlockInfo,
+        );
+
+        messageId = sentMessage.message_id;
+        refreshBtnMessageId = sentRefresh.message_id;
+      }
     } else {
-      await bot.sendMessage(chatId, 'No data');
+      await bot.sendMessage(chatId, 'No data in BTC Blocks Info');
     }
   } catch (error) {
+    bot.deleteMessage(chatId, refreshBtnMessageId);
     sendErrorMessage(String(error), bot, chatId);
+
+    refreshBtnMessageId = '';
+    messageId = '';
   }
 };
