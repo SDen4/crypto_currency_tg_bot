@@ -140,6 +140,10 @@ const keyboardAdminStart = [
     { text: 'Last 10', callback_data: 'stat' },
   ],
   [
+    { text: 'Unic users chart', callback_data: 'unicuserschart' },
+    { text: 'Unic users by dates', callback_data: 'unicusersbydates' },
+  ],
+  [
     { text: 'Ban user', callback_data: 'banuser' },
     { text: 'Unban user', callback_data: 'unbanuser' },
   ],
