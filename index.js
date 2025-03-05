@@ -36,6 +36,7 @@ import {
   cndtnStart,
   cndtnBtcBlockInfo,
   cndtnBtcBlockInfoRefresh,
+  cndtnCurrencyRefresh,
   cndtnPool,
   cndtnStatistic,
   cndtnStatisticQuantity,
@@ -212,6 +213,11 @@ const buttonsFunc = async (msg) => {
   // BTC Block Info (REFRESH)
   else if (cndtnBtcBlockInfoRefresh(text)) {
     btcBlockInfo(bot, chatId, true);
+  }
+  // Currency (REFRESH)
+  else if (cndtnCurrencyRefresh(text)) {
+    const textRequest = text.slice(0, -16);
+    bfHttpRequest(bot, chatId, textRequest, msg, true);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {

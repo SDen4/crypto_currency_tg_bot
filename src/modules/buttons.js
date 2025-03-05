@@ -219,11 +219,21 @@ export const donateTgStarsBtns = {
   reply_markup: { inline_keyboard: [inlineKeyboard] },
 };
 
-export const chartBtn = (callback_data) => ({
-  reply_markup: { inline_keyboard: [[{ text: '📈 Chart', callback_data }]] },
+export const chartBtns = (callback_data) => ({
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: '📈 Chart', callback_data: `${callback_data}_set_chart` },
+        {
+          text: '🔄 Refresh',
+          callback_data: `${callback_data}_currencyRefresh`,
+        },
+      ],
+    ],
+  },
 });
 
-export const refreshBtcBlockInfo = {
+export const refreshBtcBlockInfoBtns = {
   reply_markup: {
     inline_keyboard: [
       [{ text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' }],

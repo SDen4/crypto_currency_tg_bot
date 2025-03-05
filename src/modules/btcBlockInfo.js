@@ -3,8 +3,8 @@ import {
   mpHashRequest,
   mpLastBlockRequest,
 } from '../api/mpHttpRequest.js';
-import { refreshBtcBlockInfo } from '../modules/buttons.js';
-import { sendErrorMessage, btcBlockInfoMsg } from './messages.js';
+import { refreshBtcBlockInfoBtns } from '../modules/buttons.js';
+import { btcBlockInfoMsg } from './messages.js';
 
 let messageId = '';
 let refreshBtnMessageId = '';
@@ -32,8 +32,8 @@ export const btcBlockInfo = async (bot, chatId, isRefresh) => {
 
         const sentRefresh = await bot.sendMessage(
           chatId,
-          'Refresh',
-          refreshBtcBlockInfo,
+          'More actions',
+          refreshBtcBlockInfoBtns,
         );
 
         messageId = sentMessage.message_id;
@@ -44,7 +44,10 @@ export const btcBlockInfo = async (bot, chatId, isRefresh) => {
     }
   } catch (error) {
     bot.deleteMessage(chatId, refreshBtnMessageId);
-    sendErrorMessage(String(error), bot, chatId);
+    bot.sendMessage(
+      chatId,
+      "Informaiton hasn't changed. Please, try again later",
+    );
 
     refreshBtnMessageId = '';
     messageId = '';
