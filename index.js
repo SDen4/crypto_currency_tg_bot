@@ -273,7 +273,7 @@ const buttonsFunc = async (msg) => {
   }
   // Statistic (Unic Users By Dates)
   else if (text === 'unicusersbydates') {
-    const chartData = await getUnicUsersChart(bot);
+    const chartData = await getUnicUsersChart(bot, true);
     await unicUsersByDates(bot, chatId, chartData);
   }
   // Ban user (message: send Id)

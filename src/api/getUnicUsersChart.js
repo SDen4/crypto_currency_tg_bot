@@ -1,9 +1,11 @@
 import axios from 'axios';
 
+import { weekDays } from '../constants/weekDays.js';
+import { formatDateNumber } from '../utils/formatDateNumber.js';
 import { sendErrorMessage } from '../modules/messages.js';
 import { statUrl, statChatId } from '../../token.js';
 
-export const getUnicUsersChart = async (bot) => {
+export const getUnicUsersChart = async (bot, isWeekDay) => {
   return await axios
     .get(`${statUrl}users.json`)
     .then((response) => {
@@ -11,9 +13,16 @@ export const getUnicUsersChart = async (bot) => {
         .map((el) => {
           const date = new Date(el.firstVisit);
 
-          return `${date.getUTCDate()}.${
-            date.getUTCMonth() + 1
-          }.${date.getUTCFullYear()}`;
+          let dateStr = `${formatDateNumber(
+            date.getUTCDate(),
+          )}.${formatDateNumber(
+            date.getUTCMonth() + 1,
+          )}.${date.getUTCFullYear()}`;
+
+          if (isWeekDay)
+            dateStr = `${dateStr} (${weekDays[date?.getUTCDay()]})`;
+
+          return dateStr;
         })
         .reduce((acc, cur) => {
           acc[cur] = (acc[cur] || 0) + 1;
