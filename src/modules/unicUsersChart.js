@@ -20,7 +20,7 @@ export const unicUsersChart = async (bot, chatId, chartData) => {
           ],
         },
         options: {
-          title: { display: true, text: 'Unic users' },
+          title: { display: true, text: 'New users' },
           legend: { display: false },
           scales: { yAxes: [{ ticks: { beginAtZero: false } }] },
         },
