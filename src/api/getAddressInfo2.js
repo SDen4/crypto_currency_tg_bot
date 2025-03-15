@@ -16,8 +16,6 @@ export const getAddressInfo2 = async (
 ) => {
   const formattedCurrency = formatCurrencyName(currency);
 
-  console.log('currency in 2nd: ', currency);
-
   if (checkIsMyAddress(bot, chatId, isMyRequest, msg)) return;
 
   try {
