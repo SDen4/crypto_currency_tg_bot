@@ -218,3 +218,10 @@ export const cndtnCryptoInfo = (t) =>
     'crypto currency',
     'i am beginner',
   ].includes(t.toLowerCase());
+
+export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
+  const reader = msg.from.id === statChatId;
+  const isRigthCommand = String(t) === command;
+
+  return isRigthCommand && reader;
+};

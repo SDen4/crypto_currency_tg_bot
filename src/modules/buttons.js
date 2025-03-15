@@ -147,6 +147,24 @@ const keyboardAdminStart = [
     { text: 'Ban user', callback_data: 'banuser' },
     { text: 'Unban user', callback_data: 'unbanuser' },
   ],
+  [
+    {
+      text: 'Check my BTC donate address',
+      callback_data: 'checkMyBtcDonateAddress',
+    },
+  ],
+  [
+    {
+      text: 'Check my ETH donate address',
+      callback_data: 'checkMyEthDonateAddress',
+    },
+  ],
+  [
+    {
+      text: 'Check my DOGE donate address',
+      callback_data: 'checkMyDogeDonateAddress',
+    },
+  ],
 ];
 
 export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };

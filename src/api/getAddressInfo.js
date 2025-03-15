@@ -1,23 +1,14 @@
 import axios from 'axios';
-import {
-  checkAddrUrl,
-  donateBtcAddress,
-  donateEthAddress,
-  donateDogeAddress,
-  donateLightningAddress,
-} from '../../token.js';
+
+import { checkAddrUrl } from '../../token.js';
+
+import { sendErrorMessage } from '../modules/messages.js';
+
+import { checkIsMyAddress } from '../utils/checkIsMyAddress.js';
 import { formatNumber } from '../utils/formatNumber.js';
 
-export const getAddressInfo = async (bot, chatId, msg, coin) => {
-  if (
-    msg?.text === donateBtcAddress ||
-    msg?.text === donateEthAddress ||
-    msg?.text === donateDogeAddress ||
-    msg?.text === donateLightningAddress
-  ) {
-    await bot.sendMessage(chatId, "Yeah dude that's my address");
-    return;
-  }
+export const getAddressInfo = async (bot, chatId, msg, coin, isMyRequest) => {
+  if (checkIsMyAddress(bot, chatId, isMyRequest, msg)) return;
 
   try {
     const result = await axios
@@ -35,9 +26,6 @@ export const getAddressInfo = async (bot, chatId, msg, coin) => {
     }
     await bot.sendMessage(chatId, message);
   } catch (error) {
-    await bot.sendMessage(
-      chatId,
-      'Sorry, service is not available now, please try later',
-    );
+    await sendErrorMessage(error, bot, chatId);
   }
 };

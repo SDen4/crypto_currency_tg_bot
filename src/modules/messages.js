@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'url';
 import path from 'path';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToBtcQr = `${path.join(__dirname, '..', 'pics')}/qrBtc.png`;
 const pathToLightQr = `${path.join(__dirname, '..', 'pics')}/qrLightning.png`;
@@ -22,8 +23,12 @@ import {
   btnsDonate,
   donateTgStarsBtns,
 } from './buttons.js';
+
 import { formatNumber } from '../utils/formatNumber.js';
 import { timestamp } from '../utils/timestamp.js';
+
+import { getAddressInfo } from '../api/getAddressInfo.js';
+import { getAddressInfo2 } from '../api/getAddressInfo2.js';
 
 export const unkCmd = async (bot, chatId) => {
   const text =
@@ -286,3 +291,10 @@ Last block:\n - ${timestamp(lastBlock?.timestamp, true)}\n - id: ${
 ).toFixed(3)} BTC\n - size: ${(allData[0].blockSize / 1000000).toFixed(
   2,
 )} MB\n - transactions: ${allData[0].nTx}`;
+
+export const sendBalance = async (bot, chatId, currency, address, isMy) => {
+  await Promise.any([
+    getAddressInfo(bot, chatId, { text: address }, currency, isMy),
+    getAddressInfo2(bot, chatId, { text: address }, currency, isMy),
+  ]);
+};
