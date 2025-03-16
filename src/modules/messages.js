@@ -296,5 +296,11 @@ export const balanceMsg = async (bot, chatId, currency, address, isMy) => {
   await Promise.any([
     getAddressInfo(bot, chatId, { text: address }, currency, isMy),
     getAddressInfo2(bot, chatId, { text: address }, currency, isMy),
-  ]);
+  ]).catch(() => {
+    sendErrorMessage(
+      'Find balance error. Please, try again later',
+      bot,
+      chatId,
+    );
+  });
 };
