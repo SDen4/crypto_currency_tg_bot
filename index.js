@@ -12,6 +12,7 @@ const bot = new TgBotApi(token, { polling: true });
 
 import { ban } from './src/utils/ban.js';
 import { cndtnFunc } from './src/utils/cndtnFunc.js';
+import { convertShortCommands } from './src/utils/convertShortCommands.js';
 
 import { bfHttpRequest } from './src/api/bfHttpRequest.js';
 import { getUsers } from './src/api/getUsers.js';
@@ -29,7 +30,6 @@ import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { commands } from './src/modules/buttons.js';
 import { getChart } from './src/modules/charts.js';
-import { convertShortCommands } from './src/modules/convertShortCommands.js';
 
 import { visitors } from './src/statistic/visitors.js';
 import { saveStat } from './src/statistic/statistic.js';
@@ -81,7 +81,7 @@ import {
   sendBannedUserIdMsg,
   sendCryptoInfoMsg,
   thankDonateStarMsg,
-  sendBalance,
+  balanceMsg,
 } from './src/modules/messages.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
@@ -109,7 +109,7 @@ const messageFunc = async (msg) => {
   }
   // check the address
   else if (checkAddressMode) {
-    await sendBalance(bot, chatId, checkAddressMode, msg.text);
+    await balanceMsg(bot, chatId, checkAddressMode, msg.text);
     checkAddressMode = null;
   }
   // Ban user
@@ -295,15 +295,15 @@ const buttonsFunc = async (msg) => {
   }
   // Check my BTC donate address
   else if (cndtnCheckMyDonateAddresses(text, msg, 'checkMyBtcDonateAddress')) {
-    await sendBalance(bot, statChatId, 'bitcoin', donateBtcAddress, true);
+    await balanceMsg(bot, statChatId, 'bitcoin', donateBtcAddress, true);
   }
   // Check my ETH donate address
   else if (cndtnCheckMyDonateAddresses(text, msg, 'checkMyEthDonateAddress')) {
-    await sendBalance(bot, statChatId, 'ethcoin', donateEthAddress, true);
+    await balanceMsg(bot, statChatId, 'ethcoin', donateEthAddress, true);
   }
   // Check my DOGE donate address
   else if (cndtnCheckMyDonateAddresses(text, msg, 'checkMyDogeDonateAddress')) {
-    await sendBalance(bot, statChatId, 'dogecoin', donateDogeAddress, true);
+    await balanceMsg(bot, statChatId, 'dogecoin', donateDogeAddress, true);
   }
   // crypto info
   else if (cndtnCryptoInfo(text)) {

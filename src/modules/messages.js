@@ -292,7 +292,7 @@ Last block:\n - ${timestamp(lastBlock?.timestamp, true)}\n - id: ${
   2,
 )} MB\n - transactions: ${allData[0].nTx}`;
 
-export const sendBalance = async (bot, chatId, currency, address, isMy) => {
+export const balanceMsg = async (bot, chatId, currency, address, isMy) => {
   await Promise.any([
     getAddressInfo(bot, chatId, { text: address }, currency, isMy),
     getAddressInfo2(bot, chatId, { text: address }, currency, isMy),
