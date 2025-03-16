@@ -1,6 +1,6 @@
 import ChartJSImage from 'chart.js-image';
 
-import { sendErrorMessage } from './messages.js';
+import { sendErrorMessage } from '../modules/messages.js';
 
 export const unicUsersChart = async (bot, chatId, chartData) => {
   try {

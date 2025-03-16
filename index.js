@@ -23,16 +23,19 @@ import { getChatCurValue } from './src/api/getChatCurValue.js';
 import { changeBannedUser } from './src/api/changeBannedUser.js';
 import { checkBannedUsers } from './src/api/checkBannedUsers.js';
 
-import { unicUsersChart } from './src/modules/unicUsersChart.js';
-import { unicUsersByDates } from './src/modules/unicUsersByDates.js';
 import { btcBlockInfo } from './src/modules/btcBlockInfo.js';
 import { timer } from './src/modules/timer.js';
 import { pool } from './src/modules/pool.js';
 import { commands } from './src/modules/buttons.js';
 import { getChart } from './src/modules/charts.js';
 
-import { visitors } from './src/statistic/visitors.js';
-import { saveStat } from './src/statistic/statistic.js';
+import {
+  unicUsersByDates,
+  unicUsersChart,
+  visitors,
+  saveStat,
+} from './src/statistic/index.js';
+
 import {
   cndtnCurrencies,
   cndtnInfo,
