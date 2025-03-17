@@ -3,13 +3,24 @@ import {
   mpHashRequest,
   mpLastBlockRequest,
 } from '../api/mpHttpRequest.js';
-import { refreshBtcBlockInfoBtns } from '../modules/buttons.js';
+import { generateMessageId } from '../utils/generateMessageId.js';
+import { btcBlockInfoBtns } from '../modules/buttons.js';
 import { btcBlockInfoMsg } from './messages.js';
 
-let messageId = '';
-let refreshBtnMessageId = '';
+export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
+  const updates = await bot.getUpdates();
+  const messageId = generateMessageId(updates);
 
-export const btcBlockInfo = async (bot, chatId, isRefresh) => {
+  if (isDelete) {
+    try {
+      await bot.deleteMessage(chatId, messageId);
+    } catch (error) {
+      await bot.sendMessage(chatId, 'Delete bot error');
+    } finally {
+      return;
+    }
+  }
+
   try {
     const [hash, allData] = await Promise.all([
       mpHashRequest(bot),
@@ -23,33 +34,24 @@ export const btcBlockInfo = async (bot, chatId, isRefresh) => {
         await bot.editMessageText(btcBlockInfoMsg(lastBlock, allData), {
           chat_id: chatId,
           message_id: messageId,
+          reply_markup: btcBlockInfoBtns.reply_markup,
         });
-      } else {
-        const sentMessage = await bot.sendMessage(
-          chatId,
-          btcBlockInfoMsg(lastBlock, allData),
-        );
-
-        const sentRefresh = await bot.sendMessage(
-          chatId,
-          'More actions',
-          refreshBtcBlockInfoBtns,
-        );
-
-        messageId = sentMessage.message_id;
-        refreshBtnMessageId = sentRefresh.message_id;
+        return;
       }
+
+      await bot.sendMessage(
+        chatId,
+        btcBlockInfoMsg(lastBlock, allData),
+        btcBlockInfoBtns,
+      );
     } else {
       await bot.sendMessage(chatId, 'No data in BTC Blocks Info');
     }
   } catch (error) {
-    bot.deleteMessage(chatId, refreshBtnMessageId);
     bot.sendMessage(
       chatId,
       "Informaiton hasn't changed. Please, try again later",
     );
-
-    refreshBtnMessageId = '';
-    messageId = '';
+    await bot.deleteMessage(chatId, messageId);
   }
 };

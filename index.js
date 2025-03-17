@@ -224,10 +224,18 @@ const buttonsFunc = async (msg) => {
   else if (cndtnBtcBlockInfoRefresh(text)) {
     btcBlockInfo(bot, chatId, true);
   }
+  // BTC Block Info (DELETE)
+  else if (text === '/btcblockinfoDelete') {
+    btcBlockInfo(bot, chatId, null, true);
+  }
   // Currency (REFRESH)
   else if (cndtnCurrencyRefresh(text)) {
     const textRequest = text.slice(0, -16);
     bfHttpRequest(bot, chatId, textRequest, msg, true);
+  }
+  // Currency (DELETE)
+  else if (text === '/currencyInfoDelete') {
+    bfHttpRequest(bot, chatId, null, null, null, true);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {

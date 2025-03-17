@@ -1,15 +1,26 @@
 import axios from 'axios';
-
-import { chartBtns } from '../modules/buttons.js';
-import { currencyMsg } from '../modules/messages.js';
 import { bfUrl } from '../../token.js';
 
-let messageId = '';
-let refreshBtnMessageId = '';
+import { generateMessageId } from '../utils/generateMessageId.js';
+import { chartBtns } from '../modules/buttons.js';
+import { currencyMsg } from '../modules/messages.js';
 
-export const bfHttpRequest = async (bot, chatId, textInner, msg, isRefresh) => {
+export const bfHttpRequest = async (bot, chatId, t, msg, isRefr, isDel) => {
+  const updates = await bot.getUpdates();
+  const messageId = generateMessageId(updates);
+
+  if (isDel) {
+    try {
+      await bot.deleteMessage(chatId, messageId);
+    } catch (error) {
+      await bot.sendMessage(chatId, `Delete currency error`);
+    } finally {
+      return;
+    }
+  }
+
   const pathParams = 'ticker';
-  const text = textInner[0] === '/' ? textInner : `/${textInner}`;
+  const text = t[0] === '/' ? t : `/${t}`;
   const queryParams = `t${text.toUpperCase().slice(1)}`;
 
   return axios
@@ -37,44 +48,31 @@ export const bfHttpRequest = async (bot, chatId, textInner, msg, isRefresh) => {
 
         // message text
         const answer = currencyMsg(title, data, recommendationText);
-        const chartButton = chartBtns(textInner);
+        const addButtons = chartBtns(t);
 
-        if (isRefresh) {
+        if (isRefr) {
           try {
             await bot.editMessageText(answer, {
               chat_id: chatId,
               message_id: messageId,
+              reply_markup: addButtons.reply_markup,
             });
           } catch (error) {
-            if (refreshBtnMessageId) {
-              bot.deleteMessage(chatId, refreshBtnMessageId);
-            }
             bot.sendMessage(
               chatId,
               "Price hasn't changed. Please, try again later",
             );
+            await bot.deleteMessage(chatId, messageId);
           }
         } else {
-          const sentMessage = await bot.sendMessage(chatId, answer);
-          const sentRefresh = await bot.sendMessage(
-            chatId,
-            'More actions',
-            chartButton,
-          );
-
-          messageId = sentMessage.message_id;
-          refreshBtnMessageId = sentRefresh.message_id;
+          bot.sendMessage(chatId, answer, addButtons);
         }
       },
       (error) => {
-        messageId = '';
-        refreshBtnMessageId = '';
         bot.sendMessage(chatId, `No data... Error: ${error}`);
       },
     )
     .finally(() => {
-      msg && !isRefresh
-        ? bot.deleteMessage(chatId, msg.message.message_id)
-        : null;
+      msg && !isRefr ? bot.deleteMessage(chatId, msg.message.message_id) : null;
     });
 };

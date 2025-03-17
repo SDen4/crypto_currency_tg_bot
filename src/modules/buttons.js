@@ -246,15 +246,19 @@ export const chartBtns = (callback_data) => ({
           text: '🔄 Refresh',
           callback_data: `${callback_data}_currencyRefresh`,
         },
+        { text: '🗑 Delete', callback_data: '/currencyInfoDelete' },
       ],
     ],
   },
 });
 
-export const refreshBtcBlockInfoBtns = {
+export const btcBlockInfoBtns = {
   reply_markup: {
     inline_keyboard: [
-      [{ text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' }],
+      [
+        { text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' },
+        { text: '🗑 Delete', callback_data: '/btcblockinfoDelete' },
+      ],
     ],
   },
 };
