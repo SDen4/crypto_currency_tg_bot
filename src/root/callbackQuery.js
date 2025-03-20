@@ -15,6 +15,7 @@ import { getChatCurValue } from '../api/getChatCurValue.js';
 import { btcBlockInfo } from '../modules/btcBlockInfo.js';
 import { timer } from '../modules/timer.js';
 import { getChart } from '../modules/charts.js';
+import { sendErrorMessage } from '../modules/messages.js';
 
 import {
   unicUsersByDates,
@@ -192,6 +193,9 @@ export const callbackQuery = async (
     bfHttpRequest(bot, chatId, text, msg);
   }
 
-  await bot.answerCallbackQuery(msg.id);
+  await bot
+    .answerCallbackQuery(msg.id)
+    .catch((error) => sendErrorMessage(error, bot, statChatId));
+
   visitors(bot, msg);
 };
