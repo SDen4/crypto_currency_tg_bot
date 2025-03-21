@@ -44,7 +44,7 @@ export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
       await bot.sendMessage(chatId, 'No data in BTC Blocks Info');
     }
   } catch (error) {
-    bot.sendMessage(
+    await bot.sendMessage(
       chatId,
       "Informaiton hasn't changed. Please, try again later",
     );
