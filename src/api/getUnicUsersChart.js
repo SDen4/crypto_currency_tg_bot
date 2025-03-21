@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { weekDays } from '../constants/weekDays.js';
+import { weekDays } from '../constants/index.js';
 import { formatDateNumber } from '../utils/formatDateNumber.js';
 import { sendErrorMessage } from '../modules/messages.js';
 import { statUrl, statChatId } from '../../token.js';

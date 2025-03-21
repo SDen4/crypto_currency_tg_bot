@@ -2,6 +2,11 @@ import TgBotApi from 'node-telegram-bot-api';
 
 import { token } from './token.js';
 
+import { manyRequestsErrorText } from './src/constants/index.js';
+
+import { checkRequestLimit } from './src/utils/checkRequestLimit.js';
+
+import { sendErrorMessage } from './src/modules/messages.js';
 import { commands } from './src/modules/buttons.js';
 import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 
@@ -19,19 +24,37 @@ let isUnbanUser = { x: false };
 bot.setMyCommands(commands);
 percentAlertMessage(bot);
 
-bot.on('message', (msg) =>
-  message(bot, msg, selectedCurrency, checkAddressMode, isBanUser, isUnbanUser),
-);
+bot.on('message', (msg) => {
+  const chatId = msg?.chat?.id;
 
-bot.on('callback_query', (msg) =>
-  callbackQuery(
+  if (chatId && !checkRequestLimit(chatId)) {
+    bot.sendMessage(chatId, manyRequestsErrorText);
+    return;
+  }
+
+  message(bot, msg, selectedCurrency, checkAddressMode, isBanUser, isUnbanUser);
+});
+
+bot.on('callback_query', async (msg) => {
+  const chatId = msg?.message?.chat?.id;
+
+  if (chatId && !checkRequestLimit(chatId)) {
+    await bot.sendMessage(chatId, manyRequestsErrorText);
+    return;
+  }
+
+  await callbackQuery(
     bot,
     msg,
     checkAddressMode,
     selectedCurrency,
     isBanUser,
     isUnbanUser,
+  );
+});
+
+bot.on('pre_checkout_query', (query) =>
+  answerPreCheckoutQuery(bot, query).catch((error) =>
+    sendErrorMessage(error, bot, statChatId),
   ),
 );
-
-bot.on('pre_checkout_query', (query) => answerPreCheckoutQuery(bot, query));
