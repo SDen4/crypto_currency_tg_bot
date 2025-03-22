@@ -24,15 +24,22 @@ let isUnbanUser = { x: false };
 bot.setMyCommands(commands);
 percentAlertMessage(bot);
 
-bot.on('message', (msg) => {
+bot.on('message', async (msg) => {
   const chatId = msg?.chat?.id;
 
   if (chatId && !checkRequestLimit(chatId)) {
-    bot.sendMessage(chatId, manyRequestsErrorText);
+    await bot.sendMessage(chatId, manyRequestsErrorText);
     return;
   }
 
-  message(bot, msg, selectedCurrency, checkAddressMode, isBanUser, isUnbanUser);
+  await message(
+    bot,
+    msg,
+    selectedCurrency,
+    checkAddressMode,
+    isBanUser,
+    isUnbanUser,
+  );
 });
 
 bot.on('callback_query', async (msg) => {
@@ -53,8 +60,10 @@ bot.on('callback_query', async (msg) => {
   );
 });
 
-bot.on('pre_checkout_query', (query) =>
-  answerPreCheckoutQuery(bot, query).catch((error) =>
-    sendErrorMessage(error, bot, statChatId),
-  ),
+bot.on(
+  'pre_checkout_query',
+  async (query) =>
+    await answerPreCheckoutQuery(bot, query).catch((error) =>
+      sendErrorMessage(error, bot, statChatId),
+    ),
 );

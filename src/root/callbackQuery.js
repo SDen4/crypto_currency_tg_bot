@@ -5,6 +5,9 @@ import {
   statChatId,
 } from '../../token.js';
 
+import { ban } from '../utils/ban.js';
+
+import { checkBannedUsers } from '../api/checkBannedUsers.js';
 import { bfHttpRequest } from '../api/bfHttpRequest.js';
 import { getUsers } from '../api/getUsers.js';
 import { getVisits } from '../api/getVisits.js';
@@ -18,6 +21,7 @@ import { getChart } from '../modules/charts.js';
 import { sendErrorMessage } from '../modules/messages.js';
 
 import {
+  saveStat,
   unicUsersByDates,
   unicUsersChart,
   visitors,
@@ -71,9 +75,15 @@ export const callbackQuery = async (
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
+  const isBannedUser = await checkBannedUsers(bot, chatId);
+  if (isBannedUser) return null;
+  if (ban(bot, chatId, msg)) return null;
+
+  await saveStat(bot, msg);
+
   // Charts
   if (text === '/charts') {
-    sendChartCurBtns(bot, chatId);
+    await sendChartCurBtns(bot, chatId);
   }
   // set charts
   else if (text.includes('_set_chart')) {
@@ -82,60 +92,60 @@ export const callbackQuery = async (
   }
   // All Currencies
   else if (cndtnCurrenciesBtns(text)) {
-    allCurrencies(bot, chatId);
+    await allCurrencies(bot, chatId);
   }
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
-    btcBlockInfo(bot, chatId);
+    await btcBlockInfo(bot, chatId);
   }
   // BTC Block Info (REFRESH)
   else if (cndtnBtcBlockInfoRefresh(text)) {
-    btcBlockInfo(bot, chatId, true);
+    await btcBlockInfo(bot, chatId, true);
   }
   // BTC Block Info (DELETE)
   else if (text === '/btcblockinfoDelete') {
-    btcBlockInfo(bot, chatId, null, true);
+    await btcBlockInfo(bot, chatId, null, true);
   }
   // Currency (REFRESH)
   else if (cndtnCurrencyRefresh(text)) {
     const textRequest = text.slice(0, -16);
-    bfHttpRequest(bot, chatId, textRequest, msg, true);
+    await bfHttpRequest(bot, chatId, textRequest, msg, true);
   }
   // Currency (DELETE)
   else if (text === '/currencyInfoDelete') {
-    bfHttpRequest(bot, chatId, null, null, null, true);
+    await bfHttpRequest(bot, chatId, null, null, null, true);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {
-    checkAddressMsg(bot, chatId);
+    await checkAddressMsg(bot, chatId);
     checkAddressMode.x = text.slice(13);
   }
   // Timer
   else if (text === '/settimer') {
-    setTmrMsgCur(bot, chatId);
+    await setTmrMsgCur(bot, chatId);
   } else if (text.includes('_set_timer')) {
     selectedCurrency.x = String(text).slice(0, 7);
-    setTmrMsgTime(bot, chatId);
+    await setTmrMsgTime(bot, chatId);
   }
   // Donate
   else if (text === '/donate') {
-    donate(bot, chatId);
+    await donate(bot, chatId);
   } else if (cndtnDonateQr(text)) {
-    showQr(bot, chatId, text);
+    await showQr(bot, chatId, text);
   } else if (cndtnDonate(text)) {
-    copyDonateAddress(bot, chatId, text, msg);
+    await copyDonateAddress(bot, chatId, text, msg);
   } else if (cndtnTgStarDonate(text)) {
-    sendTgStarInvoiceBtns(bot, chatId, text, msg);
+    await sendTgStarInvoiceBtns(bot, chatId, text, msg);
   } else if (cndtnTgStarDonateBtn(text)) {
-    sendTgStarInvoice(bot, chatId, text);
+    await sendTgStarInvoice(bot, chatId, text);
   }
   // Timer
   else if (text.includes('/timer')) {
-    timer(bot, chatId, text, selectedCurrency.x);
+    await timer(bot, chatId, text, selectedCurrency.x);
   }
   // Calculate Pool
   else if (text === '/pool') {
-    poolMsg(bot, chatId);
+    await poolMsg(bot, chatId);
   }
   // Statistic (Users)
   else if (cndtnStatisticUsers(text, msg)) {
@@ -190,12 +200,12 @@ export const callbackQuery = async (
   }
   // Currencies
   else {
-    bfHttpRequest(bot, chatId, text, msg);
+    await bfHttpRequest(bot, chatId, text, msg);
   }
 
   await bot
     .answerCallbackQuery(msg.id)
     .catch((error) => sendErrorMessage(error, bot, statChatId));
 
-  visitors(bot, msg);
+  await visitors(bot, msg);
 };

@@ -55,7 +55,7 @@ export const message = async (
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
-  saveStat(bot, msg);
+  await saveStat(bot, msg);
 
   const isBannedUser = await checkBannedUsers(bot, chatId);
   if (isBannedUser) return null;
@@ -63,7 +63,7 @@ export const message = async (
 
   // Start
   if (cndtnStart(text)) {
-    start(bot, chatId, msg);
+    await start(bot, chatId, msg);
   }
   // check the address
   else if (checkAddressMode.x) {
@@ -82,26 +82,26 @@ export const message = async (
   }
   // Menu
   else if (cndtnInfo(text)) {
-    menu(bot, chatId, msg);
+    await menu(bot, chatId, msg);
   }
   // All Currencies
   else if (cndtnCurrenciesBtns(text)) {
-    allCurrencies(bot, chatId);
+    await allCurrencies(bot, chatId);
   }
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
-    btcBlockInfo(bot, chatId);
+    await btcBlockInfo(bot, chatId);
   }
   // Timer
   else if (cndtnFunc(text).includes('/timer')) {
-    timer(bot, chatId, text, selectedCurrency.x);
+    await timer(bot, chatId, text, selectedCurrency.x);
     selectedCurrency.x = '';
   }
   // Calculate Pool
   else if (cndtnPool(text)) {
-    pool(bot, chatId, text);
+    await pool(bot, chatId, text);
   } else if (text === '/pool') {
-    poolMsg(bot, chatId);
+    await poolMsg(bot, chatId);
   }
   // Eug function
   else if (cndtnEugFunc(text, msg)) {
@@ -112,8 +112,8 @@ export const message = async (
   }
   // Short commands (currencies)
   else if (cndtnCurrencies(text)) {
-    const formatText = convertShortCommands(text);
-    bfHttpRequest(bot, chatId, formatText);
+    const formatText = await convertShortCommands(text);
+    await bfHttpRequest(bot, chatId, formatText);
   }
   // Statistic
   else if (cndtnStatistic(text, msg)) {
@@ -126,11 +126,11 @@ export const message = async (
   }
   // Secret
   else if (cndtnSecret(text)) {
-    secret(bot, chatId);
+    await secret(bot, chatId);
   }
   // thaks after telegram stars donate
   else if (cndtnThankAfterDonate(msg)) {
-    thankDonateStarMsg(bot, msg);
+    await thankDonateStarMsg(bot, msg);
   }
   // crypto info
   else if (cndtnCryptoInfo(text)) {
@@ -138,12 +138,12 @@ export const message = async (
   }
   // Emoji messages
   else if (cndtnEmoji(text)) {
-    emojiMsg(text, bot, chatId);
+    await emojiMsg(text, bot, chatId);
   }
   // Unknown command
   else {
-    unkCmd(bot, chatId);
+    await unkCmd(bot, chatId);
   }
 
-  visitors(bot, msg);
+  await visitors(bot, msg);
 };
