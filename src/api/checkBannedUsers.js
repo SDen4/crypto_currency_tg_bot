@@ -22,6 +22,5 @@ export const checkBannedUsers = async (bot, chatId) => {
     await bot.sendMessage(chatId, `Sorry, you has banned`);
     return true;
   }
-  await bot.sendMessage(chatId, `Sorry, you has banned`);
   return false;
 };

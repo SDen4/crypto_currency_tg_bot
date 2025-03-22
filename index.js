@@ -39,11 +39,12 @@ bot.on('message', async (msg) => {
     checkAddressMode,
     isBanUser,
     isUnbanUser,
-  );
+  ).catch((error) => sendErrorMessage(error, bot, statChatId));
 });
 
 bot.on('callback_query', async (msg) => {
   const chatId = msg?.message?.chat?.id;
+  // const chatId = msg?.from?.id; // spare path
 
   if (chatId && !checkRequestLimit(chatId)) {
     await bot.sendMessage(chatId, manyRequestsErrorText);
@@ -57,7 +58,7 @@ bot.on('callback_query', async (msg) => {
     selectedCurrency,
     isBanUser,
     isUnbanUser,
-  );
+  ).catch((error) => sendErrorMessage(error, bot, statChatId));
 });
 
 bot.on(

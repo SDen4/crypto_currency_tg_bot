@@ -203,9 +203,11 @@ export const callbackQuery = async (
     await bfHttpRequest(bot, chatId, text, msg);
   }
 
-  await bot
-    .answerCallbackQuery(msg.id)
-    .catch((error) => sendErrorMessage(error, bot, statChatId));
+  if (msg?.id) {
+    await bot
+      .answerCallbackQuery(msg.id, { cache_time: 1 })
+      .catch((error) => sendErrorMessage(error, bot, statChatId));
+  }
 
   await visitors(bot, msg);
 };
