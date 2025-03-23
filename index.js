@@ -1,6 +1,6 @@
 import TgBotApi from 'node-telegram-bot-api';
 
-import { token } from './token.js';
+import { token, statChatId } from './token.js';
 
 import { manyRequestsErrorText } from './src/constants/index.js';
 
