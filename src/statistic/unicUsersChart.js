@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import ChartJSImage from 'chart.js-image';
 
 import { sendErrorMessage } from '../modules/messages.js';

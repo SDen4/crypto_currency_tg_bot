@@ -108,14 +108,8 @@ export const convertShortCommands = (text) => {
     case 'trx':
       return '/trxusd';
 
-    case 'not':
-      return '/notusd';
-
     case 'dym':
       return '/dymusd';
-
-    case 'ftm':
-      return '/ftmusd';
 
     case 'omg':
       return '/omgusd';

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Buffer } from 'buffer';
 import ChartJSImage from 'chart.js-image';
 
 import { bfUrl } from '../../token.js';
