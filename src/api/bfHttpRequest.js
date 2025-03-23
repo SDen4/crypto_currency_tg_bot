@@ -56,8 +56,7 @@ export const bfHttpRequest = async (bot, chatId, t, msg, isRefr, isDel) => {
                 message_id: messageId,
                 reply_markup: addButtons.reply_markup,
               });
-            } catch (error) {
-              console.error('Error in bfHttpRequest: ', error);
+            } catch {
               bot.sendMessage(
                 chatId,
                 "Price hasn't changed. Please, try again later",
