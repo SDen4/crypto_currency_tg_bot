@@ -242,11 +242,12 @@ export const chartBtns = (callback_data) => ({
     inline_keyboard: [
       [
         { text: '📈 Chart', callback_data: `${callback_data}_set_chart` },
-        {
-          text: '🔄 Refresh',
-          callback_data: `${callback_data}_currencyRefresh`,
-        },
-        { text: '🗑 Delete', callback_data: '/currencyInfoDelete' },
+        // TEMP !!!
+        // {
+        //   text: '🔄 Refresh',
+        //   callback_data: `${callback_data}_currencyRefresh`,
+        // },
+        // { text: '🗑 Delete', callback_data: '/currencyInfoDelete' },
       ],
     ],
   },
@@ -256,8 +257,9 @@ export const btcBlockInfoBtns = {
   reply_markup: {
     inline_keyboard: [
       [
-        { text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' },
-        { text: '🗑 Delete', callback_data: '/btcblockinfoDelete' },
+        // TEMP !!!
+        // { text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' },
+        // { text: '🗑 Delete', callback_data: '/btcblockinfoDelete' },
       ],
     ],
   },
