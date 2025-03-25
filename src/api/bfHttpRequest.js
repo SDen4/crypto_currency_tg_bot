@@ -2,17 +2,17 @@ import axios from 'axios';
 import { bfUrl } from '../../token.js';
 
 import { generateMessageId } from '../utils/generateMessageId.js';
+
 import { chartBtns } from '../modules/buttons.js';
 import { currencyMsg, sendErrorMessage } from '../modules/messages.js';
 import { deleteMessage } from '../modules/deleteMessage.js';
 
-export const bfHttpRequest = async (bot, chatId, t, msg, isRefr, isDel) => {
-  const updates = await bot.getUpdates();
-  const messageId = await generateMessageId(updates);
-
+export const bfHttpRequest = async (bot, chatId, t, msg, refrId, delId) => {
   try {
-    if (isDel) {
-      await deleteMessage(bot, chatId, messageId);
+    const msgId = generateMessageId(msg);
+
+    if (delId) {
+      await deleteMessage(bot, chatId, msgId);
       return;
     }
 
@@ -47,24 +47,22 @@ export const bfHttpRequest = async (bot, chatId, t, msg, isRefr, isDel) => {
 
           // message text
           const answer = currencyMsg(title, data, recommendationText);
-          const addButtons = chartBtns(t);
 
-          if (isRefr) {
+          if (refrId) {
             try {
               await bot.editMessageText(answer, {
                 chat_id: chatId,
-                message_id: messageId,
-                reply_markup: addButtons.reply_markup,
+                message_id: msgId,
+                reply_markup: chartBtns(t, refrId)?.reply_markup,
               });
             } catch {
               bot.sendMessage(
                 chatId,
                 "Price hasn't changed. Please, try again later",
               );
-              await bot.deleteMessage(chatId, messageId);
             }
           } else {
-            bot.sendMessage(chatId, answer, addButtons);
+            bot.sendMessage(chatId, answer, chartBtns(t, msgId));
           }
         },
         (error) => {
@@ -72,12 +70,9 @@ export const bfHttpRequest = async (bot, chatId, t, msg, isRefr, isDel) => {
         },
       )
       .finally(() => {
-        msg && !isRefr
-          ? bot.deleteMessage(chatId, msg.message.message_id)
-          : null;
+        msg && !refrId ? bot.deleteMessage(chatId, msgId) : null;
       });
   } catch (error) {
     await sendErrorMessage(error, bot, chatId);
-    await bot.deleteMessage(chatId, messageId);
   }
 };

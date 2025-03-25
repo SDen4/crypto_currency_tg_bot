@@ -3,18 +3,19 @@ import {
   mpHashRequest,
   mpLastBlockRequest,
 } from '../api/mpHttpRequest.js';
+
 import { generateMessageId } from '../utils/generateMessageId.js';
+
 import { btcBlockInfoBtns } from '../modules/buttons.js';
 import { deleteMessage } from '../modules/deleteMessage.js';
 import { btcBlockInfoMsg } from './messages.js';
 
-export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
-  const updates = await bot.getUpdates();
-  const messageId = await generateMessageId(updates);
-
+export const btcBlockInfo = async (bot, chatId, msg, refrId, delId) => {
   try {
-    if (isDelete) {
-      await deleteMessage(bot, chatId, messageId);
+    const msgId = generateMessageId(msg);
+
+    if (delId) {
+      await deleteMessage(bot, chatId, msgId);
       return;
     }
 
@@ -26,11 +27,11 @@ export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
     const lastBlock = await mpLastBlockRequest(bot, hash);
 
     if (allData?.length) {
-      if (isRefresh) {
+      if (refrId) {
         await bot.editMessageText(btcBlockInfoMsg(lastBlock, allData), {
           chat_id: chatId,
-          message_id: messageId,
-          reply_markup: btcBlockInfoBtns.reply_markup,
+          message_id: msgId,
+          reply_markup: btcBlockInfoBtns(refrId).reply_markup,
         });
         return;
       }
@@ -38,7 +39,7 @@ export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
       await bot.sendMessage(
         chatId,
         btcBlockInfoMsg(lastBlock, allData),
-        btcBlockInfoBtns,
+        btcBlockInfoBtns(msgId),
       );
     } else {
       await bot.sendMessage(chatId, 'No data in BTC Blocks Info');
@@ -48,6 +49,5 @@ export const btcBlockInfo = async (bot, chatId, isRefresh, isDelete) => {
       chatId,
       "Informaiton hasn't changed. Please, try again later",
     );
-    await bot.deleteMessage(chatId, messageId);
   }
 };

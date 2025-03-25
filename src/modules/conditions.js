@@ -135,11 +135,6 @@ export const cndtnBtcBlockInfo = (text) =>
     cndtnFunc(String(text).replace('/', '')),
   );
 
-export const cndtnBtcBlockInfoRefresh = (text) =>
-  text === '/btcblockinfoRefresh';
-
-export const cndtnCurrencyRefresh = (text) => text.includes('currencyRefresh');
-
 export const cndtnPool = (text) => {
   const formatText = String(text).trim()[0] / 2;
   return typeof formatText === 'number' && !isNaN(formatText);

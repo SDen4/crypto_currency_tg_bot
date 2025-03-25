@@ -90,7 +90,7 @@ export const message = async (
   }
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
-    await btcBlockInfo(bot, chatId);
+    await btcBlockInfo(bot, chatId, msg);
   }
   // Timer
   else if (cndtnFunc(text).includes('/timer')) {
@@ -106,14 +106,14 @@ export const message = async (
   // Eug function
   else if (cndtnEugFunc(text, msg)) {
     await Promise.all([
-      bfHttpRequest(bot, chatId, '/btcusd'),
-      btcBlockInfo(bot, chatId),
+      bfHttpRequest(bot, chatId, '/btcusd', msg),
+      btcBlockInfo(bot, chatId, msg),
     ]);
   }
   // Short commands (currencies)
   else if (cndtnCurrencies(text)) {
     const formatText = await convertShortCommands(text);
-    await bfHttpRequest(bot, chatId, formatText);
+    await bfHttpRequest(bot, chatId, formatText, msg);
   }
   // Statistic
   else if (cndtnStatistic(text, msg)) {

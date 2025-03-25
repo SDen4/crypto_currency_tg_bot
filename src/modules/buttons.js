@@ -237,30 +237,31 @@ export const donateTgStarsBtns = {
   reply_markup: { inline_keyboard: [inlineKeyboard] },
 };
 
-export const chartBtns = (callback_data) => ({
+export const chartBtns = (callback_data, msgId) => ({
   reply_markup: {
     inline_keyboard: [
       [
         { text: '📈 Chart', callback_data: `${callback_data}_set_chart` },
-        // TEMP !!!
-        // {
-        //   text: '🔄 Refresh',
-        //   callback_data: `${callback_data}_currencyRefresh`,
-        // },
-        // { text: '🗑 Delete', callback_data: '/currencyInfoDelete' },
+        {
+          text: '🔄 Refresh',
+          callback_data: `${callback_data}_currencyRefresh_${msgId}`,
+        },
+        { text: '🗑 Delete', callback_data: `/currencyInfoDelete_${msgId}` },
       ],
     ],
   },
 });
 
-export const btcBlockInfoBtns = {
+export const btcBlockInfoBtns = (msgId) => ({
   reply_markup: {
     inline_keyboard: [
       [
-        // TEMP !!!
-        // { text: '🔄 Refresh', callback_data: '/btcblockinfoRefresh' },
-        // { text: '🗑 Delete', callback_data: '/btcblockinfoDelete' },
+        {
+          text: '🔄 Refresh',
+          callback_data: `/btcblockinfoRefresh_${msgId}`,
+        },
+        { text: '🗑 Delete', callback_data: `/btcblockinfoDelete_${msgId}` },
       ],
     ],
   },
-};
+});

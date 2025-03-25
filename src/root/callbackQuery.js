@@ -30,8 +30,6 @@ import {
 import {
   cndtnCurrenciesBtns,
   cndtnBtcBlockInfo,
-  cndtnBtcBlockInfoRefresh,
-  cndtnCurrencyRefresh,
   cndtnStatistic,
   cndtnStatisticQuantity,
   cndtnStatisticUsers,
@@ -96,24 +94,36 @@ export const callbackQuery = async (
   }
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
-    await btcBlockInfo(bot, chatId);
+    await btcBlockInfo(bot, chatId, msg);
   }
   // BTC Block Info (REFRESH)
-  else if (cndtnBtcBlockInfoRefresh(text)) {
-    await btcBlockInfo(bot, chatId, true);
+  else if (text.includes('/btcblockinfoRefresh')) {
+    const responseArr = text.split('_');
+    const msgId = responseArr[1];
+
+    await btcBlockInfo(bot, chatId, msg, msgId);
   }
   // BTC Block Info (DELETE)
-  else if (text === '/btcblockinfoDelete') {
-    await btcBlockInfo(bot, chatId, null, true);
+  else if (text.includes('/btcblockinfoDelete')) {
+    const responseArr = text.split('_');
+    const msgId = responseArr[1];
+
+    await btcBlockInfo(bot, chatId, msg, null, msgId);
   }
   // Currency (REFRESH)
-  else if (cndtnCurrencyRefresh(text)) {
-    const textRequest = text.slice(0, -16);
-    await bfHttpRequest(bot, chatId, textRequest, msg, true);
+  else if (text.includes('currencyRefresh')) {
+    const responseArr = text.split('_');
+    const textRequest = responseArr[0];
+    const msgId = responseArr[2];
+
+    await bfHttpRequest(bot, chatId, textRequest, msg, msgId);
   }
   // Currency (DELETE)
-  else if (text === '/currencyInfoDelete') {
-    await bfHttpRequest(bot, chatId, null, null, null, true);
+  else if (text.includes('/currencyInfoDelete')) {
+    const responseArr = text.split('_');
+    const msgId = responseArr[1];
+
+    await bfHttpRequest(bot, chatId, null, msg, null, msgId);
   }
   // check the address
   else if (cndtnCheckAddress(text)) {
