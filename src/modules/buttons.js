@@ -110,13 +110,15 @@ const keyboardStart = [
     { text: 'Calculate Pool', callback_data: '/pool' },
   ],
   [
-    { text: 'Charts', callback_data: '/charts' },
-    { text: 'Timer', callback_data: '/settimer' },
-    { text: 'App', web_app: { url: webAppUrl } },
-    { text: 'Donate', callback_data: '/donate' },
+    { text: '📈 Charts', callback_data: '/charts' },
+    { text: '⏰ Timer', callback_data: '/settimer' },
+    { text: '🙏 Donate', callback_data: '/donate' },
   ],
   checkAddrBtns,
-  [{ text: 'Crypto Info', callback_data: '/cryptoInfo' }],
+  [
+    { text: 'ℹ️ Crypto Info', callback_data: '/cryptoInfo' },
+    { text: '📱 App', web_app: { url: webAppUrl } },
+  ],
 ];
 const keyboardAdminStart = [
   ...keyboardStart,
