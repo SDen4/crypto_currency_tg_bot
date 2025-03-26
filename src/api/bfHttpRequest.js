@@ -38,7 +38,6 @@ export const bfHttpRequest = async (bot, chatId, t, msg, refrId, delId) => {
           if (text === '/ustusd') title = 'USDt/USD';
           if (text === '/udcusd') title = 'USDC/USD';
           if (text === '/iotusd') title = 'IOTA/USD';
-          if (text === '/euteur') title = 'EURt/EUR';
           if (text === '/algusd') title = 'ALGO/USD';
           if (text === '/hixusd') title = 'HI/USD';
           if (text === '/dshusd') title = 'DASH/USD';

@@ -18,9 +18,6 @@ export const convertShortCommands = (text) => {
     case 'eur':
       return '/btceur';
 
-    case 'eurt':
-      return '/euteur';
-
     case 'usdt':
       return '/ustusd';
 
@@ -42,14 +39,8 @@ export const convertShortCommands = (text) => {
     case 'avax':
       return '/avax:usd';
 
-    case 'axs':
-      return '/axsusd';
-
     case 'bchn':
       return '/bchn:usd';
-
-    case 'clo':
-      return '/clousd';
 
     case 'dash':
       return '/dshusd';
@@ -89,9 +80,6 @@ export const convertShortCommands = (text) => {
 
     case 'ethw':
       return '/ethw:usd';
-
-    case 'ftm':
-      return '/ftmusd';
 
     case 'neo':
       return '/neousd';
