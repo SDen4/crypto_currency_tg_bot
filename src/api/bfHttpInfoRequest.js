@@ -17,9 +17,6 @@ export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
 
       const number = Math.abs(data[5] * 100); // % difference
 
-      console.log('number: ', number);
-
-      // HERE add conditon!!!
       if (number >= alertPersent && number > (prevValue * alertPersent) / 100) {
         prevValue = number;
 
