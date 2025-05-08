@@ -28,6 +28,7 @@ import {
 } from '../statistic/index.js';
 
 import {
+  cndtnMessageAllUsersFlag,
   cndtnCurrenciesBtns,
   cndtnBtcBlockInfo,
   cndtnStatistic,
@@ -62,14 +63,7 @@ import {
   balanceMsg,
 } from '../modules/messages.js';
 
-export const callbackQuery = async (
-  bot,
-  msg,
-  checkAddressMode,
-  selectedCurrency,
-  isBanUser,
-  isUnbanUser,
-) => {
+export const callbackQuery = async (bot, msg, state) => {
   const chatId = msg?.message?.chat?.id;
   const text = msg?.data;
 
@@ -128,13 +122,13 @@ export const callbackQuery = async (
   // check the address
   else if (cndtnCheckAddress(text)) {
     await checkAddressMsg(bot, chatId);
-    checkAddressMode.x = text.slice(13);
+    state.checkAddressMode = text.slice(13);
   }
   // Timer
   else if (text === '/settimer') {
     await setTmrMsgCur(bot, chatId);
   } else if (text.includes('_set_timer')) {
-    selectedCurrency.x = String(text).slice(0, 7);
+    state.selectedCurrency = String(text).slice(0, 7);
     await setTmrMsgTime(bot, chatId);
   }
   // Donate
@@ -151,7 +145,7 @@ export const callbackQuery = async (
   }
   // Timer
   else if (text.includes('/timer')) {
-    await timer(bot, chatId, text, selectedCurrency.x);
+    await timer(bot, chatId, text, state.selectedCurrency);
   }
   // Calculate Pool
   else if (text === '/pool') {
@@ -185,12 +179,12 @@ export const callbackQuery = async (
   // Ban user (message: send Id)
   else if (cndtnBanUser(text, msg)) {
     await sendBannedUserIdMsg(bot, chatId, 'banned');
-    isBanUser.x = true;
+    state.isBanUser = true;
   }
   // Unban user (message: send Id)
   else if (cndtnUnbanUser(text, msg)) {
     await sendBannedUserIdMsg(bot, chatId, 'unbanned');
-    isUnbanUser.x = true;
+    state.isUnbanUser = true;
   }
   // Check my BTC donate address
   else if (cndtnCheckMyDonateAddresses(text, msg, 'checkMyBtcDonateAddress')) {
@@ -207,6 +201,11 @@ export const callbackQuery = async (
   // crypto info
   else if (cndtnCryptoInfo(text)) {
     await sendCryptoInfoMsg(bot, chatId, msg);
+  }
+  // message all users (set flag)
+  else if (cndtnMessageAllUsersFlag(text, msg)) {
+    state.isMessageAllUsersMode = true;
+    await bot.sendMessage(chatId, 'Type the message and send it');
   }
   // Currencies
   else {

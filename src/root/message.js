@@ -11,8 +11,10 @@ import { checkBannedUsers } from '../api/checkBannedUsers.js';
 import { btcBlockInfo } from '../modules/btcBlockInfo.js';
 import { timer } from '../modules/timer.js';
 import { pool } from '../modules/pool.js';
+import { messageAllUsers } from '../modules/messageAllUsers.js';
 
 import {
+  cndtnMessageAllUsers,
   cndtnCurrencies,
   cndtnInfo,
   cndtnCurrenciesBtns,
@@ -44,14 +46,7 @@ import {
 
 import { visitors, saveStat } from '../statistic/index.js';
 
-export const message = async (
-  bot,
-  msg,
-  selectedCurrency,
-  checkAddressMode,
-  isBanUser,
-  isUnbanUser,
-) => {
+export const message = async (bot, msg, state) => {
   const text = msg?.text;
   const chatId = msg?.chat?.id;
 
@@ -66,19 +61,19 @@ export const message = async (
     await start(bot, chatId, msg);
   }
   // check the address
-  else if (checkAddressMode.x) {
-    await balanceMsg(bot, chatId, checkAddressMode.x, msg.text);
-    checkAddressMode.x = null;
+  else if (state.checkAddressMode) {
+    await balanceMsg(bot, chatId, state.checkAddressMode, msg.text);
+    state.checkAddressMode = null;
   }
   // Ban user
-  else if (isBanUser.x && !isNaN(Number(text))) {
+  else if (state.isBanUser && !isNaN(Number(text))) {
     await changeBannedUser(bot, chatId, msg, true);
-    isBanUser.x = false;
+    state.isBanUser = false;
   }
   // Unban user
-  else if (isUnbanUser.x && !isNaN(Number(text))) {
+  else if (state.isUnbanUser && !isNaN(Number(text))) {
     await changeBannedUser(bot, chatId, msg, false);
-    isUnbanUser.x = false;
+    state.isUnbanUser = false;
   }
   // Menu
   else if (cndtnInfo(text)) {
@@ -94,8 +89,8 @@ export const message = async (
   }
   // Timer
   else if (cndtnFunc(text).includes('/timer')) {
-    await timer(bot, chatId, text, selectedCurrency.x);
-    selectedCurrency.x = '';
+    await timer(bot, chatId, text, state.selectedCurrency);
+    state.selectedCurrency = '';
   }
   // Calculate Pool
   else if (cndtnPool(text)) {
@@ -139,6 +134,11 @@ export const message = async (
   // Emoji messages
   else if (cndtnEmoji(text)) {
     await emojiMsg(text, bot, chatId);
+  }
+  // message all users (send message)
+  else if (cndtnMessageAllUsers(state.isMessageAllUsersMode, msg)) {
+    await messageAllUsers(bot, text);
+    state.isMessageAllUsersMode = false;
   }
   // Unknown command
   else {

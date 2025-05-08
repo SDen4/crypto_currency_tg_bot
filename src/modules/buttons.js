@@ -153,6 +153,12 @@ const keyboardAdminStart = [
       callback_data: 'checkMyDogeDonateAddress',
     },
   ],
+  [
+    {
+      text: 'Message all users',
+      callback_data: 'messageAllUsers',
+    },
+  ],
 ];
 
 export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };

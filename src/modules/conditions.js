@@ -208,3 +208,11 @@ export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
 
   return isRigthCommand && reader;
 };
+
+export const cndtnMessageAllUsersFlag = (t, msg) => {
+  return t === 'messageAllUsers' && msg.from.id === statChatId;
+};
+
+export const cndtnMessageAllUsers = (flag, msg) => {
+  return flag && msg.from.id === statChatId;
+};

@@ -16,10 +16,13 @@ import { message } from './src/root/message.js';
 
 const bot = new TgBotApi(token, { polling: true });
 
-let selectedCurrency = { x: '' };
-let checkAddressMode = { x: null };
-let isBanUser = { x: false };
-let isUnbanUser = { x: false };
+const state = {
+  selectedCurrency: '',
+  checkAddressMode: null,
+  isBanUser: false,
+  isUnbanUser: false,
+  isMessageAllUsersMode: false,
+};
 
 bot.setMyCommands(commands);
 percentAlertMessage(bot);
@@ -32,14 +35,9 @@ bot.on('message', async (msg) => {
     return;
   }
 
-  await message(
-    bot,
-    msg,
-    selectedCurrency,
-    checkAddressMode,
-    isBanUser,
-    isUnbanUser,
-  ).catch((error) => sendErrorMessage(error, bot, statChatId));
+  await message(bot, msg, state).catch((error) =>
+    sendErrorMessage(error, bot, statChatId),
+  );
 });
 
 bot.on('callback_query', async (msg) => {
@@ -51,14 +49,9 @@ bot.on('callback_query', async (msg) => {
     return;
   }
 
-  await callbackQuery(
-    bot,
-    msg,
-    checkAddressMode,
-    selectedCurrency,
-    isBanUser,
-    isUnbanUser,
-  ).catch((error) => sendErrorMessage(error, bot, statChatId));
+  await callbackQuery(bot, msg, state).catch((error) =>
+    sendErrorMessage(error, bot, statChatId),
+  );
 });
 
 bot.on(
