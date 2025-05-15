@@ -3,9 +3,13 @@ import axios from 'axios';
 import { formatNumber } from '../utils/formatNumber.js';
 import { bfUrl, statChatId } from '../../token.js';
 
-let prevValue = 0;
-
-export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
+export const bfHttpInfoRequest = (
+  bot,
+  chatIdArr,
+  textInner,
+  state,
+  alertPersent,
+) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
   const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
@@ -17,8 +21,8 @@ export const bfHttpInfoRequest = (bot, chatIdArr, textInner, alertPersent) => {
 
       const number = Math.abs(data[5] * 100); // % difference
 
-      if (number >= alertPersent && number > (prevValue * alertPersent) / 100) {
-        prevValue = number;
+      if (number >= alertPersent && number > state.prevValue) {
+        state.prevValue = number;
 
         let title =
           String(text).length === 7
@@ -43,6 +47,8 @@ ${emoji} 24h: ${formatNumber(number, 2, '%')} ${emoji}`;
         for (let i = 0; i < chatIdArr.length; i++) {
           bot.sendMessage(chatIdArr[i], answer);
         }
+      } else {
+        state.prevValue = 0;
       }
     },
     (error) => {

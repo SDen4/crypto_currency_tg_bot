@@ -1,12 +1,18 @@
 import { statChatId, eugPartId } from '../../token.js';
 import { bfHttpInfoRequest } from '../api/bfHttpInfoRequest.js';
 
-const minutes = 15;
+const state = { minutes: 15, prevValue: 0 };
 
 export const percentAlertMessage = (bot) => {
   setInterval(
     async () =>
-      await bfHttpInfoRequest(bot, [statChatId, eugPartId], '/btcusd', 5),
-    minutes * 60000,
+      await bfHttpInfoRequest(
+        bot,
+        [statChatId, eugPartId],
+        '/btcusd',
+        state,
+        5,
+      ),
+    state.minutes * 60000,
   );
 };
