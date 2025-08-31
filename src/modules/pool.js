@@ -36,7 +36,6 @@ export const pool = async (bot, chatId, msg) => {
       firstCur === 'bchn' ||
       firstCur === 'gala' ||
       firstCur === 'link' ||
-      firstCur === 'matic' ||
       firstCur === 'sushi'
     )
       firstCur = `${resultArr[i].currency}:`;

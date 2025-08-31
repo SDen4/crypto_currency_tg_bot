@@ -38,11 +38,12 @@ export const bfHttpRequest = async (bot, chatId, t, msg, refrId, delId) => {
           if (text === '/ustusd') title = 'USDt/USD';
           if (text === '/udcusd') title = 'USDC/USD';
           if (text === '/iotusd') title = 'IOTA/USD';
+          if (text === '/atousd') title = 'ATOM/USD';
+          if (text === '/tsdusd') title = 'TUSD/USD';
+          if (text === '/omnusd') title = 'OMNI/USD';
           if (text === '/algusd') title = 'ALGO/USD';
           if (text === '/hixusd') title = 'HI/USD';
           if (text === '/dshusd') title = 'DASH/USD';
-          if (text === '/hmstr:usd') title = 'HUMSTER/USD';
-          if (text === '/hmstr:ust') title = 'HUMSTER/USDt';
 
           // message text
           const answer = currencyMsg(title, data, recommendationText);

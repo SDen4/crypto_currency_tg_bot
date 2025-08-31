@@ -34,6 +34,9 @@ export const bfHttpInfoRequest = (
         if (text === '/ustusd') title = 'USDt/USD';
         if (text === '/udcusd') title = 'USDC/USD';
         if (text === '/iotusd') title = 'IOTA/USD';
+        if (text === '/atousd') title = 'ATOM/USD';
+        if (text === '/tsdusd') title = 'TUSD/USD';
+        if (text === '/omnusd') title = 'OMNI/USD';
         if (text === '/algusd') title = 'ALGO/USD';
         if (text === '/hixusd') title = 'HI/USD';
         if (text === '/dshusd') title = 'DASH/USD';

@@ -20,63 +20,76 @@ export const btnsCurrenciesArr = [
     { text: 'ALGO/USD', callback_data: '/algusd' },
   ],
   [
+    { text: 'A/USD', callback_data: '/eosusd' },
     { text: 'APE/USD', callback_data: '/apeusd' },
     { text: 'APT/USD', callback_data: '/aptusd' },
     { text: 'ARB/USD', callback_data: '/arbusd' },
-    { text: 'AVAX/USD', callback_data: '/avax:usd' },
   ],
   [
+    { text: 'ATOM/USD', callback_data: '/atousd' },
+    { text: 'AVAX/USD', callback_data: '/avax:usd' },
     { text: 'BCHN/USD', callback_data: '/bchn:usd' },
+    { text: 'BTT/USD', callback_data: '/bttusd' },
+  ],
+  [
+    { text: 'CHZ/USD', callback_data: '/chzusd' },
+    { text: 'DAI/USD', callback_data: '/daiusd' },
     { text: 'DASH/USD', callback_data: '/dshusd' },
     { text: 'DOT/USD', callback_data: '/dotusd' },
-    { text: 'DOGE/USD', callback_data: '/doge:usd' },
   ],
   [
+    { text: 'DOGE/USD', callback_data: '/doge:usd' },
     { text: 'DYM/USD', callback_data: '/dymusd' },
     { text: 'EOS/USD', callback_data: '/eosusd' },
     { text: 'ETC/USD', callback_data: '/etcusd' },
-    { text: 'ETHW/USD', callback_data: '/ethw:usd' },
   ],
   [
     { text: 'FET/USD', callback_data: '/fetusd' },
     { text: 'FIL/USD', callback_data: '/filusd' },
     { text: 'GALA/USD', callback_data: '/gala:usd' },
+    { text: 'GTX/USD', callback_data: '/gtxusd' },
+  ],
+  [
     { text: 'HI/USD', callback_data: '/hixusd' },
-  ],
-  [
     { text: 'IOTA/USD', callback_data: '/iotusd' },
-    { text: 'HMSTR/USD', callback_data: '/hmstr:usd' },
-    { text: 'HMSTR/USDt', callback_data: '/hmstr:ust' },
-  ],
-  [
     { text: 'LEO/USD', callback_data: '/leousd' },
     { text: 'LINK/USD', callback_data: '/link:usd' },
+  ],
+  [
     { text: 'LTC/USD', callback_data: '/ltcusd' },
-    { text: 'MATIC/USD', callback_data: '/matic:usd' },
-  ],
-  [
+    { text: 'MKR/USD', callback_data: '/mkrusd' },
     { text: 'NEO/USD', callback_data: '/neousd' },
-    { text: 'NOT/USD', callback_data: '/notusd' },
-    { text: 'OMG/USD', callback_data: '/omgusd' },
-    { text: 'PEPE/USD', callback_data: '/pepe:usd' },
+    { text: 'OMNI/USD', callback_data: '/omnusd' },
   ],
   [
+    { text: 'PEPE/USD', callback_data: '/pepe:usd' },
+    { text: 'PNK/USD', callback_data: '/pnkusd' },
+    { text: 'RRT/USD', callback_data: '/rrtusd' },
     { text: 'SOL/USD', callback_data: '/solusd' },
+  ],
+  [
     { text: 'SUSHI/USD', callback_data: '/sushi:usd' },
     { text: 'TON/USD', callback_data: '/tonusd' },
     { text: 'TRX/USD', callback_data: '/trxusd' },
+    { text: 'TUSD/USD', callback_data: '/tsdusd' },
   ],
   [
     { text: 'UNI/USD', callback_data: '/uniusd' },
+    { text: 'UOS/USD', callback_data: '/uosusd' },
+    { text: 'WBTC/USD', callback_data: '/wbtusd' },
     { text: 'XAUt/USD', callback_data: '/xaut:usd' },
-    { text: 'XDC/USD', callback_data: '/xdcusd' },
-    { text: 'XLM/USD', callback_data: '/xlmusd' },
   ],
   [
+    { text: 'XDC/USD', callback_data: '/xdcusd' },
+    { text: 'XLM/USD', callback_data: '/xlmusd' },
     { text: 'XMR/USD', callback_data: '/xmrusd' },
     { text: 'XTZ/USD', callback_data: '/xtzusd' },
+  ],
+  [
     { text: 'XRP/USD', callback_data: '/xrpusd' },
     { text: 'YFI/USD', callback_data: '/yfiusd' },
+    { text: 'ZEC/USD', callback_data: '/zecusd' },
+    { text: 'ZRX/USD', callback_data: '/zrxusd' },
   ],
 ];
 
