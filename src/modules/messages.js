@@ -32,7 +32,7 @@ import { getAddressInfo2 } from '../api/getAddressInfo2.js';
 
 export const unkCmd = async (bot, chatId) => {
   const text =
-    "Sorry, I don't understand you, please try again or use menu buttons.";
+    "Sorry 🙏. I don't understand you. Please try again or use 👇menu buttons👇";
   await bot.sendMessage(chatId, text, btnsStart);
 };
 
@@ -46,11 +46,11 @@ export const start = async (bot, chatId, msg) => {
 
 export const menu = async (bot, chatId, msg) => {
   let btns = msg?.from?.id === statChatId ? btnsAdminStart : btnsStart;
-  await bot.sendMessage(chatId, 'Menu', btns);
+  await bot.sendMessage(chatId, '🗂️ Menu', btns);
 };
 
 export const allCurrencies = async (bot, chatId) => {
-  await bot.sendMessage(chatId, 'All currencies', btnsCurrencies);
+  await bot.sendMessage(chatId, '💰 All currencies', btnsCurrencies);
 };
 
 export const secret = async (bot, chatId) => {

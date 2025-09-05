@@ -112,20 +112,22 @@ export const btnsCurrencies = {
 };
 
 export const checkAddrBtns = [
-  { text: 'Check BTC address', callback_data: 'checkAddress_bitcoin' },
-  { text: 'Check Doge address', callback_data: 'checkAddress_dogecoin' },
+  { text: '👛 Check BTC address', callback_data: 'checkAddress_bitcoin' },
+  { text: '👛 Check Doge address', callback_data: 'checkAddress_dogecoin' },
 ];
 
 const keyboardStart = [
   [
-    { text: 'All Currencies', callback_data: '/currencies' },
-    { text: 'BTC Blocks Info', callback_data: '/btcBlockInfo' },
-    { text: 'Calculate Pool', callback_data: '/pool' },
+    { text: '💰 All Currencies', callback_data: '/currencies' },
+    { text: '📦 BTC Blocks Info', callback_data: '/btcBlockInfo' },
+  ],
+  [
+    { text: '🔢 Calculate Pool', callback_data: '/pool' },
+    { text: '🙏 Donate', callback_data: '/donate' },
   ],
   [
     { text: '📈 Charts', callback_data: '/charts' },
     { text: '⏰ Timer', callback_data: '/settimer' },
-    { text: '🙏 Donate', callback_data: '/donate' },
   ],
   checkAddrBtns,
   [
@@ -145,30 +147,30 @@ const keyboardAdminStart = [
     { text: 'New users by dates', callback_data: 'unicusersbydates' },
   ],
   [
-    { text: 'Ban user', callback_data: 'banuser' },
-    { text: 'Unban user', callback_data: 'unbanuser' },
+    { text: '🚫 Ban user', callback_data: 'banuser' },
+    { text: '🆗 Unban user', callback_data: 'unbanuser' },
   ],
   [
     {
-      text: 'Check my BTC donate address',
+      text: '✅ Check my BTC donate address',
       callback_data: 'checkMyBtcDonateAddress',
     },
   ],
   [
     {
-      text: 'Check my ETH donate address',
+      text: '✅ Check my ETH donate address',
       callback_data: 'checkMyEthDonateAddress',
     },
   ],
   [
     {
-      text: 'Check my DOGE donate address',
+      text: '✅ Check my DOGE donate address',
       callback_data: 'checkMyDogeDonateAddress',
     },
   ],
   [
     {
-      text: 'Message all users',
+      text: '📨 Message all users',
       callback_data: 'messageAllUsers',
     },
   ],

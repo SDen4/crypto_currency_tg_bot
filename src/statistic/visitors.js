@@ -9,7 +9,7 @@ export const visitors = async (bot, msg) => {
     statChatId,
     `User <code>${msg.from.id}</code> (${msg?.from?.first_name} ${
       msg?.from?.last_name || ''
-    }, ${msg?.from?.language_code}) requests ${command}`,
+    }, ${msg?.from?.language_code}): ${command}`,
     { parse_mode: 'HTML' },
   );
 };
