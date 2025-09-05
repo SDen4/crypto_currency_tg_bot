@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { formatNumber } from '../utils/formatNumber.js';
+import { getTitleExceptions } from '../utils/getTitleExceptions.js';
 import { bfUrl, statChatId } from '../../token.js';
 
 export const bfHttpInfoRequest = (
@@ -31,16 +32,7 @@ export const bfHttpInfoRequest = (
                 .slice(4)}`
             : `${String(text).slice(1).toLocaleUpperCase().replace(':', '/')}`;
         // exceptions
-        if (text === '/ustusd') title = 'USDt/USD';
-        if (text === '/udcusd') title = 'USDC/USD';
-        if (text === '/iotusd') title = 'IOTA/USD';
-        if (text === '/atousd') title = 'ATOM/USD';
-        if (text === '/tsdusd') title = 'TUSD/USD';
-        if (text === '/omnusd') title = 'OMNI/USD';
-        if (text === '/algusd') title = 'ALGO/USD';
-        if (text === '/wbtusd') title = 'WBTC/USD';
-        if (text === '/hixusd') title = 'HI/USD';
-        if (text === '/dshusd') title = 'DASH/USD';
+        title = getTitleExceptions(text, title);
 
         const emoji = data[5] > 0 ? '🟢' : '🔻';
         const answer = `

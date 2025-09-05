@@ -2,6 +2,7 @@ import axios from 'axios';
 import { bfUrl } from '../../token.js';
 
 import { generateMessageId } from '../utils/generateMessageId.js';
+import { getTitleExceptions } from '../utils/getTitleExceptions.js';
 
 import { chartBtns } from '../modules/buttons.js';
 import { currencyMsg, sendErrorMessage } from '../modules/messages.js';
@@ -35,16 +36,7 @@ export const bfHttpRequest = async (bot, chatId, t, msg, refrId, delId) => {
                   .slice(4)}`
               : `${String(text).slice(1).toUpperCase().replace(':', '/')}`;
           // exceptions
-          if (text === '/ustusd') title = 'USDt/USD';
-          if (text === '/udcusd') title = 'USDC/USD';
-          if (text === '/iotusd') title = 'IOTA/USD';
-          if (text === '/atousd') title = 'ATOM/USD';
-          if (text === '/tsdusd') title = 'TUSD/USD';
-          if (text === '/omnusd') title = 'OMNI/USD';
-          if (text === '/algusd') title = 'ALGO/USD';
-          if (text === '/wbtusd') title = 'WBTC/USD';
-          if (text === '/hixusd') title = 'HI/USD';
-          if (text === '/dshusd') title = 'DASH/USD';
+          title = getTitleExceptions(text, title);
 
           // message text
           const answer = currencyMsg(title, data, recommendationText);
