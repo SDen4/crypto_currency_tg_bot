@@ -38,6 +38,7 @@ export const bfHttpInfoRequest = (
         if (text === '/tsdusd') title = 'TUSD/USD';
         if (text === '/omnusd') title = 'OMNI/USD';
         if (text === '/algusd') title = 'ALGO/USD';
+        if (text === '/wbtusd') title = 'WBTC/USD';
         if (text === '/hixusd') title = 'HI/USD';
         if (text === '/dshusd') title = 'DASH/USD';
 
