@@ -12,6 +12,7 @@ import { btcBlockInfo } from '../modules/btcBlockInfo.js';
 import { timer } from '../modules/timer.js';
 import { pool } from '../modules/pool.js';
 import { messageAllUsers } from '../modules/messageAllUsers.js';
+import { fiatChangeLimit } from '../modules/fiatChangeLimit.js';
 
 import {
   cndtnMessageAllUsers,
@@ -28,6 +29,7 @@ import {
   cndtnEmoji,
   cndtnThankAfterDonate,
   cndtnCryptoInfo,
+  cndtnChangeLimitOfFiat,
 } from '../modules/conditions.js';
 import {
   unkCmd,
@@ -35,6 +37,7 @@ import {
   menu,
   secret,
   allCurrencies,
+  fiatCurrencies,
   poolMsg,
   statisticMsg,
   statisticUsersMsg,
@@ -79,9 +82,13 @@ export const message = async (bot, msg, state) => {
   else if (cndtnInfo(text)) {
     await menu(bot, chatId, msg);
   }
-  // All Currencies
+  // Crypto Currencies rates
   else if (cndtnCurrenciesBtns(text)) {
     await allCurrencies(bot, chatId);
+  }
+  // fiat currencies menu
+  else if (text === '/fiatcurrencies') {
+    await fiatCurrencies(bot, chatId);
   }
   // BTC Block Info
   else if (cndtnBtcBlockInfo(text)) {
@@ -139,6 +146,10 @@ export const message = async (bot, msg, state) => {
   else if (cndtnMessageAllUsers(state.isMessageAllUsersMode, msg)) {
     await messageAllUsers(bot, text);
     state.isMessageAllUsersMode = false;
+  }
+  // change limit of fiat rates requests for user
+  else if (cndtnChangeLimitOfFiat(text, chatId)) {
+    await fiatChangeLimit(bot, text);
   }
   // Unknown command
   else {

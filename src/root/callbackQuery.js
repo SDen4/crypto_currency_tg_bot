@@ -14,7 +14,9 @@ import { getVisits } from '../api/getVisits.js';
 import { getUsersQuantity } from '../api/getUsersQuantity.js';
 import { getUnicUsersChart } from '../api/getUnicUsersChart.js';
 import { getChatCurValue } from '../api/getChatCurValue.js';
+import { getFiatRest } from '../api/getFiatRest.js';
 
+import { fiat } from '../modules/fiat.js';
 import { btcBlockInfo } from '../modules/btcBlockInfo.js';
 import { timer } from '../modules/timer.js';
 import { getChart } from '../modules/charts.js';
@@ -29,6 +31,10 @@ import {
 
 import {
   cndtnMessageAllUsersFlag,
+  cndtnFiatPairCurrencies,
+  cndtnFiatAllCurrencies,
+  cndtnFiatRest,
+  cndtnChangeLimitOfFiatMessage,
   cndtnCurrenciesBtns,
   cndtnBtcBlockInfo,
   cndtnStatistic,
@@ -54,6 +60,7 @@ import {
   sendTgStarInvoiceBtns,
   setTmrMsgTime,
   allCurrencies,
+  fiatCurrencies,
   poolMsg,
   statisticMsg,
   statisticUsersMsg,
@@ -61,6 +68,7 @@ import {
   sendBannedUserIdMsg,
   sendCryptoInfoMsg,
   balanceMsg,
+  changeLimitOfFiatRequestsMessage,
 } from '../modules/messages.js';
 
 export const callbackQuery = async (bot, msg, state) => {
@@ -207,6 +215,28 @@ export const callbackQuery = async (bot, msg, state) => {
     state.isMessageAllUsersMode = true;
     await bot.sendMessage(chatId, 'Type the message and send it');
   }
+
+  // fiat currencies menu
+  else if (text === '/fiatcurrencies') {
+    await fiatCurrencies(bot, chatId);
+  }
+  // fiat pair rates requests
+  else if (cndtnFiatPairCurrencies(text)) {
+    await fiat(bot, chatId, text, msg, 'pair');
+  }
+  // fiat all rates by base currency requests
+  else if (cndtnFiatAllCurrencies(text)) {
+    await fiat(bot, chatId, text, msg, 'all');
+  }
+  // check the rest of fiat requests
+  else if (cndtnFiatRest(text, chatId)) {
+    await getFiatRest(bot);
+  }
+  // MESSAGE change limit of fiat requests for user
+  else if (cndtnChangeLimitOfFiatMessage(text, chatId)) {
+    await changeLimitOfFiatRequestsMessage(bot);
+  }
+
   // Currencies
   else {
     await bfHttpRequest(bot, chatId, text, msg);

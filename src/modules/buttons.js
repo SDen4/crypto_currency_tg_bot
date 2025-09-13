@@ -111,6 +111,65 @@ export const btnsCurrencies = {
   reply_markup: { inline_keyboard: btnsCurrenciesArr },
 };
 
+export const btnsFiatCurrencies = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: 'USD/EUR', callback_data: '/fiat-pair-USD/EUR' },
+        { text: 'USD/GBP', callback_data: '/fiat-pair-USD/GBP' },
+        { text: 'USD/RUB', callback_data: '/fiat-pair-USD/RUB' },
+        { text: 'USD/AED', callback_data: '/fiat-pair-USD/AED' },
+      ],
+      [
+        { text: 'USD/CNY', callback_data: '/fiat-pair-USD/CNY' },
+        { text: 'USD/JPY', callback_data: '/fiat-pair-USD/JPY' },
+        { text: 'USD/KZT', callback_data: '/fiat-pair-USD/KZT' },
+        { text: 'USD/INR', callback_data: '/fiat-pair-USD/INR' },
+      ],
+      [{ text: 'All rates for USD', callback_data: '/fiat-all-USD' }],
+      [
+        { text: 'EUR/USD', callback_data: '/fiat-pair-EUR/USD' },
+        { text: 'EUR/GBP', callback_data: '/fiat-pair-EUR/GBP' },
+        { text: 'EUR/RUB', callback_data: '/fiat-pair-EUR/RUB' },
+        { text: 'EUR/AED', callback_data: '/fiat-pair-EUR/AED' },
+      ],
+      [
+        { text: 'EUR/CNY', callback_data: '/fiat-pair-EUR/CNY' },
+        { text: 'EUR/JPY', callback_data: '/fiat-pair-EUR/JPY' },
+        { text: 'EUR/KZT', callback_data: '/fiat-pair-EUR/KZT' },
+        { text: 'EUR/INR', callback_data: '/fiat-pair-EUR/INR' },
+      ],
+      [{ text: 'All rates for EUR', callback_data: '/fiat-all-EUR' }],
+      [
+        { text: 'CNY/USD', callback_data: '/fiat-pair-CNY/USD' },
+        { text: 'CNY/GBP', callback_data: '/fiat-pair-CNY/GBP' },
+        { text: 'CNY/RUB', callback_data: '/fiat-pair-CNY/RUB' },
+        { text: 'CNY/AED', callback_data: '/fiat-pair-CNY/AED' },
+      ],
+      [
+        { text: 'CNY/EUR', callback_data: '/fiat-pair-CNY/EUR' },
+        { text: 'CNY/JPY', callback_data: '/fiat-pair-CNY/JPY' },
+        { text: 'CNY/KZT', callback_data: '/fiat-pair-CNY/KZT' },
+        { text: 'CNY/INR', callback_data: '/fiat-pair-CNY/INR' },
+      ],
+      [{ text: 'All rates for CNY', callback_data: '/fiat-all-CNY' }],
+      [
+        { text: 'INR/USD', callback_data: '/fiat-pair-INR/USD' },
+        { text: 'INR/GBP', callback_data: '/fiat-pair-INR/GBP' },
+        { text: 'INR/RUB', callback_data: '/fiat-pair-INR/RUB' },
+        { text: 'INR/AED', callback_data: '/fiat-pair-INR/AED' },
+      ],
+      [
+        { text: 'INR/EUR', callback_data: '/fiat-pair-INR/EUR' },
+        { text: 'INR/JPY', callback_data: '/fiat-pair-INR/JPY' },
+        { text: 'INR/KZT', callback_data: '/fiat-pair-INR/KZT' },
+        { text: 'INR/CNY', callback_data: '/fiat-pair-INR/CNY' },
+      ],
+      [{ text: 'All rates for INR', callback_data: '/fiat-all-INR' }],
+    ],
+  },
+};
+
 export const checkAddrBtns = [
   { text: '👛 Check BTC address', callback_data: 'checkAddress_bitcoin' },
   { text: '👛 Check Doge address', callback_data: 'checkAddress_dogecoin' },
@@ -118,16 +177,17 @@ export const checkAddrBtns = [
 
 const keyboardStart = [
   [
-    { text: '💰 All Currencies', callback_data: '/currencies' },
-    { text: '📦 BTC Blocks Info', callback_data: '/btcBlockInfo' },
+    { text: '💰 Live Crypto Rates', callback_data: '/currencies' },
+    { text: '💵 Fiat Rates', callback_data: '/fiatcurrencies' },
   ],
   [
+    { text: '📦 BTC Blocks Info', callback_data: '/btcBlockInfo' },
     { text: '🔢 Calculate Pool', callback_data: '/pool' },
-    { text: '🙏 Donate', callback_data: '/donate' },
   ],
   [
     { text: '📈 Charts', callback_data: '/charts' },
     { text: '⏰ Timer', callback_data: '/settimer' },
+    { text: '🙏 Donate', callback_data: '/donate' },
   ],
   checkAddrBtns,
   [
@@ -166,6 +226,18 @@ const keyboardAdminStart = [
     {
       text: '✅ Check my DOGE donate address',
       callback_data: 'checkMyDogeDonateAddress',
+    },
+  ],
+  [
+    {
+      text: '☑️ Check the rest of fiat requests',
+      callback_data: 'checkTheRestOfFiatRequests',
+    },
+  ],
+  [
+    {
+      text: '🔄 Change limit of fiat requests for user',
+      callback_data: 'changeLimitOfFiatRequestsMessage',
     },
   ],
   [
@@ -229,7 +301,8 @@ export const btnsDonate = {
 
 export const commands = [
   { command: '/menu', description: 'Menu' },
-  { command: '/currencies', description: 'All Currencies' },
+  { command: '/currencies', description: 'Live Crypto Rates' },
+  { command: '/fiatcurrencies', description: 'Fiat Rates' },
 ];
 
 export const tgStarsCallbackData = [

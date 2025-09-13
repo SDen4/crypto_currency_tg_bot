@@ -15,6 +15,7 @@ import {
 
 import {
   btnsCurrencies,
+  btnsFiatCurrencies,
   btnsStart,
   btnsAdminStart,
   bnsTimer,
@@ -50,7 +51,11 @@ export const menu = async (bot, chatId, msg) => {
 };
 
 export const allCurrencies = async (bot, chatId) => {
-  await bot.sendMessage(chatId, '💰 All currencies', btnsCurrencies);
+  await bot.sendMessage(chatId, '💰 All live crypto rates', btnsCurrencies);
+};
+
+export const fiatCurrencies = async (bot, chatId) => {
+  await bot.sendMessage(chatId, '💵 All fiat rates', btnsFiatCurrencies);
 };
 
 export const secret = async (bot, chatId) => {
@@ -62,7 +67,7 @@ export const secret = async (bot, chatId) => {
 export const setTmrMsgCur = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Select the currency for timer',
+    'Select the crypto currency for timer',
     btnsCurrenciesTimer,
   );
 };
@@ -70,7 +75,7 @@ export const setTmrMsgCur = async (bot, chatId) => {
 export const sendChartCurBtns = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Select the currency for chart',
+    'Select the crypto currency for chart',
     btnsCurrenciesChart,
   );
 };
@@ -303,4 +308,12 @@ export const balanceMsg = async (bot, chatId, currency, address, isMy) => {
       chatId,
     );
   });
+};
+
+export const changeLimitOfFiatRequestsMessage = async (bot) => {
+  return await bot.sendMessage(
+    statChatId,
+    'Copy this command <code>changeLimitOfFiatRequests-</code> and add after new limit and the user id.\nExample: "changeLimitOfFiatRequests-09-123456789",\n09 - new limit (⚠️two numbers⚠️)\n123456789 - user id',
+    { parse_mode: 'HTML' },
+  );
 };

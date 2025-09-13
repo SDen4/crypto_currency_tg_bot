@@ -229,10 +229,20 @@ export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
   return isRigthCommand && reader;
 };
 
+// all users
 export const cndtnMessageAllUsersFlag = (t, msg) => {
   return t === 'messageAllUsers' && msg.from.id === statChatId;
 };
-
 export const cndtnMessageAllUsers = (flag, msg) => {
   return flag && msg.from.id === statChatId;
 };
+
+// fiat
+export const cndtnFiatPairCurrencies = (text) => text.includes('fiat-pair-');
+export const cndtnFiatAllCurrencies = (text) => text.includes('fiat-all-');
+export const cndtnFiatRest = (text, chatId) =>
+  chatId === statChatId && text.includes('checkTheRestOfFiatRequests');
+export const cndtnChangeLimitOfFiatMessage = (text, chatId) =>
+  chatId === statChatId && text.includes('changeLimitOfFiatRequestsMessage');
+export const cndtnChangeLimitOfFiat = (text, chatId) =>
+  chatId === statChatId && text.includes('changeLimitOfFiatRequests-');
