@@ -313,7 +313,7 @@ export const balanceMsg = async (bot, chatId, currency, address, isMy) => {
 export const changeLimitOfFiatRequestsMessage = async (bot) => {
   return await bot.sendMessage(
     statChatId,
-    'Copy this command <code>changeLimitOfFiatRequests-</code> and add after new limit and the user id.\nExample: "changeLimitOfFiatRequests-09-123456789",\n09 - new limit (⚠️two numbers⚠️)\n123456789 - user id',
+    'Copy this command <code>changeLimitOfFiatRequests-</code> and add after new limit and the user id.\nExample: "changeLimitOfFiatRequests-09-123456789",\n09 - new limit (❗️two numbers❗️)\n123456789 - user id',
     { parse_mode: 'HTML' },
   );
 };

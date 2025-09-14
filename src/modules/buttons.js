@@ -193,6 +193,7 @@ const keyboardStart = [
   [
     { text: 'ℹ️ Crypto Info', callback_data: '/cryptoInfo' },
     { text: '📱 App', web_app: { url: webAppUrl } },
+    { text: '🔒 My limits', callback_data: '/myLimits' },
   ],
 ];
 const keyboardAdminStart = [
@@ -300,9 +301,9 @@ export const btnsDonate = {
 };
 
 export const commands = [
-  { command: '/menu', description: 'Menu' },
-  { command: '/currencies', description: 'Live Crypto Rates' },
-  { command: '/fiatcurrencies', description: 'Fiat Rates' },
+  { command: '/menu', description: '🗂️ Menu' },
+  { command: '/currencies', description: '💰 Live Crypto Rates' },
+  { command: '/fiatcurrencies', description: '💵 Fiat Rates' },
 ];
 
 export const tgStarsCallbackData = [

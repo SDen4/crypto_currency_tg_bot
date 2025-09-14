@@ -1,12 +1,13 @@
 import { sendErrorMessage } from './messages.js';
 
+import { fiatRequestsLimit } from '../../token.js';
+
 import { getFiatUser } from '../api/getFiatUser.js';
 import { putFiatUser } from '../api/putFiatUser.js';
 import { getFiatPairs } from '../api/getFiatPairs.js';
 import { getFiatAll } from '../api/getFiatAll.js';
 
-const fiatRequestsLimit = 3;
-const periodOfLimitRequests = 86_400_000; // one day in ms
+import { periodOfLimitRequests } from '../constants/index.js';
 
 export const fiat = async (bot, chatId, text, msg, type) => {
   try {

@@ -17,6 +17,7 @@ import { getChatCurValue } from '../api/getChatCurValue.js';
 import { getFiatRest } from '../api/getFiatRest.js';
 
 import { fiat } from '../modules/fiat.js';
+import { limits } from '../modules/limits.js';
 import { btcBlockInfo } from '../modules/btcBlockInfo.js';
 import { timer } from '../modules/timer.js';
 import { getChart } from '../modules/charts.js';
@@ -235,6 +236,10 @@ export const callbackQuery = async (bot, msg, state) => {
   // MESSAGE change limit of fiat requests for user
   else if (cndtnChangeLimitOfFiatMessage(text, chatId)) {
     await changeLimitOfFiatRequestsMessage(bot);
+  }
+  // limit message
+  else if (text === '/myLimits') {
+    await limits(bot, chatId, msg);
   }
 
   // Currencies

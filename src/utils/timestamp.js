@@ -1,29 +1,35 @@
+import { formatDateNumber } from './formatDateNumber.js';
+
 /**
- *Format timestamp to 'dd.mm.yyyy hh:mm' or 'hh:mm:ss'
+ * Format timestamp
  * @param {*} timestamp
- * @param {boolean} [isTime=false]
+ * @param {boolean} [isDelta=false]
  * @return {*}  string
  */
-export const timestamp = (timestamp, isTime = false) => {
-  const formatValue = (val) => (String(val).length === 1 ? `0${val}` : val);
-
+export const timestamp = (timestamp, isDelta = false, isOnlyTime = false) => {
   const rightTimeStamp =
     String(timestamp).length <= 10 ? timestamp * 1000 : timestamp;
 
   const date = new Date(rightTimeStamp);
 
-  const hour = formatValue(date.getHours());
-  const min = formatValue(date.getMinutes());
+  const hour = formatDateNumber(date.getHours());
+  const min = formatDateNumber(date.getMinutes());
 
-  if (isTime) {
+  if (isDelta) {
     const deltaMs = new Date().getTime() - rightTimeStamp;
     const deltaMin = Math.floor(deltaMs / 60000);
 
     return `finished ${deltaMin} min ago`;
   }
 
-  const day = formatValue(date.getDate());
-  const month = formatValue(date.getMonth() + 1);
+  // убрать в отдельную утилиту
+  if (isOnlyTime) {
+    const sec = formatDateNumber(date.getSeconds());
+    return `${hour}:${min}:${sec}`;
+  }
+
+  const day = formatDateNumber(date.getDate());
+  const month = formatDateNumber(date.getMonth() + 1);
 
   return `${day}.${month}.${date.getFullYear()} ${hour}:${min}`;
 };
