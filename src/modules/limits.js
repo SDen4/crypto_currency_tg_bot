@@ -13,10 +13,10 @@ export const limits = async (bot, chatId, msg) => {
       `Hi ${msg?.from?.first_name}! Your limits:\n--------------------\n
 1. fiat rates: ${
         user
-          ? `${user.limit} (last 24h used: ${user.count})`
-          : fiatRequestsLimit
-      }/day\n${
-        user.count === user.limit
+          ? `${user.limit}/day (last 24h used: ${user.count})`
+          : `${fiatRequestsLimit}/day`
+      }\n${
+        user && user.count === user.limit
           ? `available in ${msToStr(
               periodOfLimitRequests - (new Date().getTime() - user.lastVisit),
             )}`
