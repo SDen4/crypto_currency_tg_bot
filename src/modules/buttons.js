@@ -213,20 +213,8 @@ const keyboardAdminStart = [
   ],
   [
     {
-      text: '✅ Check my BTC donate address',
-      callback_data: 'checkMyBtcDonateAddress',
-    },
-  ],
-  [
-    {
-      text: '✅ Check my ETH donate address',
-      callback_data: 'checkMyEthDonateAddress',
-    },
-  ],
-  [
-    {
-      text: '✅ Check my DOGE donate address',
-      callback_data: 'checkMyDogeDonateAddress',
+      text: '✅ Check my donate addresses',
+      callback_data: 'checkMyDonateAdresses',
     },
   ],
   [
@@ -248,6 +236,18 @@ const keyboardAdminStart = [
     },
   ],
 ];
+
+export const checkMyAddrBtns = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        { text: 'BTC', callback_data: 'checkMyBtcDonateAddress' },
+        { text: 'ETH', callback_data: 'checkMyEthDonateAddress' },
+        { text: 'DOGE', callback_data: 'checkMyDogeDonateAddress' },
+      ],
+    ],
+  },
+};
 
 export const btnsStart = { reply_markup: { inline_keyboard: keyboardStart } };
 export const btnsAdminStart = {

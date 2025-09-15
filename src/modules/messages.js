@@ -23,6 +23,7 @@ import {
   btnsCurrenciesChart,
   btnsDonate,
   donateTgStarsBtns,
+  checkMyAddrBtns,
 } from './buttons.js';
 
 import { formatNumber } from '../utils/formatNumber.js';
@@ -308,6 +309,14 @@ export const balanceMsg = async (bot, chatId, currency, address, isMy) => {
       chatId,
     );
   });
+};
+
+export const myBalancesBtnsMsg = async (bot) => {
+  return await bot.sendMessage(
+    statChatId,
+    '✅ Check my donate addresses:',
+    checkMyAddrBtns,
+  );
 };
 
 export const changeLimitOfFiatRequestsMessage = async (bot) => {

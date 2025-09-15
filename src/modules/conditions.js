@@ -222,6 +222,9 @@ export const cndtnCryptoInfo = (t) =>
     'i am beginner',
   ].includes(t.toLowerCase());
 
+// check my addresses
+export const cndtnCheckMyAddresses = (t, msg) =>
+  msg.from.id === statChatId && t === 'checkMyDonateAdresses';
 export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
   const reader = msg.from.id === statChatId;
   const isRigthCommand = String(t) === command;

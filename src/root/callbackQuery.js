@@ -48,6 +48,7 @@ import {
   cndtnCheckAddress,
   cndtnBanUser,
   cndtnUnbanUser,
+  cndtnCheckMyAddresses,
   cndtnCheckMyDonateAddresses,
   cndtnCryptoInfo,
 } from '../modules/conditions.js';
@@ -69,6 +70,7 @@ import {
   sendBannedUserIdMsg,
   sendCryptoInfoMsg,
   balanceMsg,
+  myBalancesBtnsMsg,
   changeLimitOfFiatRequestsMessage,
 } from '../modules/messages.js';
 
@@ -195,6 +197,10 @@ export const callbackQuery = async (bot, msg, state) => {
     await sendBannedUserIdMsg(bot, chatId, 'unbanned');
     state.isUnbanUser = true;
   }
+  // Check my donate addresses buttons
+  else if (cndtnCheckMyAddresses(text, msg)) {
+    await myBalancesBtnsMsg(bot);
+  }
   // Check my BTC donate address
   else if (cndtnCheckMyDonateAddresses(text, msg, 'checkMyBtcDonateAddress')) {
     await balanceMsg(bot, statChatId, 'bitcoin', donateBtcAddress, true);
@@ -216,7 +222,6 @@ export const callbackQuery = async (bot, msg, state) => {
     state.isMessageAllUsersMode = true;
     await bot.sendMessage(chatId, 'Type the message and send it');
   }
-
   // fiat currencies menu
   else if (text === '/fiatcurrencies') {
     await fiatCurrencies(bot, chatId);
@@ -241,7 +246,6 @@ export const callbackQuery = async (bot, msg, state) => {
   else if (text === '/myLimits') {
     await limits(bot, chatId, msg);
   }
-
   // Currencies
   else {
     await bfHttpRequest(bot, chatId, text, msg);
