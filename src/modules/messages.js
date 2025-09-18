@@ -29,6 +29,8 @@ import {
 import { formatNumber } from '../utils/formatNumber.js';
 import { timestamp } from '../utils/timestamp.js';
 
+import { getFiatUser } from '../api/getFiatUser.js';
+import { getUsersQuantity } from '../api/getUsersQuantity.js';
 import { getAddressInfo } from '../api/getAddressInfo.js';
 import { getAddressInfo2 } from '../api/getAddressInfo2.js';
 
@@ -324,5 +326,17 @@ export const changeLimitOfFiatRequestsMessage = async (bot) => {
     statChatId,
     'Copy this command <code>changeLimitOfFiatRequests-</code> and add after new limit and the user id.\nExample: "changeLimitOfFiatRequests-09-123456789",\n09 - new limit (❗️two numbers❗️)\n123456789 - user id',
     { parse_mode: 'HTML' },
+  );
+};
+
+export const usersQuantityMsg = async (bot) => {
+  const usersQuantity = await getUsersQuantity(bot);
+  const fiatUsers = await getFiatUser(bot);
+
+  return await bot.sendMessage(
+    statChatId,
+    `Total users: ${usersQuantity} unique visitors\nFiat users: ${
+      Object.keys(fiatUsers)?.length
+    } unique visitors`,
   );
 };

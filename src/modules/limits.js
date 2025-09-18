@@ -6,7 +6,7 @@ import { periodOfLimitRequests } from '../constants/index.js';
 
 export const limits = async (bot, chatId, msg) => {
   try {
-    const user = await getFiatUser(chatId, bot);
+    const user = await getFiatUser(bot, chatId);
 
     await bot.sendMessage(
       chatId,

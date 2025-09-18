@@ -10,7 +10,7 @@ export const fiatChangeLimit = async (bot, text) => {
     const newLimit = text.slice(26, 28);
     const id = text.slice(29);
 
-    const user = await getFiatUser(id, bot);
+    const user = await getFiatUser(bot, id);
 
     if (user) {
       await putFiatUser(id, bot, {

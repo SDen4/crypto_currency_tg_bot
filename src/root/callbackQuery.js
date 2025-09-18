@@ -11,11 +11,9 @@ import { checkBannedUsers } from '../api/checkBannedUsers.js';
 import { bfHttpRequest } from '../api/bfHttpRequest.js';
 import { getUsers } from '../api/getUsers.js';
 import { getVisits } from '../api/getVisits.js';
-import { getUsersQuantity } from '../api/getUsersQuantity.js';
 import { getUnicUsersChart } from '../api/getUnicUsersChart.js';
 import { getChatCurValue } from '../api/getChatCurValue.js';
 import { getFiatRest } from '../api/getFiatRest.js';
-
 import { fiat } from '../modules/fiat.js';
 import { limits } from '../modules/limits.js';
 import { btcBlockInfo } from '../modules/btcBlockInfo.js';
@@ -52,6 +50,7 @@ import {
   cndtnCheckMyDonateAddresses,
   cndtnCryptoInfo,
 } from '../modules/conditions.js';
+
 import {
   setTmrMsgCur,
   sendChartCurBtns,
@@ -71,6 +70,7 @@ import {
   sendCryptoInfoMsg,
   balanceMsg,
   myBalancesBtnsMsg,
+  usersQuantityMsg,
   changeLimitOfFiatRequestsMessage,
 } from '../modules/messages.js';
 
@@ -174,8 +174,7 @@ export const callbackQuery = async (bot, msg, state) => {
   }
   // Statistic (unique visitors quantity)
   else if (cndtnStatisticQuantity(text, msg)) {
-    const usersQuantity = await getUsersQuantity(bot);
-    await bot.sendMessage(chatId, `Total: ${usersQuantity} unique visitors`);
+    await usersQuantityMsg(bot);
   }
   // Statistic (Unic Users Chart)
   else if (text === 'unicuserschart') {

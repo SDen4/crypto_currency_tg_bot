@@ -15,7 +15,7 @@ export const fiat = async (bot, chatId, text, msg, type) => {
     let newUser;
 
     // get user
-    const user = await getFiatUser(id, bot);
+    const user = await getFiatUser(bot, id);
 
     // if no user - create a new one
     if (!user) {

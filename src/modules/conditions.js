@@ -2,7 +2,7 @@ import { cndtnFunc } from '../utils/cndtnFunc.js';
 import { statChatId, shortSign, eugPartId } from '../../token.js';
 import { checkAddrBtns, tgStarsCallbackData } from './buttons.js';
 
-export const cndtnCurrencies = (text) =>
+export const cndtnCurrencies = (t) =>
   [
     'ada',
     'adausd',
@@ -97,19 +97,19 @@ export const cndtnCurrencies = (text) =>
     'zecusd',
     'zrx',
     'zrxusd',
-  ].includes(cndtnFunc(String(text).replace('/', '')));
+  ].includes(cndtnFunc(String(t).replace('/', '')));
 
-export const cndtnInfo = (text) =>
+export const cndtnInfo = (t) =>
   ['menu', 'info', 'штащ', 'help', 'рудз', 'инфо'].includes(
-    cndtnFunc(String(text).replace('/', '')),
+    cndtnFunc(String(t).replace('/', '')),
   );
 
-export const cndtnCurrenciesBtns = (text) =>
+export const cndtnCurrenciesBtns = (t) =>
   ['currencies', 'сгккутсшуы', 'curr', 'сгкк', 'cur', 'сгк'].includes(
-    cndtnFunc(String(text).replace('/', '')),
+    cndtnFunc(String(t).replace('/', '')),
   );
 
-export const cndtnSecret = (text) =>
+export const cndtnSecret = (t) =>
   [
     'secret',
     'ыускуе',
@@ -120,9 +120,9 @@ export const cndtnSecret = (text) =>
     'great',
     'excelent',
     'cool',
-  ].includes(cndtnFunc(String(text).replace('/', '')));
+  ].includes(cndtnFunc(String(t).replace('/', '')));
 
-export const cndtnStart = (text) =>
+export const cndtnStart = (t) =>
   [
     'start',
     'ыефке',
@@ -136,15 +136,15 @@ export const cndtnStart = (text) =>
     'превед',
     'yo',
     'хай',
-  ].includes(cndtnFunc(String(text).replace('/', '')));
+  ].includes(cndtnFunc(String(t).replace('/', '')));
 
-export const cndtnBtcBlockInfo = (text) =>
+export const cndtnBtcBlockInfo = (t) =>
   ['btcblockinfo', 'btcblocksinfo', 'btcblock', 'blockinfo', 'block'].includes(
-    cndtnFunc(String(text).replace('/', '')),
+    cndtnFunc(String(t).replace('/', '')),
   );
 
-export const cndtnPool = (text) => {
-  const formatText = String(text).trim()[0] / 2;
+export const cndtnPool = (t) => {
+  const formatText = String(t).trim()[0] / 2;
   return typeof formatText === 'number' && !isNaN(formatText);
 };
 
@@ -155,62 +155,51 @@ export const cndtnStatistic = (t, msg) => {
   return ['stat', '/stat', 'стат'].includes(text) && reader;
 };
 
-export const cndtnStatisticQuantity = (t, msg) => {
-  const reader = msg.from.id === statChatId;
-  const isRigthCommand = String(t)?.toLocaleLowerCase() === 'usersquantity';
+export const cndtnStatisticQuantity = (t, msg) =>
+  msg.from.id === statChatId && t === 'usersquantity';
 
-  return isRigthCommand && reader;
-};
+export const cndtnBanUser = (t, msg) =>
+  t.toLowerCase() === 'banuser' && msg.from.id === statChatId;
 
-export const cndtnBanUser = (t, msg) => {
-  return t.toLowerCase() === 'banuser' && msg.from.id === statChatId;
-};
+export const cndtnUnbanUser = (t, msg) =>
+  t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
 
-export const cndtnUnbanUser = (t, msg) => {
-  return t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
-};
+export const cndtnStatisticUsers = (t, msg) =>
+  t?.toLowerCase() === 'users' && msg.from.id === statChatId;
 
-export const cndtnStatisticUsers = (t, msg) => {
-  return t?.toLowerCase() === 'users' && msg.from.id === statChatId;
-};
-
-export const cndtnEugFunc = (text, msg) => {
+export const cndtnEugFunc = (t, msg) => {
   const id = msg.from.id;
 
   return (
-    text?.toLocaleLowerCase() === shortSign &&
+    t?.toLocaleLowerCase() === shortSign &&
     (String(id).indexOf(eugPartId) !== -1 || id === statChatId)
   );
 };
 
-export const cndtnEmoji = (text) =>
-  typeof Number(text) !== 'number' && /\p{Emoji}/u.test(text);
+export const cndtnEmoji = (t) =>
+  typeof Number(t) !== 'number' && /\p{Emoji}/u.test(t);
 
-export const cndtnDonate = (text) => {
+export const cndtnDonate = (t) => {
   return (
-    text === '/copyAddressBTC' ||
-    text === '/copyAddressETH' ||
-    text === '/copyAddressDoge' ||
-    text === '/copyAddressLightning'
+    t === '/copyAddressBTC' ||
+    t === '/copyAddressETH' ||
+    t === '/copyAddressDoge' ||
+    t === '/copyAddressLightning'
   );
 };
 
-export const cndtnTgStarDonate = (text) => text === '/sendTelegramStarInvoice';
+export const cndtnTgStarDonate = (t) => t === '/sendTelegramStarInvoice';
 
-export const cndtnDonateQr = (text) => {
-  return text === '/showQrBtc' || text === '/showQrLightning';
-};
+export const cndtnDonateQr = (t) =>
+  t === '/showQrBtc' || t === '/showQrLightning';
 
-export const cndtnCheckAddress = (text) => {
-  return checkAddrBtns.map((el) => el.callback_data).includes(text);
-};
+export const cndtnCheckAddress = (t) =>
+  checkAddrBtns.map((el) => el.callback_data).includes(t);
 
-export const cndtnTgStarDonateBtn = (text) =>
-  tgStarsCallbackData.includes(text);
+export const cndtnTgStarDonateBtn = (t) => tgStarsCallbackData.includes(t);
 
-export const cndtnThankAfterDonate = (msg) => {
-  return msg?.text === undefined && msg?.successful_payment?.total_amount > 0;
-};
+export const cndtnThankAfterDonate = (msg) =>
+  msg?.text === undefined && msg?.successful_payment?.total_amount > 0;
 
 export const cndtnCryptoInfo = (t) =>
   t.toLowerCase() === '/cryptoinfo' ||
@@ -225,6 +214,7 @@ export const cndtnCryptoInfo = (t) =>
 // check my addresses
 export const cndtnCheckMyAddresses = (t, msg) =>
   msg.from.id === statChatId && t === 'checkMyDonateAdresses';
+
 export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
   const reader = msg.from.id === statChatId;
   const isRigthCommand = String(t) === command;
@@ -233,19 +223,20 @@ export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
 };
 
 // all users
-export const cndtnMessageAllUsersFlag = (t, msg) => {
-  return t === 'messageAllUsers' && msg.from.id === statChatId;
-};
-export const cndtnMessageAllUsers = (flag, msg) => {
-  return flag && msg.from.id === statChatId;
-};
+export const cndtnMessageAllUsersFlag = (t, msg) =>
+  t === 'messageAllUsers' && msg.from.id === statChatId;
+export const cndtnMessageAllUsers = (flag, msg) =>
+  flag && msg.from.id === statChatId;
 
 // fiat
-export const cndtnFiatPairCurrencies = (text) => text.includes('fiat-pair-');
-export const cndtnFiatAllCurrencies = (text) => text.includes('fiat-all-');
-export const cndtnFiatRest = (text, chatId) =>
-  chatId === statChatId && text.includes('checkTheRestOfFiatRequests');
-export const cndtnChangeLimitOfFiatMessage = (text, chatId) =>
-  chatId === statChatId && text.includes('changeLimitOfFiatRequestsMessage');
-export const cndtnChangeLimitOfFiat = (text, chatId) =>
-  chatId === statChatId && text.includes('changeLimitOfFiatRequests-');
+export const cndtnFiatPairCurrencies = (t) => t.includes('fiat-pair-');
+export const cndtnFiatAllCurrencies = (t) => t.includes('fiat-all-');
+
+export const cndtnFiatRest = (t, chatId) =>
+  chatId === statChatId && t.includes('checkTheRestOfFiatRequests');
+
+export const cndtnChangeLimitOfFiatMessage = (t, chatId) =>
+  chatId === statChatId && t.includes('changeLimitOfFiatRequestsMessage');
+
+export const cndtnChangeLimitOfFiat = (t, chatId) =>
+  chatId === statChatId && t.includes('changeLimitOfFiatRequests-');
