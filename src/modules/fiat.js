@@ -12,6 +12,8 @@ import { periodOfLimitRequests } from '../constants/index.js';
 export const fiat = async (bot, chatId, text, msg, type) => {
   try {
     const id = msg?.from?.id || msg?.chat?.id;
+    if (!id) return;
+
     let newUser;
 
     // get user

@@ -123,8 +123,8 @@ export const btnsFiatCurrencies = {
       [
         { text: 'USD/CNY', callback_data: '/fiat-pair-USD/CNY' },
         { text: 'USD/JPY', callback_data: '/fiat-pair-USD/JPY' },
-        { text: 'USD/KZT', callback_data: '/fiat-pair-USD/KZT' },
-        { text: 'USD/INR', callback_data: '/fiat-pair-USD/INR' },
+        { text: 'USD/CAD', callback_data: '/fiat-pair-USD/CAD' },
+        { text: 'USD/CHF', callback_data: '/fiat-pair-USD/CHF' },
       ],
       [{ text: 'All rates for USD', callback_data: '/fiat-all-USD' }],
       [
@@ -136,8 +136,8 @@ export const btnsFiatCurrencies = {
       [
         { text: 'EUR/CNY', callback_data: '/fiat-pair-EUR/CNY' },
         { text: 'EUR/JPY', callback_data: '/fiat-pair-EUR/JPY' },
-        { text: 'EUR/KZT', callback_data: '/fiat-pair-EUR/KZT' },
-        { text: 'EUR/INR', callback_data: '/fiat-pair-EUR/INR' },
+        { text: 'EUR/CAD', callback_data: '/fiat-pair-EUR/CAD' },
+        { text: 'EUR/GBP', callback_data: '/fiat-pair-EUR/GBP' },
       ],
       [{ text: 'All rates for EUR', callback_data: '/fiat-all-EUR' }],
       [
@@ -149,23 +149,29 @@ export const btnsFiatCurrencies = {
       [
         { text: 'CNY/EUR', callback_data: '/fiat-pair-CNY/EUR' },
         { text: 'CNY/JPY', callback_data: '/fiat-pair-CNY/JPY' },
-        { text: 'CNY/KZT', callback_data: '/fiat-pair-CNY/KZT' },
-        { text: 'CNY/INR', callback_data: '/fiat-pair-CNY/INR' },
+        { text: 'CNY/CAD', callback_data: '/fiat-pair-CNY/CAD' },
+        { text: 'CNY/GBP', callback_data: '/fiat-pair-CNY/GBP' },
       ],
       [{ text: 'All rates for CNY', callback_data: '/fiat-all-CNY' }],
       [
-        { text: 'INR/USD', callback_data: '/fiat-pair-INR/USD' },
-        { text: 'INR/GBP', callback_data: '/fiat-pair-INR/GBP' },
-        { text: 'INR/RUB', callback_data: '/fiat-pair-INR/RUB' },
-        { text: 'INR/AED', callback_data: '/fiat-pair-INR/AED' },
+        { text: 'GBP/USD', callback_data: '/fiat-pair-GBP/USD' },
+        { text: 'GBP/CHF', callback_data: '/fiat-pair-GBP/CHF' },
+        { text: 'GBP/RUB', callback_data: '/fiat-pair-GBP/RUB' },
+        { text: 'GBP/AED', callback_data: '/fiat-pair-GBP/AED' },
       ],
       [
-        { text: 'INR/EUR', callback_data: '/fiat-pair-INR/EUR' },
-        { text: 'INR/JPY', callback_data: '/fiat-pair-INR/JPY' },
-        { text: 'INR/KZT', callback_data: '/fiat-pair-INR/KZT' },
-        { text: 'INR/CNY', callback_data: '/fiat-pair-INR/CNY' },
+        { text: 'GBP/EUR', callback_data: '/fiat-pair-GBP/EUR' },
+        { text: 'GBP/JPY', callback_data: '/fiat-pair-GBP/JPY' },
+        { text: 'GBP/CAD', callback_data: '/fiat-pair-GBP/CAD' },
+        { text: 'GBP/CNY', callback_data: '/fiat-pair-GBP/CNY' },
       ],
-      [{ text: 'All rates for INR', callback_data: '/fiat-all-INR' }],
+      [{ text: 'All rates for GBP', callback_data: '/fiat-all-GBP' }],
+      [
+        { text: 'AUD/USD', callback_data: '/fiat-pair-AUD/USD' },
+        { text: 'NZD/USD', callback_data: '/fiat-pair-NZD/USD' },
+        { text: 'USD/MXN', callback_data: '/fiat-pair-USD/MXN' },
+        { text: 'USD/HKD', callback_data: '/fiat-pair-USD/HKD' },
+      ],
     ],
   },
 };
