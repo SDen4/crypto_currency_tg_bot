@@ -13,6 +13,7 @@ import { timer } from '../modules/timer.js';
 import { pool } from '../modules/pool.js';
 import { messageAllUsers } from '../modules/messageAllUsers.js';
 import { fiatChangeLimit } from '../modules/fiatChangeLimit.js';
+import { fiatResetDayRequests } from '../modules/fiatResetDayRequests.js';
 
 import {
   cndtnMessageAllUsers,
@@ -30,7 +31,9 @@ import {
   cndtnThankAfterDonate,
   cndtnCryptoInfo,
   cndtnChangeLimitOfFiat,
+  cndtnResetFiatDayRequests,
 } from '../modules/conditions.js';
+
 import {
   unkCmd,
   start,
@@ -150,6 +153,10 @@ export const message = async (bot, msg, state) => {
   // change limit of fiat rates requests for user
   else if (cndtnChangeLimitOfFiat(text, chatId)) {
     await fiatChangeLimit(bot, text);
+  }
+  // reset fiat day requests for user
+  else if (cndtnResetFiatDayRequests(text, chatId)) {
+    await fiatResetDayRequests(bot, text);
   }
   // Unknown command
   else {

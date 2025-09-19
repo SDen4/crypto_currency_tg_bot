@@ -240,3 +240,9 @@ export const cndtnChangeLimitOfFiatMessage = (t, chatId) =>
 
 export const cndtnChangeLimitOfFiat = (t, chatId) =>
   chatId === statChatId && t.includes('changeLimitOfFiatRequests-');
+
+export const cndtnResetFiatDayRequestsMessage = (t, chatId) =>
+  chatId === statChatId && t.includes('resetFiatDayRequestMessage');
+
+export const cndtnResetFiatDayRequests = (t, chatId) =>
+  chatId === statChatId && t.includes('resetFiatDayRequests-');

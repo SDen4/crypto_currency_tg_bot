@@ -329,6 +329,14 @@ export const changeLimitOfFiatRequestsMessage = async (bot) => {
   );
 };
 
+export const resetFiatDayRequestsMessage = async (bot) => {
+  return await bot.sendMessage(
+    statChatId,
+    'Copy this command <code>resetFiatDayRequests-</code> and add after the user id.\nExample: "resetFiatDayRequests-123456789",\n123456789 - user id',
+    { parse_mode: 'HTML' },
+  );
+};
+
 export const usersQuantityMsg = async (bot) => {
   const usersQuantity = await getUsersQuantity(bot);
   const fiatUsers = await getFiatUser(bot);

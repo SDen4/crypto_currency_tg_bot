@@ -34,6 +34,7 @@ import {
   cndtnFiatAllCurrencies,
   cndtnFiatRest,
   cndtnChangeLimitOfFiatMessage,
+  cndtnResetFiatDayRequestsMessage,
   cndtnCurrenciesBtns,
   cndtnBtcBlockInfo,
   cndtnStatistic,
@@ -72,6 +73,7 @@ import {
   myBalancesBtnsMsg,
   usersQuantityMsg,
   changeLimitOfFiatRequestsMessage,
+  resetFiatDayRequestsMessage,
 } from '../modules/messages.js';
 
 export const callbackQuery = async (bot, msg, state) => {
@@ -240,6 +242,10 @@ export const callbackQuery = async (bot, msg, state) => {
   // MESSAGE change limit of fiat requests for user
   else if (cndtnChangeLimitOfFiatMessage(text, chatId)) {
     await changeLimitOfFiatRequestsMessage(bot);
+  }
+  // MESSAGE reset fiat day requests
+  else if (cndtnResetFiatDayRequestsMessage(text, chatId)) {
+    await resetFiatDayRequestsMessage(bot);
   }
   // limit message
   else if (text === '/myLimits') {

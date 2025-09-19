@@ -231,8 +231,14 @@ const keyboardAdminStart = [
   ],
   [
     {
-      text: '🔄 Change limit of fiat requests for user',
+      text: '🔄 Change user limit of fiat requests',
       callback_data: 'changeLimitOfFiatRequestsMessage',
+    },
+  ],
+  [
+    {
+      text: '❌ Reset user fiat day requests',
+      callback_data: 'resetFiatDayRequestMessage',
     },
   ],
   [
