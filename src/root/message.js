@@ -14,6 +14,7 @@ import { pool } from '../modules/pool.js';
 import { messageAllUsers } from '../modules/messageAllUsers.js';
 import { fiatChangeLimit } from '../modules/fiatChangeLimit.js';
 import { fiatResetDayRequests } from '../modules/fiatResetDayRequests.js';
+import { fiatHistory } from '../modules/fiatHistory.js';
 
 import {
   cndtnMessageAllUsers,
@@ -32,6 +33,7 @@ import {
   cndtnCryptoInfo,
   cndtnChangeLimitOfFiat,
   cndtnResetFiatDayRequests,
+  cndtnHistoryOfFiatRates,
 } from '../modules/conditions.js';
 
 import {
@@ -157,6 +159,10 @@ export const message = async (bot, msg, state) => {
   // reset fiat day requests for user
   else if (cndtnResetFiatDayRequests(text, chatId)) {
     await fiatResetDayRequests(bot, text);
+  }
+  // history of the fiat currency
+  else if (cndtnHistoryOfFiatRates(text)) {
+    await fiatHistory(bot, chatId, text);
   }
   // Unknown command
   else {

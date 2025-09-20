@@ -201,6 +201,12 @@ const keyboardStart = [
     { text: '📱 App', web_app: { url: webAppUrl } },
     { text: '🔒 My limits', callback_data: '/myLimits' },
   ],
+  [
+    {
+      text: '📅 History Of Fiat Rates',
+      callback_data: '/fiatHistoryRatesMessage',
+    },
+  ],
 ];
 const keyboardAdminStart = [
   ...keyboardStart,

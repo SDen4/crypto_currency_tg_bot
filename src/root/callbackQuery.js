@@ -74,6 +74,7 @@ import {
   usersQuantityMsg,
   changeLimitOfFiatRequestsMessage,
   resetFiatDayRequestsMessage,
+  fiatHistoryRatesMsg,
 } from '../modules/messages.js';
 
 export const callbackQuery = async (bot, msg, state) => {
@@ -246,6 +247,10 @@ export const callbackQuery = async (bot, msg, state) => {
   // MESSAGE reset fiat day requests
   else if (cndtnResetFiatDayRequestsMessage(text, chatId)) {
     await resetFiatDayRequestsMessage(bot);
+  }
+  // MESSAGE history of fiat rates
+  else if (text === '/fiatHistoryRatesMessage') {
+    await fiatHistoryRatesMsg(bot, chatId);
   }
   // limit message
   else if (text === '/myLimits') {

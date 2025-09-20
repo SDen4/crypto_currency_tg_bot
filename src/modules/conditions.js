@@ -246,3 +246,5 @@ export const cndtnResetFiatDayRequestsMessage = (t, chatId) =>
 
 export const cndtnResetFiatDayRequests = (t, chatId) =>
   chatId === statChatId && t.includes('resetFiatDayRequests-');
+
+export const cndtnHistoryOfFiatRates = (t) => t.includes('fiatHistoryRates-');

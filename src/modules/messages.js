@@ -337,6 +337,14 @@ export const resetFiatDayRequestsMessage = async (bot) => {
   );
 };
 
+export const fiatHistoryRatesMsg = async (bot, chatId) => {
+  return await bot.sendMessage(
+    chatId,
+    'Copy this command <code>fiatHistoryRates-</code> and add after currencies and the date.\nExample: "fiatHistoryRates-USD/EUR-2025-09-20",\nUSD/EUR - currencies pair\n2025-09-20 at the format YYYY-MM-DD',
+    { parse_mode: 'HTML' },
+  );
+};
+
 export const usersQuantityMsg = async (bot) => {
   const usersQuantity = await getUsersQuantity(bot);
   const fiatUsers = await getFiatUser(bot);
