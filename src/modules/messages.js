@@ -25,6 +25,7 @@ import {
   donateTgStarsBtns,
   checkMyAddrBtns,
   myLimitsBtn,
+  fiatBtns,
 } from './buttons.js';
 
 import { formatNumber } from '../utils/formatNumber.js';
@@ -368,3 +369,6 @@ export const exceededLimitMsg = async (bot, chatId, limit) =>
       inline_keyboard: [[myLimitsBtn]],
     },
   });
+
+export const allFiatBtnsMsg = async (bot) =>
+  await bot.sendMessage(statChatId, '💵 All Fiat Buttons:', fiatBtns);

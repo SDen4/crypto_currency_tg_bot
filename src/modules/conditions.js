@@ -235,6 +235,9 @@ export const cndtnFiatAllCurrencies = (t) => t.includes('fiat-all-');
 export const cndtnFiatRest = (t, chatId) =>
   chatId === statChatId && t.includes('checkTheRestOfFiatRequests');
 
+export const cndtnAllFiatBtns = (t, chatId) =>
+  chatId === statChatId && t.includes('showAllFiatButtons');
+
 export const cndtnChangeLimitOfFiatMessage = (t, chatId) =>
   chatId === statChatId && t.includes('changeLimitOfFiatRequestsMessage');
 

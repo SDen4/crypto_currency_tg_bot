@@ -210,6 +210,32 @@ const keyboardStart = [
     },
   ],
 ];
+
+export const fiatBtns = {
+  reply_markup: {
+    inline_keyboard: [
+      [
+        {
+          text: '☑️ Check the rest of requests',
+          callback_data: 'checkTheRestOfFiatRequests',
+        },
+      ],
+      [
+        {
+          text: '❌ Reset user day requests',
+          callback_data: 'resetFiatDayRequestMessage',
+        },
+      ],
+      [
+        {
+          text: '🔄 Change user limit of requests',
+          callback_data: 'changeLimitOfFiatRequestsMessage',
+        },
+      ],
+    ],
+  },
+};
+
 const keyboardAdminStart = [
   ...keyboardStart,
   [
@@ -233,26 +259,12 @@ const keyboardAdminStart = [
   ],
   [
     {
-      text: '☑️ Check the rest of fiat requests',
-      callback_data: 'checkTheRestOfFiatRequests',
-    },
-  ],
-  [
-    {
-      text: '🔄 Change user limit of fiat requests',
-      callback_data: 'changeLimitOfFiatRequestsMessage',
-    },
-  ],
-  [
-    {
-      text: '❌ Reset user fiat day requests',
-      callback_data: 'resetFiatDayRequestMessage',
-    },
-  ],
-  [
-    {
       text: '📨 Message all users',
       callback_data: 'messageAllUsers',
+    },
+    {
+      text: '💵 All Fiat Buttons',
+      callback_data: 'showAllFiatButtons',
     },
   ],
 ];

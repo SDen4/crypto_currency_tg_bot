@@ -33,6 +33,7 @@ import {
   cndtnFiatPairCurrencies,
   cndtnFiatAllCurrencies,
   cndtnFiatRest,
+  cndtnAllFiatBtns,
   cndtnChangeLimitOfFiatMessage,
   cndtnResetFiatDayRequestsMessage,
   cndtnCurrenciesBtns,
@@ -75,6 +76,7 @@ import {
   changeLimitOfFiatRequestsMessage,
   resetFiatDayRequestsMessage,
   fiatHistoryRatesMsg,
+  allFiatBtnsMsg,
 } from '../modules/messages.js';
 
 export const callbackQuery = async (bot, msg, state) => {
@@ -239,6 +241,10 @@ export const callbackQuery = async (bot, msg, state) => {
   // check the rest of fiat requests
   else if (cndtnFiatRest(text, chatId)) {
     await getFiatRest(bot);
+  }
+  // show all admin fiat buttons
+  else if (cndtnAllFiatBtns(text, chatId)) {
+    allFiatBtnsMsg(bot);
   }
   // MESSAGE change limit of fiat requests for user
   else if (cndtnChangeLimitOfFiatMessage(text, chatId)) {
