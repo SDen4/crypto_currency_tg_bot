@@ -181,6 +181,8 @@ export const checkAddrBtns = [
   { text: '👛 Check Doge address', callback_data: 'checkAddress_dogecoin' },
 ];
 
+export const myLimitsBtn = { text: '🔒 My limits', callback_data: '/myLimits' };
+
 const keyboardStart = [
   [
     { text: '💰 Live Crypto Rates', callback_data: '/currencies' },
@@ -199,7 +201,7 @@ const keyboardStart = [
   [
     { text: 'ℹ️ Crypto Info', callback_data: '/cryptoInfo' },
     { text: '📱 App', web_app: { url: webAppUrl } },
-    { text: '🔒 My limits', callback_data: '/myLimits' },
+    myLimitsBtn,
   ],
   [
     {

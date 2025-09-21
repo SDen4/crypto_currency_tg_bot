@@ -10,8 +10,9 @@ export const limits = async (bot, chatId, msg) => {
 
     await bot.sendMessage(
       chatId,
-      `Hi ${msg?.from?.first_name}! Your limits:\n--------------------\n
-1. fiat rates: ${
+      `${
+        msg?.from?.first_name
+      }, your limits:\n------------------\n1. fiat rates: ${
         user
           ? `${user.limit}/day (last 24h used: ${user.count})`
           : `${fiatRequestsLimit}/day`

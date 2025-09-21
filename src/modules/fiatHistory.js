@@ -1,6 +1,6 @@
-import { sendErrorMessage } from './messages.js';
-
 import { fiatRequestsLimit } from '../../token.js';
+
+import { exceededLimitMsg, sendErrorMessage } from './messages.js';
 
 import { getFiatUser } from '../api/getFiatUser.js';
 import { getFiatHistory } from '../api/getFiatHistory.js';
@@ -51,10 +51,7 @@ export const fiatHistory = async (bot, chatId, text) => {
 
     // check count for limit
     if (newCount > newUser.limit) {
-      await bot.sendMessage(
-        chatId,
-        `You've exceeded your limit (${newUser.limit} requests per day). Please, try again later.`,
-      );
+      exceededLimitMsg(bot, chatId, newUser.limit);
 
       return;
     } else {

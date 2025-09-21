@@ -24,6 +24,7 @@ import {
   btnsDonate,
   donateTgStarsBtns,
   checkMyAddrBtns,
+  myLimitsBtn,
 } from './buttons.js';
 
 import { formatNumber } from '../utils/formatNumber.js';
@@ -357,3 +358,13 @@ export const usersQuantityMsg = async (bot) => {
     } unique visitors`,
   );
 };
+
+const exceededLimit = (limit) =>
+  `You've exceeded your limit (${limit} requests per day).\nPlease, try again later.`;
+
+export const exceededLimitMsg = async (bot, chatId, limit) =>
+  await bot.sendMessage(chatId, exceededLimit(limit), {
+    reply_markup: {
+      inline_keyboard: [[myLimitsBtn]],
+    },
+  });
