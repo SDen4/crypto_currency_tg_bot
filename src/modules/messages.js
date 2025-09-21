@@ -337,10 +337,11 @@ export const resetFiatDayRequestsMessage = async (bot) => {
   );
 };
 
+const lastYear = new Date().getFullYear() - 1;
 export const fiatHistoryRatesMsg = async (bot, chatId) => {
   return await bot.sendMessage(
     chatId,
-    'Copy this command <code>fiatHistoryRates-</code> and add after currencies and the date.\nExample: "fiatHistoryRates-USD/EUR-2025-09-20",\nUSD/EUR - currencies pair\n2025-09-20 at the format YYYY-MM-DD',
+    `Copy this command (tap on it): <code>fiatHistoryRates-</code> \nand add after the currency pair and the date.\nExample: "<code>fiatHistoryRates-USD/EUR-${lastYear}-01-01</code>",\nUSD/EUR - currency pair\n${lastYear}-01-01 - date (format YYYY-MM-DD)`,
     { parse_mode: 'HTML' },
   );
 };

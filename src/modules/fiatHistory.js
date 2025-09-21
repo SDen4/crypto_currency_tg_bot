@@ -9,6 +9,13 @@ import { putFiatUser } from '../api/putFiatUser.js';
 
 import { periodOfLimitRequests } from '../constants/index.js';
 
+const usdEur20240101Dump = `USD/EUR at 2024-01-01:
+-------------------------
+1. open: 0.90450
+2. high: 0.90590
+3. low: 0.90450
+4. close: 0.90480`;
+
 export const fiatHistory = async (bot, chatId, text) => {
   try {
     if (!chatId) return;
@@ -59,7 +66,16 @@ export const fiatHistory = async (bot, chatId, text) => {
       };
 
       await putFiatUser(chatId, bot, newUser);
-      await getFiatHistory(bot, currencyFrom, currencyTo, date, chatId);
+
+      if (
+        currencyFrom === 'USD' &&
+        currencyTo === 'EUR' &&
+        date === `2024-01-01`
+      ) {
+        await bot.sendMessage(chatId, usdEur20240101Dump);
+      } else {
+        await getFiatHistory(bot, currencyFrom, currencyTo, date, chatId);
+      }
     }
   } catch (error) {
     await sendErrorMessage(error, bot, chatId);
