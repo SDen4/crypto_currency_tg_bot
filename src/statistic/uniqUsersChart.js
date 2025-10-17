@@ -3,7 +3,7 @@ import ChartJSImage from 'chart.js-image';
 
 import { sendErrorMessage } from '../modules/messages.js';
 
-export const unicUsersChart = async (bot, chatId, chartData) => {
+export const uniqUsersChart = async (bot, chatId, chartData) => {
   try {
     const chart = ChartJSImage()
       .chart({

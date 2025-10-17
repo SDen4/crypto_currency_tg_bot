@@ -47,7 +47,7 @@ export const btcBlockInfo = async (bot, chatId, msg, refrId, delId) => {
   } catch {
     await bot.sendMessage(
       chatId,
-      "Informaiton hasn't changed. Please, try again later",
+      "Information hasn't changed. Please, try again later",
     );
   }
 };

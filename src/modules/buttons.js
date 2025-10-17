@@ -244,8 +244,8 @@ const keyboardAdminStart = [
     { text: 'Last 10', callback_data: 'stat' },
   ],
   [
-    { text: 'New users chart', callback_data: 'unicuserschart' },
-    { text: 'New users by dates', callback_data: 'unicusersbydates' },
+    { text: 'New users chart', callback_data: 'uniquserschart' },
+    { text: 'New users by dates', callback_data: 'uniqusersbydates' },
   ],
   [
     { text: '🚫 Ban user', callback_data: 'banuser' },
@@ -254,7 +254,7 @@ const keyboardAdminStart = [
   [
     {
       text: '✅ Check my donate addresses',
-      callback_data: 'checkMyDonateAdresses',
+      callback_data: 'checkMyDonateAddresses',
     },
   ],
   [

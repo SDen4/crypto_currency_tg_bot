@@ -5,7 +5,7 @@ import { formatDateNumber } from '../utils/formatDateNumber.js';
 import { sendErrorMessage } from '../modules/messages.js';
 import { statUrl, statChatId } from '../../token.js';
 
-export const getUnicUsersChart = async (bot, isWeekDay) => {
+export const getUniqUsersChart = async (bot, isWeekDay) => {
   return await axios
     .get(`${statUrl}users.json`)
     .then((response) => {
@@ -30,6 +30,6 @@ export const getUnicUsersChart = async (bot, isWeekDay) => {
         }, {});
     })
     .catch((error) =>
-      sendErrorMessage(`Error in getUnicUsersChart: ${error}`, bot, statChatId),
+      sendErrorMessage(`Error in getUniqUsersChart: ${error}`, bot, statChatId),
     );
 };

@@ -1,4 +1,4 @@
 export * from './saveStat.js';
-export * from './unicUsersByDates.js';
-export * from './unicUsersChart.js';
+export * from './uniqUsersByDates.js';
+export * from './uniqUsersChart.js';
 export * from './visitors.js';

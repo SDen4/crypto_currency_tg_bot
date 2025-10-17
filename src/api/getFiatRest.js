@@ -15,7 +15,7 @@ export const getFiatRest = async (bot) => {
       if (result === 'success') {
         await bot.sendMessage(
           statChatId,
-          `Current fiat quota:\n--------------------\nQuota: ${plan_quota}\nRefrash day: ${refresh_day_of_month}\nRemaining requests: ${requests_remaining}\nRequests in this month: ${
+          `Current fiat quota:\n--------------------\nQuota: ${plan_quota}\nRefresh day: ${refresh_day_of_month}\nRemaining requests: ${requests_remaining}\nRequests in this month: ${
             plan_quota - requests_remaining
           }`,
         );

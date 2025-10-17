@@ -11,7 +11,7 @@ import { checkBannedUsers } from '../api/checkBannedUsers.js';
 import { bfHttpRequest } from '../api/bfHttpRequest.js';
 import { getUsers } from '../api/getUsers.js';
 import { getVisits } from '../api/getVisits.js';
-import { getUnicUsersChart } from '../api/getUnicUsersChart.js';
+import { getUniqUsersChart } from '../api/getUniqUsersChart.js';
 import { getChatCurValue } from '../api/getChatCurValue.js';
 import { getFiatRest } from '../api/getFiatRest.js';
 import { fiat } from '../modules/fiat.js';
@@ -23,8 +23,8 @@ import { sendErrorMessage } from '../modules/messages.js';
 
 import {
   saveStat,
-  unicUsersByDates,
-  unicUsersChart,
+  uniqUsersByDates,
+  uniqUsersChart,
   visitors,
 } from '../statistic/index.js';
 
@@ -181,15 +181,15 @@ export const callbackQuery = async (bot, msg, state) => {
   else if (cndtnStatisticQuantity(text, msg)) {
     await usersQuantityMsg(bot);
   }
-  // Statistic (Unic Users Chart)
-  else if (text === 'unicuserschart') {
-    const chartData = await getUnicUsersChart(bot);
-    await unicUsersChart(bot, chatId, chartData);
+  // Statistic (Uniq Users Chart)
+  else if (text === 'uniquserschart') {
+    const chartData = await getUniqUsersChart(bot);
+    await uniqUsersChart(bot, chatId, chartData);
   }
-  // Statistic (Unic Users By Dates)
-  else if (text === 'unicusersbydates') {
-    const chartData = await getUnicUsersChart(bot, true);
-    await unicUsersByDates(bot, chatId, chartData);
+  // Statistic (Uniq Users By Dates)
+  else if (text === 'uniqusersbydates') {
+    const chartData = await getUniqUsersChart(bot, true);
+    await uniqUsersByDates(bot, chatId, chartData);
   }
   // Ban user (message: send Id)
   else if (cndtnBanUser(text, msg)) {

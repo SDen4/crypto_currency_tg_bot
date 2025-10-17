@@ -9,7 +9,7 @@ export const bfHttpInfoRequest = (
   chatIdArr,
   textInner,
   state,
-  alertPersent,
+  alertPercent,
 ) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
@@ -22,7 +22,7 @@ export const bfHttpInfoRequest = (
 
       const number = Math.abs(data[5] * 100); // % difference
 
-      if (number >= alertPersent && number > state.prevValue) {
+      if (number >= alertPercent && number > state.prevValue) {
         state.prevValue = number;
 
         let title =

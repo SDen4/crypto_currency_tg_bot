@@ -1,6 +1,6 @@
 import { sendErrorMessage } from '../modules/messages.js';
 
-export const unicUsersByDates = async (bot, chatId, chartData) => {
+export const uniqUsersByDates = async (bot, chatId, chartData) => {
   try {
     bot.sendMessage(
       chatId,

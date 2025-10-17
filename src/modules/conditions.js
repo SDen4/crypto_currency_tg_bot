@@ -213,13 +213,13 @@ export const cndtnCryptoInfo = (t) =>
 
 // check my addresses
 export const cndtnCheckMyAddresses = (t, msg) =>
-  msg.from.id === statChatId && t === 'checkMyDonateAdresses';
+  msg.from.id === statChatId && t === 'checkMyDonateAddresses';
 
 export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
   const reader = msg.from.id === statChatId;
-  const isRigthCommand = String(t) === command;
+  const isRightCommand = String(t) === command;
 
-  return isRigthCommand && reader;
+  return isRightCommand && reader;
 };
 
 // all users
