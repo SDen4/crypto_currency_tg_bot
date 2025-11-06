@@ -159,10 +159,10 @@ export const cndtnStatisticQuantity = (t, msg) =>
   msg.from.id === statChatId && t === 'usersquantity';
 
 export const cndtnBanUser = (t, msg) =>
-  t.toLowerCase() === 'banuser' && msg.from.id === statChatId;
+  t?.toLowerCase() === 'banuser' && msg.from.id === statChatId;
 
 export const cndtnUnbanUser = (t, msg) =>
-  t.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
+  t?.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
 
 export const cndtnStatisticUsers = (t, msg) =>
   t?.toLowerCase() === 'users' && msg.from.id === statChatId;
@@ -202,14 +202,14 @@ export const cndtnThankAfterDonate = (msg) =>
   msg?.text === undefined && msg?.successful_payment?.total_amount > 0;
 
 export const cndtnCryptoInfo = (t) =>
-  t.toLowerCase() === '/cryptoinfo' ||
+  t?.toLowerCase() === '/cryptoinfo' ||
   [
     "what's crypto",
     'what is crypto?',
     'what is crypto',
     'crypto currency',
     'i am beginner',
-  ].includes(t.toLowerCase());
+  ].includes(t?.toLowerCase());
 
 // check my addresses
 export const cndtnCheckMyAddresses = (t, msg) =>
