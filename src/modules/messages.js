@@ -80,7 +80,7 @@ export const setTmrMsgCur = async (bot, chatId) => {
 export const sendChartCurBtns = async (bot, chatId) => {
   await bot.sendMessage(
     chatId,
-    'Select the crypto currency for chart',
+    'Select the crypto currency rate for the chart: ',
     btnsCurrenciesChart,
   );
 };
