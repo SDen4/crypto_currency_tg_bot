@@ -15,7 +15,7 @@ export const limits = async (bot, chatId, msg) => {
       chatId,
       `${
         msg?.from?.first_name
-      }, your limits:\n------------------\n1. fiat rates: ${
+      }, your limits:\n------------------\n1. Fiat rates: ${
         user
           ? `${user.limit}/day (last 24h used: ${
               isTimeExpired ? 0 : user.count
@@ -25,7 +25,7 @@ export const limits = async (bot, chatId, msg) => {
         user && user.count === user.limit && !isTimeExpired
           ? `available in ${msToStr(restTime)}`
           : ''
-      }\n2. crypto rates: unlimited`,
+      }\n2. Crypto rates: unlimited`,
     );
   } catch (error) {
     await sendErrorMessage(error, bot, chatId);
