@@ -41,7 +41,7 @@ export const pool = async (bot, chatId, msg) => {
       firstCur = `${resultArr[i].currency}:`;
 
     const requestStr = `${firstCur}usd`;
-    const queryParams = `t${requestStr.toLocaleUpperCase()}`;
+    const queryParams = `t${requestStr.toUpperCase()}`;
 
     const pr = await axios
       .get(`${bfUrl}/${pathParams}/${queryParams}`)
@@ -64,7 +64,7 @@ export const pool = async (bot, chatId, msg) => {
   for (let i = 0; i < resultArr.length; i++) {
     const subSum = resultArr[i].quantity * resultArr[i].value;
     const x = resultArr[i].quantity;
-    const y = resultArr[i].currency.toLocaleUpperCase();
+    const y = resultArr[i].currency.toUpperCase();
 
     result.push(`${x} ${y} = $${formatNumber(subSum, 2)}\n`);
 

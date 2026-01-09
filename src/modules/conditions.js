@@ -150,7 +150,7 @@ export const cndtnPool = (t) => {
 
 export const cndtnStatistic = (t, msg) => {
   const reader = msg.from.id === statChatId;
-  const text = String(t)?.toLocaleLowerCase().match(/\D+/g)?.[0].trim();
+  const text = String(t)?.toLowerCase().match(/\D+/g)?.[0].trim();
 
   return ['stat', '/stat', 'стат'].includes(text) && reader;
 };
@@ -171,7 +171,7 @@ export const cndtnEugFunc = (t, msg) => {
   const id = msg.from.id;
 
   return (
-    t?.toLocaleLowerCase() === shortSign &&
+    t?.toLowerCase() === shortSign &&
     (String(id).indexOf(eugPartId) !== -1 || id === statChatId)
   );
 };

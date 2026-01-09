@@ -13,7 +13,7 @@ export const bfHttpInfoRequest = (
 ) => {
   const pathParams = 'ticker';
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
-  const queryParams = `t${text.toLocaleUpperCase().slice(1)}`;
+  const queryParams = `t${text.toUpperCase().slice(1)}`;
   let promise;
 
   return (promise = axios.get(`${bfUrl}/${pathParams}/${queryParams}`).then(
@@ -27,10 +27,8 @@ export const bfHttpInfoRequest = (
 
         let title =
           String(text).length === 7
-            ? `${text.toLocaleUpperCase().slice(1, 4)}/${text
-                .toLocaleUpperCase()
-                .slice(4)}`
-            : `${String(text).slice(1).toLocaleUpperCase().replace(':', '/')}`;
+            ? `${text.toUpperCase().slice(1, 4)}/${text.toUpperCase().slice(4)}`
+            : `${String(text).slice(1).toUpperCase().replace(':', '/')}`;
         // exceptions
         title = getTitleExceptions(text, title);
 

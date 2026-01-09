@@ -5,7 +5,7 @@ import { bfUrl, statChatId } from '../../token.js';
 
 export const getChatCurValue = (bot, textInner) => {
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;
-  const queryParams = `t${text.toLocaleUpperCase().slice(1, -10)}`;
+  const queryParams = `t${text.toUpperCase().slice(1, -10)}`;
 
   return axios
     .get(`${bfUrl}/ticker/${queryParams}`)
