@@ -45,14 +45,8 @@ export const convertShortCommands = (text) => {
     case 'bchn':
       return '/bchn:usd';
 
-    case 'btt':
-      return '/bttusd';
-
     case 'chz':
       return '/chzusd';
-
-    case 'dai':
-      return '/daiusd';
 
     case 'dash':
       return '/dshusd';
@@ -78,9 +72,6 @@ export const convertShortCommands = (text) => {
     case 'gtx':
       return '/gtxusd';
 
-    case 'hi':
-      return '/hixusd';
-
     case 'iota':
       return '/iotusd';
 
@@ -92,9 +83,6 @@ export const convertShortCommands = (text) => {
 
     case 'ltc':
       return '/ltcusd';
-
-    case 'mkr':
-      return '/mkrusd';
 
     case 'neo':
       return '/neousd';
@@ -114,14 +102,14 @@ export const convertShortCommands = (text) => {
     case 'xaut':
       return '/xaut:usd';
 
+    case 'tbtc':
+      return '/tbtc:xaut';
+
     case 'ton':
       return '/tonusd';
 
     case 'trx':
       return '/trxusd';
-
-    case 'tusd':
-      return '/tsdusd';
 
     case 'wbtc':
       return '/wbtusd';
@@ -131,9 +119,6 @@ export const convertShortCommands = (text) => {
 
     case 'zec':
       return '/zecusd';
-
-    case 'zrx':
-      return '/zrxusd';
 
     default:
       return text;

@@ -14,9 +14,6 @@ export const getTitleExceptions = (text, title) => {
     case '/atousd':
       newTitle = 'ATOM/USD';
       break;
-    case '/tsdusd':
-      newTitle = 'TUSD/USD';
-      break;
     case '/omnusd':
       newTitle = 'OMNI/USD';
       break;
@@ -26,11 +23,12 @@ export const getTitleExceptions = (text, title) => {
     case '/wbtusd':
       newTitle = 'WBTC/USD';
       break;
-    case '/hixusd':
-      newTitle = 'HI/USD';
-      break;
     case '/dshusd':
       newTitle = 'DASH/USD';
+      break;
+
+    case '/tbtc:xaut':
+      newTitle = 'BTC/XAUt';
       break;
 
     default:
