@@ -1,4 +1,4 @@
-import { statChatId } from '../../token.js';
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const visitors = async (bot, msg) => {
   const command = msg?.data || msg?.text;

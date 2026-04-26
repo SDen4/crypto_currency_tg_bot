@@ -1,4 +1,4 @@
-import { banned } from '../../token.js';
+const banned = process.env.BANNED;
 
 export const ban = (bot, chatId, msg) => {
   if (msg?.from?.is_bot) {

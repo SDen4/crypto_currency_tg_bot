@@ -1,4 +1,4 @@
-import { statChatId } from '../../token.js';
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const deleteMessage = async (bot, chatId, messageId) => {
   try {

@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { fiatHistoryApi, statChatId } from '../../token.js';
+import { fiatHistoryApi } from '../utils/fiatHistoryApi.js';
 import { sendErrorMessage } from '../modules/messages.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const getFiatHistory = async (
   bot,

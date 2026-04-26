@@ -1,9 +1,8 @@
 import axios from 'axios';
 
+import { checkAddrUrl2 } from '../utils/checkAddrUrl2.js';
 import { checkIsMyAddress } from '../utils/checkIsMyAddress.js';
 import { formatCurrencyName } from '../utils/formatCurrencyName.js';
-
-import { checkAddrUrl2 } from '../../token.js';
 
 export const getAddressInfo2 = async (
   bot,

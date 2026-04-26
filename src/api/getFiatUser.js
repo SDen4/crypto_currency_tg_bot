@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { statUrl, statChatId } from '../../token.js';
 import { sendErrorMessage } from '../modules/messages.js';
+
+const statUrl = process.env.STAT_URL;
+const statChatId = process.env.STAT_CHAT_ID;
 
 /**
  * Get fiat user (if id) or users

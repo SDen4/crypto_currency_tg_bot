@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { statChatId, fiatApiPair } from '../../token.js';
 import { sendErrorMessage } from '../modules/messages.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
+const fiatApiPair = process.env.FIAT_API_PAIR;
 
 export const getFiatPairs = async (bot, chatId, params) => {
   return await axios

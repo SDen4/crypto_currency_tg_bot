@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-import { fiatApiRest, statChatId } from '../../token.js';
 import { sendErrorMessage } from '../modules/messages.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
+const fiatApiRest = process.env.FIAT_API_REST;
 
 export const getFiatRest = async (bot) => {
   return await axios

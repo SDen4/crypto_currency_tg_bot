@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { checkAddrUrl } from '../../token.js';
+import { checkAddrUrl } from '../utils/checkAddrUrl.js';
 
 import { checkIsMyAddress } from '../utils/checkIsMyAddress.js';
 import { formatNumber } from '../utils/formatNumber.js';

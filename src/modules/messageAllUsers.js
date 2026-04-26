@@ -1,5 +1,6 @@
 import { getUsers } from '../api/getUsers.js';
-import { statChatId } from '../../token.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const messageAllUsers = async (bot, text) => {
   const data = await getUsers(bot);

@@ -1,8 +1,9 @@
-import { fiatRequestsLimit } from '../../token.js';
 import { getFiatUser } from '../api/getFiatUser.js';
 import { sendErrorMessage } from './messages.js';
 import { msToStr } from '../utils/msToStr.js';
 import { periodOfLimitRequests } from '../constants/index.js';
+
+const fiatRequestsLimit = process.env.FIAT_REQUESTS_LIMIT;
 
 export const limits = async (bot, chatId, msg) => {
   try {

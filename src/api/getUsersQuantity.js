@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 import { sendErrorMessage } from '../modules/messages.js';
-import { statUrl, statChatId } from '../../token.js';
+
+const statUrl = process.env.STAT_URL;
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const getUsersQuantity = async (bot) => {
   return await axios

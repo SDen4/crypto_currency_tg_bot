@@ -1,4 +1,5 @@
-import { statChatId } from '../../token.js';
+const statChatId = process.env.STAT_CHAT_ID;
+
 import { getUsers } from '../api/getUsers.js';
 import { postMsg } from '../api/postMsg.js';
 import { postUsers } from '../api/postUsers.js';

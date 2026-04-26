@@ -1,5 +1,7 @@
-import { statChatId, eugPartId } from '../../token.js';
 import { bfHttpInfoRequest } from '../api/bfHttpInfoRequest.js';
+
+const eugPartId = process.env.EUG_PART_ID;
+const statChatId = process.env.STAT_CHAT_ID;
 
 const state = { minutes: 15, prevValue: 0 };
 

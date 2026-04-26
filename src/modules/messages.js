@@ -5,13 +5,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const pathToBtcQr = `${path.join(__dirname, '..', 'pics')}/qrBtc.png`;
 const pathToLightQr = `${path.join(__dirname, '..', 'pics')}/qrLightning.png`;
 
-import {
-  statChatId,
-  donateBtcAddress,
-  donateEthAddress,
-  donateDogeAddress,
-  donateLightningAddress,
-} from '../../token.js';
+const statChatId = process.env.STAT_CHAT_ID;
+const donateBtcAddress = process.env.DONATE_BTC_ADDRESS;
+const donateEthAddress = process.env.DONATE_ETH_ADDRESS;
+const donateDogeAddress = process.env.DONATE_DOGE_ADDRESS;
+const donateLightningAddress = process.env.DONATE_LIGHTNING_ADDRESS;
 
 import {
   btnsCurrencies,

@@ -1,6 +1,5 @@
+import 'dotenv/config';
 import TgBotApi from 'node-telegram-bot-api';
-
-import { token, statChatId } from './token.js';
 
 import { manyRequestsErrorText } from './src/constants/index.js';
 
@@ -13,6 +12,9 @@ import { percentAlertMessage } from './src/modules/percentAlertMessage.js';
 import { answerPreCheckoutQuery } from './src/root/answerPreCheckoutQuery.js';
 import { callbackQuery } from './src/root/callbackQuery.js';
 import { message } from './src/root/message.js';
+
+const token = process.env.TOKEN;
+const statChatId = process.env.STAT_CHAT_ID;
 
 const bot = new TgBotApi(token, { polling: true });
 

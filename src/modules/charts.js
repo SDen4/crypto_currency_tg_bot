@@ -2,7 +2,8 @@ import axios from 'axios';
 import { Buffer } from 'buffer';
 import ChartJSImage from 'chart.js-image';
 
-import { bfUrl } from '../../token.js';
+const bfUrl = process.env.BF_URL;
+
 import { timestamp } from '../utils/timestamp.js';
 import { sendErrorMessage } from './messages.js';
 

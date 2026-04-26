@@ -1,4 +1,4 @@
-import { statChatId } from '../../token.js';
+const statChatId = process.env.STAT_CHAT_ID;
 
 import { getFiatUser } from '../api/getFiatUser.js';
 import { putFiatUser } from '../api/putFiatUser.js';

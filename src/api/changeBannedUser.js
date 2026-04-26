@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { statUrl } from '../../token.js';
+
+const statUrl = process.env.STAT_URL;
 
 import { sendErrorMessage } from '../modules/messages.js';
 

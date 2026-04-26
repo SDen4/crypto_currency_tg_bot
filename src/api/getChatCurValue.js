@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 import { sendErrorMessage } from '../modules/messages.js';
-import { bfUrl, statChatId } from '../../token.js';
+
+const bfUrl = process.env.BF_URL;
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const getChatCurValue = (bot, textInner) => {
   const text = textInner[0] === '/' ? textInner : `/${textInner}`;

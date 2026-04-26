@@ -1,0 +1,35 @@
+version: '0.1'
+
+services:
+  bot:
+    build: . # строим образ из текущей папки
+    container_name: telegram-bot # удобное имя контейнера
+    restart: always # автоматический перезапуск при падении и старте сервера
+    environment:
+      - TOKEN=${TOKEN}
+      - STAT_CHAT_ID=${STAT_CHAT_ID}
+      - STAT_URL=${STAT_URL}
+      - BF_URL=${BF_URL}
+      - MP_CUR_BLOCK_URL=${MP_CUR_BLOCK_URL}
+      - MP_HASH_URL=${MP_HASH_URL}
+      - MP_LAST_BLOCK=${MP_LAST_BLOCK}
+      - CHECK_ADD_URL=${CHECK_ADD_URL}
+      - CHECK_ADD_URL_2=${CHECK_ADD_URL_2}
+      - SHORT_SIGN=${SHORT_SIGN}
+      - EUG_PART_ID=${EUG_PART_ID}
+      - BANNED=${BANNED}
+      - DONATE_BTC_ADDRESS=${DONATE_BTC_ADDRESS}
+      - DONATE_ETH_ADDRESS=${DONATE_ETH_ADDRESS}
+      - DONATE_DOGE_ADDRESS=${DONATE_DOGE_ADDRESS}
+      - DONATE_LIGHTNING_ADDRESS=${DONATE_LIGHTNING_ADDRESS}
+      - WEB_APP_URL=${WEB_APP_URL}
+      - FIAT_REQUESTS_LIMIT=${FIAT_REQUESTS_LIMIT}
+      - FIAT_API_PAIR=${FIAT_API_PAIR}
+      - FIAT_API_ALL=${FIAT_API_ALL}
+      - FIAT_API_REST=${FIAT_API_REST}
+      - FIAT_HISTORY_API_URL=${FIAT_HISTORY_API_URL}
+      - FIAT_HISTORY_API_KEY=${FIAT_HISTORY_API_KEY}
+    # Если вы хотите видеть логи в реальном времени,
+    # можете добавить:
+    # tty: true
+    # stdin_open: true

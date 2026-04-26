@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { bfUrl } from '../../token.js';
+
+const bfUrl = process.env.BF_URL;
 
 import { generateMessageId } from '../utils/generateMessageId.js';
 import { getTitleExceptions } from '../utils/getTitleExceptions.js';

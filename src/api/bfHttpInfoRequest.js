@@ -2,7 +2,9 @@ import axios from 'axios';
 
 import { formatNumber } from '../utils/formatNumber.js';
 import { getTitleExceptions } from '../utils/getTitleExceptions.js';
-import { bfUrl, statChatId } from '../../token.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
+const bfUrl = process.env.BF_URL;
 
 export const bfHttpInfoRequest = (
   bot,

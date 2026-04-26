@@ -1,5 +1,3 @@
-import { fiatRequestsLimit } from '../../token.js';
-
 import { exceededLimitMsg, sendErrorMessage } from './messages.js';
 
 import { getFiatUser } from '../api/getFiatUser.js';
@@ -8,6 +6,8 @@ import { getFiatHistory } from '../api/getFiatHistory.js';
 import { putFiatUser } from '../api/putFiatUser.js';
 
 import { periodOfLimitRequests } from '../constants/index.js';
+
+const fiatRequestsLimit = process.env.FIAT_REQUESTS_LIMIT;
 
 const usdEur20240101Dump = `USD/EUR at 2024-01-01:
 -------------------------

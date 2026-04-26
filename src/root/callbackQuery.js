@@ -1,10 +1,3 @@
-import {
-  donateBtcAddress,
-  donateEthAddress,
-  donateDogeAddress,
-  statChatId,
-} from '../../token.js';
-
 import { ban } from '../utils/ban.js';
 
 import { checkBannedUsers } from '../api/checkBannedUsers.js';
@@ -78,6 +71,11 @@ import {
   fiatHistoryRatesMsg,
   allFiatBtnsMsg,
 } from '../modules/messages.js';
+
+const statChatId = process.env.STAT_CHAT_ID;
+const donateBtcAddress = process.env.DONATE_BTC_ADDRESS;
+const donateEthAddress = process.env.DONATE_ETH_ADDRESS;
+const donateDogeAddress = process.env.DONATE_DOGE_ADDRESS;
 
 export const callbackQuery = async (bot, msg, state) => {
   const chatId = msg?.message?.chat?.id;

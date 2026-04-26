@@ -1,4 +1,4 @@
-import { webAppUrl } from '../../token.js';
+const webAppUrl = process.env.WEB_APP_URL;
 
 export const btnsCurrenciesArr = [
   [

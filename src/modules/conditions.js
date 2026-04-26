@@ -1,6 +1,10 @@
 import { cndtnFunc } from '../utils/cndtnFunc.js';
-import { statChatId, shortSign, eugPartId } from '../../token.js';
+
 import { checkAddrBtns, tgStarsCallbackData } from './buttons.js';
+
+const eugPartId = process.env.EUG_PART_ID;
+const shortSign = process.env.SHORT_SIGN;
+const statChatId = process.env.STAT_CHAT_ID;
 
 export const cndtnCurrencies = (t) =>
   [

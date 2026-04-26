@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { cndtnPool } from './conditions.js';
 import { formatNumber } from '../utils/formatNumber.js';
-import { bfUrl } from '../../token.js';
+
+const bfUrl = process.env.BF_URL;
 
 export const pool = async (bot, chatId, msg) => {
   const msgArr = String(msg)
