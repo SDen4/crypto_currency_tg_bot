@@ -2,9 +2,9 @@ import { cndtnFunc } from '../utils/cndtnFunc.js';
 
 import { checkAddrBtns, tgStarsCallbackData } from './buttons.js';
 
-const eugPartId = process.env.EUG_PART_ID;
+const eugPartId = process.env.EUG_PART_ID.split(',').map(String);
 const shortSign = process.env.SHORT_SIGN;
-const statChatId = process.env.STAT_CHAT_ID;
+const statChatId = String(process.env.STAT_CHAT_ID);
 
 export const cndtnCurrencies = (t) =>
   [
@@ -140,30 +140,29 @@ export const cndtnPool = (t) => {
 };
 
 export const cndtnStatistic = (t, msg) => {
-  const reader = msg.from.id === statChatId;
+  const reader = String(msg.from.id) === statChatId;
   const text = String(t)?.toLowerCase().match(/\D+/g)?.[0].trim();
 
   return ['stat', '/stat', 'стат'].includes(text) && reader;
 };
 
 export const cndtnStatisticQuantity = (t, msg) =>
-  msg.from.id === statChatId && t === 'usersquantity';
+  String(msg.from.id) === statChatId && t === 'usersquantity';
 
 export const cndtnBanUser = (t, msg) =>
-  t?.toLowerCase() === 'banuser' && msg.from.id === statChatId;
+  t?.toLowerCase() === 'banuser' && String(msg.from.id) === statChatId;
 
 export const cndtnUnbanUser = (t, msg) =>
-  t?.toLowerCase() === 'unbanuser' && msg.from.id === statChatId;
+  t?.toLowerCase() === 'unbanuser' && String(msg.from.id) === statChatId;
 
 export const cndtnStatisticUsers = (t, msg) =>
-  t?.toLowerCase() === 'users' && msg.from.id === statChatId;
+  t?.toLowerCase() === 'users' && String(msg.from.id) === statChatId;
 
 export const cndtnEugFunc = (t, msg) => {
-  const id = msg.from.id;
+  const id = String(msg.from.id);
 
   return (
-    t?.toLowerCase() === shortSign &&
-    (String(id).indexOf(eugPartId) !== -1 || id === statChatId)
+    t?.toLowerCase() === shortSign && [...eugPartId, statChatId].includes(id)
   );
 };
 
@@ -204,10 +203,10 @@ export const cndtnCryptoInfo = (t) =>
 
 // check my addresses
 export const cndtnCheckMyAddresses = (t, msg) =>
-  msg.from.id === statChatId && t === 'checkMyDonateAddresses';
+  String(msg.from.id) === statChatId && t === 'checkMyDonateAddresses';
 
 export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
-  const reader = msg.from.id === statChatId;
+  const reader = String(msg.from.id) === statChatId;
   const isRightCommand = String(t) === command;
 
   return isRightCommand && reader;
@@ -215,30 +214,31 @@ export const cndtnCheckMyDonateAddresses = (t, msg, command) => {
 
 // all users
 export const cndtnMessageAllUsersFlag = (t, msg) =>
-  t === 'messageAllUsers' && msg.from.id === statChatId;
+  t === 'messageAllUsers' && String(msg.from.id) === statChatId;
 export const cndtnMessageAllUsers = (flag, msg) =>
-  flag && msg.from.id === statChatId;
+  flag && String(msg.from.id) === statChatId;
 
 // fiat
 export const cndtnFiatPairCurrencies = (t) => t.includes('fiat-pair-');
 export const cndtnFiatAllCurrencies = (t) => t.includes('fiat-all-');
 
 export const cndtnFiatRest = (t, chatId) =>
-  chatId === statChatId && t.includes('checkTheRestOfFiatRequests');
+  String(chatId) === statChatId && t.includes('checkTheRestOfFiatRequests');
 
 export const cndtnAllFiatBtns = (t, chatId) =>
-  chatId === statChatId && t.includes('showAllFiatButtons');
+  String(chatId) === statChatId && t.includes('showAllFiatButtons');
 
 export const cndtnChangeLimitOfFiatMessage = (t, chatId) =>
-  chatId === statChatId && t.includes('changeLimitOfFiatRequestsMessage');
+  String(chatId) === statChatId &&
+  t.includes('changeLimitOfFiatRequestsMessage');
 
 export const cndtnChangeLimitOfFiat = (t, chatId) =>
-  chatId === statChatId && t.includes('changeLimitOfFiatRequests-');
+  String(chatId) === statChatId && t.includes('changeLimitOfFiatRequests-');
 
 export const cndtnResetFiatDayRequestsMessage = (t, chatId) =>
-  chatId === statChatId && t.includes('resetFiatDayRequestMessage');
+  String(chatId) === statChatId && t.includes('resetFiatDayRequestMessage');
 
 export const cndtnResetFiatDayRequests = (t, chatId) =>
-  chatId === statChatId && t.includes('resetFiatDayRequests-');
+  String(chatId) === statChatId && t.includes('resetFiatDayRequests-');
 
 export const cndtnHistoryOfFiatRates = (t) => t.includes('fiatHistoryRates-');

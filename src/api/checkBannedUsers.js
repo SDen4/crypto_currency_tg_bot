@@ -6,7 +6,7 @@ const statUrl = process.env.STAT_URL;
 const statChatId = process.env.STAT_CHAT_ID;
 
 export const checkBannedUsers = async (bot, chatId) => {
-  if (chatId === statChatId) return false;
+  if (String(chatId) === String(statChatId)) return false;
 
   const data = await axios
     .get(`${statUrl}bannedIds.json`)

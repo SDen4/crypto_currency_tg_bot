@@ -8,7 +8,7 @@ let userIds = [];
 
 export const saveStat = async (bot, msg) => {
   const id = msg?.from?.id || msg?.chat?.id;
-  if (id === statChatId) return;
+  if (String(id) === String(statChatId)) return;
 
   if (!userIds.length) {
     const users = await getUsers(bot);

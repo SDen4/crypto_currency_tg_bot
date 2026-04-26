@@ -1,9 +1,9 @@
-const statChatId = process.env.STAT_CHAT_ID;
+const statChatId = String(process.env.STAT_CHAT_ID);
 
 export const visitors = async (bot, msg) => {
   const command = msg?.data || msg?.text;
 
-  if (msg.from.id === statChatId) return;
+  if (String(msg.from.id) === statChatId) return;
 
   await bot.sendMessage(
     statChatId,

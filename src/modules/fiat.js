@@ -24,7 +24,7 @@ export const fiat = async (bot, chatId, text, msg, type) => {
       newUser = {
         id: String(id),
         count: 0,
-        limit: fiatRequestsLimit,
+        limit: Number(fiatRequestsLimit),
         lastVisit: new Date().getTime(),
         limitDate: new Date().getTime(),
       };

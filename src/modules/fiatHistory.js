@@ -34,7 +34,7 @@ export const fiatHistory = async (bot, chatId, text) => {
       newUser = {
         id: String(chatId),
         count: 0,
-        limit: fiatRequestsLimit,
+        limit: Number(fiatRequestsLimit),
         lastVisit: new Date().getTime(),
         limitDate: new Date().getTime(),
       };
