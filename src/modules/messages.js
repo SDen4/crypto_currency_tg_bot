@@ -49,7 +49,8 @@ export const start = async (bot, chatId, msg) => {
 };
 
 export const menu = async (bot, chatId, msg) => {
-  let btns = msg?.from?.id === statChatId ? btnsAdminStart : btnsStart;
+  let btns =
+    String(msg?.from?.id) === String(statChatId) ? btnsAdminStart : btnsStart;
   await bot.sendMessage(chatId, '🗂️ Menu', btns);
 };
 
