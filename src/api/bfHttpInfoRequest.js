@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { formatNumber } from '../utils/formatNumber.js';
 import { getTitleExceptions } from '../utils/getTitleExceptions.js';
+import { sendErrorMessage } from '../modules/messages.js';
 
 const statChatId = process.env.STAT_CHAT_ID;
 const bfUrl = process.env.BF_URL;
@@ -50,5 +51,7 @@ ${emoji} 24h: ${formatNumber(number, 2, '%')} ${emoji}`;
     (error) => {
       bot.sendMessage(statChatId, `No data... Error: ${error}`);
     },
-  ));
+  )).catch((error) =>
+    sendErrorMessage(`in bfHttpInfoRequest: ${error}`, bot, statChatId),
+  );
 };
